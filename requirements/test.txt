@@ -91,7 +91,7 @@ coverage[toml]==7.4.3
     #   pytest-cov
 cryptography==42.0.5
     # via moto
-ddt==1.7.1
+ddt==1.7.2
     # via -r requirements/test.in
 defusedxml==0.7.1
     # via -r requirements/base.txt
@@ -213,8 +213,10 @@ mock==5.1.0
     # via -r requirements/test.in
 more-itertools==10.2.0
     # via -r requirements/test.in
-moto==5.0.2
-    # via -r requirements/test.in
+moto==4.2.14
+    # via
+    #   -c requirements/constraints.txt
+    #   -r requirements/test.in
 newrelic==9.7.0
     # via
     #   -r requirements/base.txt
@@ -366,7 +368,7 @@ tox==4.13.0
     # via -r requirements/test.in
 types-python-dateutil==2.8.19.20240106
     # via arrow
-typing-extensions==4.9.0
+typing-extensions==4.10.0
     # via
     #   -r requirements/base.txt
     #   asgiref

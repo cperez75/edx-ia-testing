@@ -1,1 +1,3 @@
 # Version constraints for pip-installation.
+# greater version breaking few tests.
+moto<5.0
