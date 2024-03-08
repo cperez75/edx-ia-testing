@@ -3,10 +3,10 @@ import BaseView from 'lms/oa_base';
 import ResponseView from 'lms/oa_response';
 
 /**
-Tests for OpenAssessment response (submission) view.
+Tests for ieia response (submission) view.
 **/
 
-describe("OpenAssessment.ResponseView", function() {
+describe("ieia.ResponseView", function() {
 
     var FAKE_URL = "http://www.example.com";
     var ALLOWED_IMAGE_MIME_TYPES = [

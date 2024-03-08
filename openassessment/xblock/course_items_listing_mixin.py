@@ -7,7 +7,7 @@ import json
 
 from webob import Response
 from xblock.core import XBlock
-from openassessment.xblock.staff_area_mixin import require_course_staff
+from ieia.xblock.staff_area_mixin import require_course_staff
 
 
 class CourseItemsListingMixin:
@@ -24,6 +24,6 @@ class CourseItemsListingMixin:
 
         """
         # Import is placed here to avoid model import at project startup.
-        from openassessment.data import OraAggregateData
+        from ieia.data import OraAggregateData
         responses = OraAggregateData.collect_ora2_responses(str(self.course_id))
         return Response(json.dumps(responses), content_type='application/json', charset='UTF-8')

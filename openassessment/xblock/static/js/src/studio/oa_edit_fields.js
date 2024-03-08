@@ -121,7 +121,7 @@ export class IntField {
  are shown or hidden.
  shownSel (list of JQuery selectors): Sections to show when the checkbox is checked.
  hiddenSel (list of JQuery selectors): Sections to show when the checkbox is unchecked.
- notifier (OpenAssessment.Notifier): Receives notifications when the checkbox state changes.
+ notifier (ieia.Notifier): Receives notifications when the checkbox state changes.
 
  Sends the following notifications:
  * toggleOn
@@ -143,7 +143,7 @@ export class ToggleControl {
      checkboxSelector (string): The CSS selector string for the checkbox.
 
      Returns:
-     OpenAssessment.ToggleControl
+     ieia.ToggleControl
      * */
   install() {
     this.checkbox.change(
@@ -200,7 +200,7 @@ export class DatetimeControl {
      Configure the date and time picker inputs.
 
      Returns:
-     OpenAssessment.DatetimeControl
+     ieia.DatetimeControl
 
      * */
   install() {
@@ -314,7 +314,7 @@ export class DatetimeControl {
      option2: selector2,
  }
  When an option is selected, the section is shown and all other sections will be hidden.
- notifier (OpenAssessment.Notifier): Receives notifications when the select state changes.
+ notifier (ieia.Notifier): Receives notifications when the select state changes.
 
  Sends the following notifications:
  * selectionChanged
@@ -331,7 +331,7 @@ export class SelectControl {
      passing in the toggle control object as the event data.
 
      Returns:
-     OpenAssessment.ToggleControl
+     ieia.ToggleControl
      * */
   install() {
     this.select.change(

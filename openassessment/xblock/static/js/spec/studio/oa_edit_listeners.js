@@ -14,7 +14,7 @@ Tests for the student training listener,
 which dynamically updates student training examples
 based on rubric changes.
 **/
-describe("OpenAssessment.StudentTrainingListener", function() {
+describe("ieia.StudentTrainingListener", function() {
 
     var listener = null;
     let defaultTrainingSection = {
@@ -392,7 +392,7 @@ describe("OpenAssessment.StudentTrainingListener", function() {
 });
 
 
-describe("OpenAssessment.AssessmentToggleListener", function() {
+describe("ieia.AssessmentToggleListener", function() {
 
     var alert = null;
     var listener = null;
@@ -416,7 +416,7 @@ describe("OpenAssessment.AssessmentToggleListener", function() {
     });
 });
 
-describe("OpenAssessment.StudentTrainingListenerWithTrainingExamples", function() {
+describe("ieia.StudentTrainingListenerWithTrainingExamples", function() {
 
     var listener = null;
     var view = null;

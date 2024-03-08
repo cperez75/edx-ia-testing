@@ -4,30 +4,30 @@ import logging
 
 from xblock.core import XBlock
 from submissions import api as submissions_api
-from openassessment.assessment.errors.peer import (
+from ieia.assessment.errors.peer import (
     PeerAssessmentInternalError,
     PeerAssessmentRequestError,
     PeerAssessmentWorkflowError,
 )
-from openassessment.assessment.errors.self import SelfAssessmentInternalError, SelfAssessmentRequestError
-from openassessment.assessment.errors.staff import StaffAssessmentInternalError, StaffAssessmentRequestError
-from openassessment.assessment.errors.student_training import StudentTrainingError
-from openassessment.fileupload.exceptions import FileUploadError
-from openassessment.workflow.errors import (
+from ieia.assessment.errors.self import SelfAssessmentInternalError, SelfAssessmentRequestError
+from ieia.assessment.errors.staff import StaffAssessmentInternalError, StaffAssessmentRequestError
+from ieia.assessment.errors.student_training import StudentTrainingError
+from ieia.fileupload.exceptions import FileUploadError
+from ieia.workflow.errors import (
     AssessmentWorkflowError,
     AssessmentWorkflowInternalError,
     AssessmentWorkflowRequestError
 )
-from openassessment.xblock.apis.assessments.errors import (
+from ieia.xblock.apis.assessments.errors import (
     ReviewerMustHaveSubmittedException,
     ServerClientUUIDMismatchException,
 )
-from openassessment.xblock.apis.submissions import submissions_actions
-from openassessment.xblock.apis.assessments.peer_assessment_api import peer_assess
-from openassessment.xblock.apis.assessments.self_assessment_api import self_assess
-from openassessment.xblock.apis.assessments.staff_assessment_api import staff_assess
-from openassessment.xblock.apis.assessments.student_training_api import training_assess
-from openassessment.xblock.apis.submissions.errors import (
+from ieia.xblock.apis.submissions import submissions_actions
+from ieia.xblock.apis.assessments.peer_assessment_api import peer_assess
+from ieia.xblock.apis.assessments.self_assessment_api import self_assess
+from ieia.xblock.apis.assessments.staff_assessment_api import staff_assess
+from ieia.xblock.apis.assessments.student_training_api import training_assess
+from ieia.xblock.apis.submissions.errors import (
     AnswerTooLongException,
     DeleteNotAllowed,
     DraftSaveException,
@@ -39,9 +39,9 @@ from openassessment.xblock.apis.submissions.errors import (
     SubmitInternalError,
     UnsupportedFileTypeException
 )
-from openassessment.xblock.staff_area_mixin import require_course_staff
-from openassessment.xblock.ui_mixins.legacy.serializers import SaveFilesDescriptionRequestSerializer
-from openassessment.xblock.utils.data_conversion import verify_assessment_parameters
+from ieia.xblock.staff_area_mixin import require_course_staff
+from ieia.xblock.ui_mixins.legacy.serializers import SaveFilesDescriptionRequestSerializer
+from ieia.xblock.utils.data_conversion import verify_assessment_parameters
 
 logger = logging.getLogger(__name__)
 
@@ -220,7 +220,7 @@ class LegacyHandlersMixin:
     @XBlock.json_handler
     @verify_assessment_parameters
     def peer_assess(self, data, suffix=""):  # pylint: disable=unused-argument
-        """Place a peer assessment into OpenAssessment system
+        """Place a peer assessment into ieia system
 
         Assess a Peer Submission.  Performs basic workflow validation to ensure
         that an assessment can be performed as this time.

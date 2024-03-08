@@ -3,11 +3,11 @@ Interface for Message banner.
 
 Args:
     element (DOM element): The DOM element representing the XBlock.
-    server (OpenAssessment.Server): The interface to the XBlock server.
-    baseView (OpenAssessment.BaseView): Container view.
+    server (ieia.Server): The interface to the XBlock server.
+    baseView (ieia.BaseView): Container view.
 
 Returns:
-    OpenAssessment.ResponseView
+    ieia.ResponseView
 * */
 
 export class MessageView {

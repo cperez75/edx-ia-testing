@@ -13,15 +13,15 @@ from mock import MagicMock
 from submissions import api as submission_api
 from submissions import team_api as submission_team_api
 
-from openassessment.assessment.errors.base import AssessmentError
-from openassessment.xblock.apis.assessments.peer_assessment_api import PeerAssessmentAPI
-from openassessment.xblock.apis.workflow_api import WorkflowAPI
-from openassessment.fileupload.api import FileUpload
-from openassessment.fileupload.exceptions import FileUploadError
-from openassessment.tests.factories import SharedFileUploadFactory, UserFactory
-from openassessment.workflow import api as workflow_api
-from openassessment.workflow import team_api as team_workflow_api
-from openassessment.xblock.apis.submissions.errors import (
+from ieia.assessment.errors.base import AssessmentError
+from ieia.xblock.apis.assessments.peer_assessment_api import PeerAssessmentAPI
+from ieia.xblock.apis.workflow_api import WorkflowAPI
+from ieia.fileupload.api import FileUpload
+from ieia.fileupload.exceptions import FileUploadError
+from ieia.tests.factories import SharedFileUploadFactory, UserFactory
+from ieia.workflow import api as workflow_api
+from ieia.workflow import team_api as team_workflow_api
+from ieia.xblock.apis.submissions.errors import (
     AnswerTooLongException,
     DeleteNotAllowed,
     DraftSaveException,
@@ -33,14 +33,14 @@ from openassessment.xblock.apis.submissions.errors import (
     SubmitInternalError,
     UnsupportedFileTypeException
 )
-from openassessment.xblock.apis.submissions.file_api import FileAPI
-from openassessment.xblock.test.base import SubmissionTestMixin, XBlockHandlerTestCase, scenario
-from openassessment.xblock.test.test_staff_area import NullUserService, UserStateService
-from openassessment.xblock.test.test_submission import COURSE_ID, setup_mock_team
-from openassessment.xblock.test.test_team import MOCK_TEAM_ID, MockTeamsService
-from openassessment.xblock.ui_mixins.mfe.mixin import MFE_STEP_TO_WORKFLOW_MAPPINGS
-from openassessment.xblock.ui_mixins.mfe.constants import error_codes, handler_suffixes
-from openassessment.xblock.ui_mixins.mfe.submission_serializers import DraftResponseSerializer, SubmissionSerializer
+from ieia.xblock.apis.submissions.file_api import FileAPI
+from ieia.xblock.test.base import SubmissionTestMixin, XBlockHandlerTestCase, scenario
+from ieia.xblock.test.test_staff_area import NullUserService, UserStateService
+from ieia.xblock.test.test_submission import COURSE_ID, setup_mock_team
+from ieia.xblock.test.test_team import MOCK_TEAM_ID, MockTeamsService
+from ieia.xblock.ui_mixins.mfe.mixin import MFE_STEP_TO_WORKFLOW_MAPPINGS
+from ieia.xblock.ui_mixins.mfe.constants import error_codes, handler_suffixes
+from ieia.xblock.ui_mixins.mfe.submission_serializers import DraftResponseSerializer, SubmissionSerializer
 
 
 class MockSerializer(MagicMock):
@@ -62,8 +62,8 @@ class MFEHandlersTestBase(XBlockHandlerTestCase):
         if expected_file_urls is None:
             expected_file_urls = {}
         base_url = 'www.downloadfiles.xyz/'
-        with patch("openassessment.fileupload.api.get_download_url") as mock_unsubmitted_urls:
-            with patch("openassessment.data.get_download_url") as mock_submitted_urls:
+        with patch("ieia.fileupload.api.get_download_url") as mock_unsubmitted_urls:
+            with patch("ieia.data.get_download_url") as mock_submitted_urls:
                 mock_submitted_urls.side_effect = lambda file_key: base_url + file_key
                 mock_unsubmitted_urls.side_effect = expected_file_urls.get
                 yield
@@ -180,7 +180,7 @@ def create_student_and_submission(student, course, item, answer, xblock=None):
             'student_id': student,
             'course_id': course,
             'item_id': item,
-            'item_type': 'openassessment',
+            'item_type': 'ieia',
         },
         answer,
         None
@@ -206,7 +206,7 @@ def assert_called_once_with_helper(mock, expected_first_arg, expected_additional
 class GetLearnerDataRoutingTest(MFEHandlersTestBase, SubmissionTestMixin):
     """ Tests for routing / validation on get_learner_data """
 
-    @patch("openassessment.xblock.ui_mixins.mfe.mixin.PageDataSerializer")
+    @patch("ieia.xblock.ui_mixins.mfe.mixin.PageDataSerializer")
     @scenario("data/basic_scenario.xml")
     def test_no_requested_step(self, xblock, mock_serializer):
         # Given we don't pass an active step
@@ -222,7 +222,7 @@ class GetLearnerDataRoutingTest(MFEHandlersTestBase, SubmissionTestMixin):
         }
         mock_serializer.assert_called_once_with(xblock, context={**expected_context})
 
-    @patch("openassessment.xblock.ui_mixins.mfe.mixin.PageDataSerializer")
+    @patch("ieia.xblock.ui_mixins.mfe.mixin.PageDataSerializer")
     @scenario("data/basic_scenario.xml")
     def test_start_submission(self, xblock, mock_serializer):
         # Given we haven't started a submission
@@ -238,7 +238,7 @@ class GetLearnerDataRoutingTest(MFEHandlersTestBase, SubmissionTestMixin):
         }
         mock_serializer.assert_called_once_with(xblock, context={**expected_context})
 
-    @patch("openassessment.xblock.ui_mixins.mfe.mixin.PageDataSerializer")
+    @patch("ieia.xblock.ui_mixins.mfe.mixin.PageDataSerializer")
     @scenario("data/basic_scenario.xml")
     def test_bad_jump_step(self, xblock, mock_serializer):
         # Given any state
@@ -254,7 +254,7 @@ class GetLearnerDataRoutingTest(MFEHandlersTestBase, SubmissionTestMixin):
         assert_error_response(response, 400, error_codes.INCORRECT_PARAMETERS, context=expected_context)
 
     @ddt.data("peer", "done")
-    @patch("openassessment.xblock.ui_mixins.mfe.mixin.PageDataSerializer")
+    @patch("ieia.xblock.ui_mixins.mfe.mixin.PageDataSerializer")
     @scenario("data/basic_scenario.xml")
     def test_jump_to_inaccessible_step(self, xblock, inaccessible_step, mock_serializer):
         # Given I'm on an early step
@@ -277,7 +277,7 @@ class GetLearnerDataRoutingTest(MFEHandlersTestBase, SubmissionTestMixin):
         }
         self.assertDictEqual(expected_body, json.loads(response.body))
 
-    @patch("openassessment.xblock.ui_mixins.mfe.mixin.PageDataSerializer")
+    @patch("ieia.xblock.ui_mixins.mfe.mixin.PageDataSerializer")
     @scenario("data/basic_scenario.xml", user_id="Alice")
     def test_assessment_step(self, xblock, mock_serializer):
         # Given I've completed my submission
@@ -294,7 +294,7 @@ class GetLearnerDataRoutingTest(MFEHandlersTestBase, SubmissionTestMixin):
         }
         mock_serializer.assert_called_once_with(xblock, context={**expected_context})
 
-    @patch("openassessment.xblock.ui_mixins.mfe.mixin.PageDataSerializer")
+    @patch("ieia.xblock.ui_mixins.mfe.mixin.PageDataSerializer")
     @scenario("data/basic_scenario.xml", user_id="Alice")
     def test_jump_back_to_submission_step(self, xblock, mock_serializer):
         # Given I've completed my submission
@@ -580,7 +580,7 @@ class SubmissionDraftTest(MFEHandlersTestBase):
 
     @contextmanager
     def _mock_save_submission_draft(self, **kwargs):
-        with patch('openassessment.xblock.ui_mixins.mfe.mixin.submissions_actions') as mock_submission_actions:
+        with patch('ieia.xblock.ui_mixins.mfe.mixin.submissions_actions') as mock_submission_actions:
             mock_submission_actions.save_submission_draft.configure_mock(**kwargs)
             yield mock_submission_actions.save_submission_draft
 
@@ -613,7 +613,7 @@ class SubmissionCreateTest(MFEHandlersTestBase):
 
     @contextmanager
     def _mock_create_submission(self, **kwargs):
-        with patch('openassessment.xblock.ui_mixins.mfe.mixin.submissions_actions') as mock_submission_actions:
+        with patch('ieia.xblock.ui_mixins.mfe.mixin.submissions_actions') as mock_submission_actions:
             mock_submission_actions.submit.configure_mock(**kwargs)
             yield mock_submission_actions.submit
 
@@ -681,7 +681,7 @@ class SubmissionCreateTest(MFEHandlersTestBase):
             assert resp.status_code == 200
             assert_called_once_with_helper(mock_submit, self.DEFAULT_SUBMIT_VALUE["submission"]["textResponses"], 3)
 
-    @patch("openassessment.xblock.ui_mixins.mfe.mixin.MfeMixin.is_step_open")
+    @patch("ieia.xblock.ui_mixins.mfe.mixin.MfeMixin.is_step_open")
     @scenario("data/basic_scenario.xml")
     def test_blocks_submit_when_step_closed(self, xblock, mock_is_step_open):
         mock_is_step_open.return_value = False
@@ -711,7 +711,7 @@ class FileUploadTest(MFEHandlersTestBase):
     @contextmanager
     def _mock_submissions_actions(self, **kwargs):
         with patch(
-            'openassessment.xblock.ui_mixins.mfe.mixin.submissions_actions',
+            'ieia.xblock.ui_mixins.mfe.mixin.submissions_actions',
             **kwargs
         ) as mock_submission_actions:
             yield mock_submission_actions
@@ -820,7 +820,7 @@ class FileDeleteTest(MFEHandlersTestBase):
 
     @contextmanager
     def _mock_remove_uploaded_file(self, **kwargs):
-        with patch('openassessment.xblock.ui_mixins.mfe.mixin.submissions_actions') as mock_submission_actions:
+        with patch('ieia.xblock.ui_mixins.mfe.mixin.submissions_actions') as mock_submission_actions:
             mock_submission_actions.remove_uploaded_file.configure_mock(**kwargs)
             yield mock_submission_actions.remove_uploaded_file
 
@@ -933,7 +933,7 @@ class AssessmentSubmitTest(MFEHandlersTestBase):
         training_kwargs = training_kwargs or {'return_value': None}
         peer_kwargs = peer_kwargs or {}
 
-        base_path = 'openassessment.xblock.ui_mixins.mfe.mixin.'
+        base_path = 'ieia.xblock.ui_mixins.mfe.mixin.'
         with patch(base_path + 'self_assess', **self_kwargs) as mock_self:
             with patch(base_path + 'training_assess', **training_kwargs) as mock_training:
                 with patch(base_path + 'peer_assess', **peer_kwargs) as mock_peer:
@@ -1021,7 +1021,7 @@ class AssessmentSubmitTest(MFEHandlersTestBase):
 
         assert_error_response(resp, 400, error_codes.TRAINING_ANSWER_INCORRECT, corrections)
 
-    @patch("openassessment.xblock.ui_mixins.mfe.mixin.MfeMixin.is_step_open")
+    @patch("ieia.xblock.ui_mixins.mfe.mixin.MfeMixin.is_step_open")
     @ddt.data('self', 'studentTraining', 'peer')
     @scenario("data/basic_scenario.xml")
     def test_blocks_assess_when_step_closed(self, xblock, mfe_step, mock_is_step_open):

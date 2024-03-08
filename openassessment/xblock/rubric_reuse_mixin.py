@@ -18,7 +18,7 @@ class RubricReuseMixin:
         if hasattr(self.runtime, 'modulestore'):
             return self.runtime.modulestore.get_items(
                 self.location.course_key,
-                qualifiers={'category': 'openassessment'},
+                qualifiers={'category': 'ieia'},
             )
         else:
             logger.info(
@@ -41,7 +41,7 @@ class RubricReuseMixin:
 
     def get_other_ora_blocks_for_rubric_editor_context(self):
         """
-        Return a list of all other openassessment blocks in the course, in the format:
+        Return a list of all other ieia blocks in the course, in the format:
         {
             'display_name': <block display name>
             'location': <block location, as a string>
@@ -81,9 +81,9 @@ class RubricReuseMixin:
 
     def _get_rubric(self, target_ora_block_locator):
         target_block = self._get_ora_block(target_ora_block_locator)
-        if target_block.category != 'openassessment':
+        if target_block.category != 'ieia':
             logger.warning(
-                "Requested rubric from %s which is %s not openassessment",
+                "Requested rubric from %s which is %s not ieia",
                 target_ora_block_locator,
                 target_block.category
             )

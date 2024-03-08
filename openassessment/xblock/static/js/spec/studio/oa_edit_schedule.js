@@ -8,7 +8,7 @@ import {
 /**
 Tests for the edit schedule view.
 **/
-describe('OpenAssessment.EditScheduleView', function() {
+describe('ieia.EditScheduleView', function() {
     var testValidateDate = function(datetimeControl, expectedError) {
         // Test an invalid datetime
         datetimeControl.datetime('invalid', 'invalid');

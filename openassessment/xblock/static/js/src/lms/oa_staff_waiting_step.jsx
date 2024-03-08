@@ -6,9 +6,9 @@ import WaitingStepDetailsContainer from './containers/WaitingStepDetailsContaine
  * Function to render the Waiting Step Details view.
  *
  * Args:
- *   baseView (OpenAssessment.BaseView): Container view. Used to render
+ *   baseView (ieia.BaseView): Container view. Used to render
  *             staff assessment views to manage grades.
- *   data (OpenAssessment.Server): Context data passed from view.
+ *   data (ieia.Server): Context data passed from view.
  */
 export function renderWaitingStepDetailsView(baseView, data) {
   // Retrieves react container on instructor dashboard

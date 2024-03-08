@@ -8,13 +8,13 @@ import { Prompt } from './oa_container_item';
  element (DOM element): The DOM element representing this view.
 
  Returns:
- OpenAssessment.EditPromptsView
+ ieia.EditPromptsView
 
  * */
 export class EditPromptsView {
   constructor(element, notifier) {
     this.element = element;
-    this.editorElement = $(this.element).closest('#openassessment-editor');
+    this.editorElement = $(this.element).closest('#ieia-editor');
     this.tabElement = $('#oa_edit_prompt_tab');
 
     this.addRemoveEnabled = this.editorElement.attr('data-is-released') !== 'true';
@@ -86,7 +86,7 @@ export class EditPromptsView {
      Remove a prompt.
 
      Args:
-     item (OpenAssessment.RubricCriterion): The criterion item to remove.
+     item (ieia.RubricCriterion): The criterion item to remove.
      * */
   removePrompt(item) {
     if (this.addRemoveEnabled) {
@@ -98,7 +98,7 @@ export class EditPromptsView {
      Retrieve all prompts.
 
      Returns:
-     Array of OpenAssessment.Prompt objects.
+     Array of ieia.Prompt objects.
 
      * */
   getAllPrompts() {
@@ -112,7 +112,7 @@ export class EditPromptsView {
      index (int): The index of the prompt, starting from 0.
 
      Returns:
-     OpenAssessment.Prompt or null
+     ieia.Prompt or null
 
      * */
   getPromptItem(index) {

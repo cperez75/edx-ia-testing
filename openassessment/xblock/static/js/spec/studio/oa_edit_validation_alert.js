@@ -1,6 +1,6 @@
 import ValidationAlert from 'studio/oa_edit_validation_alert';
 
-describe("OpenAssessment.ValidationAlert", function() {
+describe("ieia.ValidationAlert", function() {
 
     var alert = null;
 

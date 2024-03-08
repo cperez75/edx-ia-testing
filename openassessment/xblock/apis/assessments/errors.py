@@ -2,7 +2,7 @@
 Assessment API Errors
 """
 
-from openassessment.assessment.errors import AssessmentError
+from ieia.assessment.errors import AssessmentError
 
 
 class InvalidStateToAssess(AssessmentError):

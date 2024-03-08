@@ -10,7 +10,7 @@ import ddt
 
 from django.core.exceptions import ObjectDoesNotExist
 from xblock.exceptions import NoSuchServiceError
-from openassessment.xblock.team_mixin import TeamMixin
+from ieia.xblock.team_mixin import TeamMixin
 
 TEAMSET_ID = 'teamset-1-id'
 TEAMSET_NAME = 'teamset-1-name'
@@ -127,7 +127,7 @@ class MockBlock(TeamMixin):
 @ddt.ddt
 class TeamMixinTest(TestCase):
     """
-    Tests for team-based functionality for the openassessment block
+    Tests for team-based functionality for the ieia block
     """
 
     def test_team_no_user_found(self):
@@ -143,7 +143,7 @@ class TeamMixinTest(TestCase):
         block = MockBlock(has_team=False)
         self.assertIsNone(block.team)
 
-    @patch('openassessment.xblock.team_mixin.get_team_submission_for_student')
+    @patch('ieia.xblock.team_mixin.get_team_submission_for_student')
     def test_get_team_info_student_has_previous_team(self, mock_student_submission):
         block = MockBlock()
         mock_student_submission.return_value = {'team_id': MOCK_TEAM_ID_2}
@@ -162,7 +162,7 @@ class TeamMixinTest(TestCase):
             }
         )
 
-    @patch('openassessment.xblock.team_mixin.get_team_submission_for_student')
+    @patch('ieia.xblock.team_mixin.get_team_submission_for_student')
     def test_get_team_info_student_no_previous_team(self, mock_student_submission):
         block = MockBlock()
         mock_student_submission.return_value = {'team_id': MOCK_TEAM_ID}
@@ -216,11 +216,11 @@ class TeamMixinTest(TestCase):
         self.assertIsNone(block.teamset_config)
 
     @mock.patch(
-        'openassessment.xblock.team_mixin.get_team_submission_from_individual_submission',
+        'ieia.xblock.team_mixin.get_team_submission_from_individual_submission',
         return_value=MOCK_TEAM_SUBMISSION
     )
     @mock.patch(
-        'openassessment.xblock.team_mixin.get_team_submission_student_ids',
+        'ieia.xblock.team_mixin.get_team_submission_student_ids',
         return_value=MOCK_TEAM_MEMBER_STUDENT_IDS
     )
     def test_add_team_submission_context__individual_submission(self, _1, _2):
@@ -235,9 +235,9 @@ class TeamMixinTest(TestCase):
             }
         )
 
-    @mock.patch('openassessment.xblock.team_mixin.get_team_submission', return_value=MOCK_TEAM_SUBMISSION)
+    @mock.patch('ieia.xblock.team_mixin.get_team_submission', return_value=MOCK_TEAM_SUBMISSION)
     @mock.patch(
-        'openassessment.xblock.team_mixin.get_team_submission_student_ids',
+        'ieia.xblock.team_mixin.get_team_submission_student_ids',
         return_value=MOCK_TEAM_MEMBER_STUDENT_IDS
     )
     @ddt.data(False, True)

@@ -8,7 +8,7 @@ import Notifier from './oa_edit_notifier';
 import { AssessmentToggleListener } from './oa_edit_listeners';
 
 /**
-Editing interface for OpenAssessment settings.
+Editing interface for ieia settings.
 
 Args:
     element (DOM element): The DOM element representing this view.
@@ -16,7 +16,7 @@ Args:
     data (Object literal): The data object passed from XBlock backend.
 
 Returns:
-    OpenAssessment.EditSettingsView
+    ieia.EditSettingsView
 
 * */
 export class EditSettingsView {

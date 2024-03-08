@@ -2,7 +2,7 @@
 branch = True
 
 [report]
-include = openassessment/*
+include = ieia/*
 omit =
     */migrations/*
-    openassessment/runtime_imports/*
+    ieia/runtime_imports/*

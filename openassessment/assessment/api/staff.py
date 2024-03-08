@@ -10,18 +10,18 @@ from django.utils.timezone import now
 
 from submissions import api as submissions_api
 
-from openassessment.assessment.errors import StaffAssessmentInternalError, StaffAssessmentRequestError
-from openassessment.assessment.models import Assessment, AssessmentPart, InvalidRubricSelection, StaffWorkflow
-from openassessment.assessment.serializers import (
+from ieia.assessment.errors import StaffAssessmentInternalError, StaffAssessmentRequestError
+from ieia.assessment.models import Assessment, AssessmentPart, InvalidRubricSelection, StaffWorkflow
+from ieia.assessment.serializers import (
     InvalidRubric,
     full_assessment_dict,
     rubric_from_dict,
     serialize_assessments,
 )
-from openassessment.assessment.score_type_constants import STAFF_TYPE
+from ieia.assessment.score_type_constants import STAFF_TYPE
 
 
-logger = logging.getLogger("openassessment.assessment.api.staff")  # pylint: disable=invalid-name
+logger = logging.getLogger("ieia.assessment.api.staff")  # pylint: disable=invalid-name
 
 
 def submitter_is_finished(submission_uuid, staff_requirements):  # pylint: disable=unused-argument

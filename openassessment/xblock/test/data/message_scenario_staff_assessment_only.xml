@@ -1,4 +1,4 @@
-<openassessment submission_due="2099-01-23">
+<ieia submission_due="2099-01-23">
     <title>Open Assessment Test</title>
     <prompt>
         Given the state of the world today, what do you think should be done to
@@ -26,4 +26,4 @@
     <assessments>
         <assessment name="staff-assessment" required="True"/>
     </assessments>
-</openassessment>
+</ieia>

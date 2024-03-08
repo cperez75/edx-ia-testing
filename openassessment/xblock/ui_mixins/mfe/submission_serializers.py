@@ -10,7 +10,7 @@ from rest_framework.serializers import (
     SerializerMethodField,
     URLField,
 )
-from openassessment.xblock.ui_mixins.mfe.serializer_utils import CharListField, NullField
+from ieia.xblock.ui_mixins.mfe.serializer_utils import CharListField, NullField
 
 
 class SubmissionFileSerializer(Serializer):

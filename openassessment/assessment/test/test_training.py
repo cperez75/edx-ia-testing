@@ -10,9 +10,9 @@ from unittest import mock
 
 from django.db import IntegrityError
 
-from openassessment.assessment.models import TrainingExample
-from openassessment.assessment.serializers import deserialize_training_examples, serialize_training_example
-from openassessment.test_utils import CacheResetTest
+from ieia.assessment.models import TrainingExample
+from ieia.assessment.serializers import deserialize_training_examples, serialize_training_example
+from ieia.test_utils import CacheResetTest
 
 
 class TrainingExampleSerializerTest(CacheResetTest):
@@ -168,8 +168,8 @@ class TrainingExampleSerializerTest(CacheResetTest):
         This can occur when using repeatable-read isolation mode.
         """
         example = deserialize_training_examples(self.EXAMPLES[:1], self.RUBRIC)[0]
-        with mock.patch('openassessment.assessment.models.TrainingExample.objects.get') as mock_get:
-            with mock.patch('openassessment.assessment.models.TrainingExample.create_example') as mock_create:
+        with mock.patch('ieia.assessment.models.TrainingExample.objects.get') as mock_get:
+            with mock.patch('ieia.assessment.models.TrainingExample.create_example') as mock_create:
                 mock_get.side_effect = [TrainingExample.DoesNotExist, example]
                 mock_create.side_effect = IntegrityError
 

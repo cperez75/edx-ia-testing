@@ -2,9 +2,9 @@
 APIs for getting grade info
 """
 
-from openassessment.assessment.api import peer as peer_api
-from openassessment.assessment.api import self as self_api
-from openassessment.assessment.api import staff as staff_api
+from ieia.assessment.api import peer as peer_api
+from ieia.assessment.api import self as self_api
+from ieia.assessment.api import staff as staff_api
 
 
 class GradesAPI:

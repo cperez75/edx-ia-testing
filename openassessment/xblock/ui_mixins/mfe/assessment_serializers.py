@@ -10,8 +10,8 @@ from rest_framework.serializers import (
     URLField,
     Serializer,
 )
-from openassessment.data import OraSubmissionAnswerFactory
-from openassessment.xblock.ui_mixins.mfe.serializer_utils import NullField
+from ieia.data import OraSubmissionAnswerFactory
+from ieia.xblock.ui_mixins.mfe.serializer_utils import NullField
 
 
 class AssessmentScoreSerializer(Serializer):

@@ -6,11 +6,11 @@ import logging
 from django.core.exceptions import ObjectDoesNotExist
 from xblock.exceptions import NoSuchServiceError
 
-from openassessment.xblock.utils.data_conversion import (
+from ieia.xblock.utils.data_conversion import (
     create_submission_dict,
     list_to_conversational_format,
 )
-from openassessment.xblock.utils.user_data import get_user_preferences
+from ieia.xblock.utils.user_data import get_user_preferences
 
 
 logger = logging.getLogger(__name__)  # pylint: disable=invalid-name

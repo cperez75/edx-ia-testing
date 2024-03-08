@@ -1,6 +1,6 @@
 import FileUploader from 'lms/oa_file_upload';
 
-describe("OpenAssessment.FileUploader", function() {
+describe("ieia.FileUploader", function() {
 
     var fileUploader = null;
     var TEST_URL = "http://www.example.com/upload";
@@ -44,7 +44,7 @@ describe("OpenAssessment.FileUploader", function() {
 
         // Verify that the event was logged
         expect(Logger.log).toHaveBeenCalledWith(
-            "openassessment.upload_file", {
+            "ieia.upload_file", {
                 fileName: TEST_FILE.name,
                 fileSize: TEST_FILE.size,
                 fileType: TEST_FILE.type
@@ -97,7 +97,7 @@ describe("OpenAssessment.FileUploader", function() {
 
         // Verify that the event was logged
         expect(Logger.log).toHaveBeenCalledWith(
-            "openassessment.upload_file_error", {
+            "ieia.upload_file_error", {
                 statusText: "We're gonna need a bigger boat"
             }
         );

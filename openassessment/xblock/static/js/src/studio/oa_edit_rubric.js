@@ -7,7 +7,7 @@ import ValidationAlert from './oa_edit_validation_alert';
 
  Args:
  element (DOM element): The DOM element representing the rubric.
- notifier (OpenAssessment.Notifier): Used to notify other views about updates to the rubric.
+ notifier (ieia.Notifier): Used to notify other views about updates to the rubric.
 
  This view fires the following notification events:
  * optionAdd: An option was added to the rubric.
@@ -294,7 +294,7 @@ export class EditRubricView {
      Remove a criterion from the rubric.
 
      Args:
-     item (OpenAssessment.RubricCriterion): The criterion item to remove.
+     item (ieia.RubricCriterion): The criterion item to remove.
      * */
   removeCriterion(item) {
     this.criteriaContainer.remove(item);
@@ -304,7 +304,7 @@ export class EditRubricView {
      Retrieve all criteria from the rubric.
 
      Returns:
-     Array of OpenAssessment.RubricCriterion objects.
+     Array of ieia.RubricCriterion objects.
 
      * */
   getAllCriteria() {
@@ -318,7 +318,7 @@ export class EditRubricView {
      index (int): The index of the criterion, starting from 0.
 
      Returns:
-     OpenAssessment.RubricCriterion or null
+     ieia.RubricCriterion or null
 
      * */
   getCriterionItem(index) {
@@ -343,7 +343,7 @@ export class EditRubricView {
 
      Args:
      criterionIndex (int): The index of the criterion, starting from 0.
-     item (OpenAssessment.RubricOption): The option item to remove.
+     item (ieia.RubricOption): The option item to remove.
 
      * */
   removeOption(criterionIndex, item) {
@@ -358,7 +358,7 @@ export class EditRubricView {
      criterionIndex (int): The index of the criterion, starting from 0.
 
      Returns:
-     Array of OpenAssessment.RubricOption
+     Array of ieia.RubricOption
      * */
   getAllOptions(criterionIndex) {
     const criterionItem = this.getCriterionItem(criterionIndex);
@@ -374,7 +374,7 @@ export class EditRubricView {
      starting from 0.
 
      Returns:
-     OpenAssessment.RubricOption
+     ieia.RubricOption
 
      * */
   getOptionItem(criterionIndex, optionIndex) {

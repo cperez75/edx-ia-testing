@@ -15,11 +15,11 @@ from workbench.runtime import WorkbenchRuntime
 
 import webob
 from submissions import api as submissions_api
-from openassessment.assessment.api import peer as peer_api
-from openassessment.assessment.api import self as self_api
-from openassessment.test_utils import CacheResetTest, TransactionCacheResetTest
-from openassessment.workflow import api as workflow_api
-from openassessment.xblock.apis.submissions import submissions_actions
+from ieia.assessment.api import peer as peer_api
+from ieia.assessment.api import self as self_api
+from ieia.test_utils import CacheResetTest, TransactionCacheResetTest
+from ieia.workflow import api as workflow_api
+from ieia.xblock.apis.submissions import submissions_actions
 
 # Sample peer assessments
 PEER_ASSESSMENTS = [
@@ -508,7 +508,7 @@ class SubmitAssessmentsMixin(SubmissionTestMixin):
     @contextmanager
     def mock_workflow_status(workflow_status, status_details, submission_uuid):
         with patch(
-            "openassessment.xblock.apis.workflow_api.WorkflowAPI.workflow",
+            "ieia.xblock.apis.workflow_api.WorkflowAPI.workflow",
             new_callable=PropertyMock,
         ) as mock_workflow:
             mock_workflow.return_value = {

@@ -5,9 +5,9 @@ import json
 from unittest.mock import patch
 
 from django.test import TestCase
-from openassessment.workflow import api as workflow_api
-from openassessment.fileupload.api import FileUpload
-from openassessment.xblock.test.base import (
+from ieia.workflow import api as workflow_api
+from ieia.fileupload.api import FileUpload
+from ieia.xblock.test.base import (
     PEER_ASSESSMENTS,
     STAFF_GOOD_ASSESSMENT,
     SubmissionTestMixin,
@@ -15,7 +15,7 @@ from openassessment.xblock.test.base import (
     XBlockHandlerTestCase,
     scenario,
 )
-from openassessment.xblock.ui_mixins.mfe.assessment_serializers import (
+from ieia.xblock.ui_mixins.mfe.assessment_serializers import (
     AssessmentResponseSerializer,
     AssessmentGradeSerializer,
     AssessmentScoreSerializer,
@@ -93,9 +93,9 @@ class TestAssessmentResponseSerializer(XBlockHandlerTestCase, SubmissionTestMixi
         return FileUpload(**file_data, **student_item_dict)
 
     @patch(
-        "openassessment.xblock.apis.submissions.submissions_api.FileAPI.get_uploads_for_submission"
+        "ieia.xblock.apis.submissions.submissions_api.FileAPI.get_uploads_for_submission"
     )
-    @patch("openassessment.data.ZippedListSubmissionAnswer._safe_get_download_url")
+    @patch("ieia.data.ZippedListSubmissionAnswer._safe_get_download_url")
     @scenario("data/file_upload_scenario.xml", user_id="Alan")
     def test_files(self, xblock, mock_get_download_url, mock_get_files):
         # Given we have a response

@@ -7,17 +7,17 @@ import logging
 from django.db import DatabaseError
 from django.db.models import Count
 
-from openassessment.workflow.errors import (
+from ieia.workflow.errors import (
     AssessmentWorkflowError,
     AssessmentWorkflowInternalError,
     AssessmentWorkflowRequestError,
     AssessmentWorkflowNotFoundError
 )
-from openassessment.workflow.models import (
+from ieia.workflow.models import (
     TeamAssessmentWorkflow,
     AssessmentWorkflowCancellation
 )
-from openassessment.workflow.serializers import (
+from ieia.workflow.serializers import (
     TeamAssessmentWorkflowSerializer,
     AssessmentWorkflowCancellationSerializer
 )

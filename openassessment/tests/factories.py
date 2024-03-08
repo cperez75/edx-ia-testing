@@ -9,9 +9,9 @@ from django.contrib.auth import get_user_model
 from factory.django import DjangoModelFactory
 from pytz import UTC
 
-from openassessment.assessment.models import (Assessment, AssessmentFeedback, AssessmentFeedbackOption, AssessmentPart,
+from ieia.assessment.models import (Assessment, AssessmentFeedback, AssessmentFeedbackOption, AssessmentPart,
                                               Criterion, CriterionOption, Rubric, StaffWorkflow, TeamStaffWorkflow)
-from openassessment.assessment.models.base import SharedFileUpload
+from ieia.assessment.models.base import SharedFileUpload
 
 User = get_user_model()
 

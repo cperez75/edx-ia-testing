@@ -11,9 +11,9 @@ import pytz
 
 from django.db import DatabaseError
 
-from openassessment.assessment.models import StudentTrainingWorkflow
-from openassessment.workflow import api as workflow_api
-from openassessment.workflow.errors import AssessmentWorkflowError
+from ieia.assessment.models import StudentTrainingWorkflow
+from ieia.workflow import api as workflow_api
+from ieia.workflow.errors import AssessmentWorkflowError
 
 from .base import SubmissionTestMixin, XBlockHandlerTestCase, scenario
 

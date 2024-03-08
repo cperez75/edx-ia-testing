@@ -12,9 +12,9 @@ from django.utils import timezone
 from pytest import raises
 
 from submissions import api as sub_api
-from openassessment.assessment.api import peer as peer_api
-from openassessment.assessment.errors.peer import PeerAssessmentWorkflowError
-from openassessment.assessment.models import (
+from ieia.assessment.api import peer as peer_api
+from ieia.assessment.errors.peer import PeerAssessmentWorkflowError
+from ieia.assessment.models import (
     Assessment,
     AssessmentFeedback,
     AssessmentFeedbackOption,
@@ -22,9 +22,9 @@ from openassessment.assessment.models import (
     PeerWorkflow,
     PeerWorkflowItem
 )
-from openassessment.workflow.models import AssessmentWorkflow
-from openassessment.test_utils import CacheResetTest
-from openassessment.workflow import api as workflow_api
+from ieia.workflow.models import AssessmentWorkflow
+from ieia.test_utils import CacheResetTest
+from ieia.workflow import api as workflow_api
 
 STUDENT_ITEM = {
     "student_id": "Tim",
@@ -500,7 +500,7 @@ class TestPeerApi(CacheResetTest):
 
     def test_peer_workflow_integrity_error(self):
         tim_sub, __ = self._create_student_and_submission("Tim", "Tim's answer")
-        with patch("openassessment.assessment.models.peer.PeerWorkflow.objects.get_or_create") as mock_peer:
+        with patch("ieia.assessment.models.peer.PeerWorkflow.objects.get_or_create") as mock_peer:
             mock_peer.side_effect = IntegrityError("Oh no!")
             # This should not raise an exception
             peer_api.on_start(tim_sub["uuid"])
@@ -1218,7 +1218,7 @@ class TestPeerApi(CacheResetTest):
         self.assertEqual(xander_answer["uuid"], submission["uuid"])
         self.assertIsNotNone(item.assessment)
 
-    @patch("openassessment.assessment.models.peer.PeerWorkflowItem.objects.filter")
+    @patch("ieia.assessment.models.peer.PeerWorkflowItem.objects.filter")
     def test_get_submitted_assessments_error(self, mock_filter):
         with raises(peer_api.PeerAssessmentInternalError):
             self._create_student_and_submission("Tim", "Tim's answer")
@@ -1228,7 +1228,7 @@ class TestPeerApi(CacheResetTest):
             submitted_assessments = peer_api.get_submitted_assessments(bob_sub["uuid"])
             self.assertEqual(1, len(submitted_assessments))
 
-    @patch('openassessment.assessment.models.peer.PeerWorkflow.objects.raw')
+    @patch('ieia.assessment.models.peer.PeerWorkflow.objects.raw')
     def test_failure_to_get_review_submission(self, mock_filter):
         with raises(peer_api.PeerAssessmentInternalError):
             tim_answer, _ = self._create_student_and_submission("Tim", "Tim's answer", MONDAY)
@@ -1236,7 +1236,7 @@ class TestPeerApi(CacheResetTest):
             mock_filter.side_effect = DatabaseError("Oh no.")
             tim_workflow.get_submission_for_review(3)
 
-    @patch('openassessment.assessment.models.AssessmentFeedback.objects.get')
+    @patch('ieia.assessment.models.AssessmentFeedback.objects.get')
     def test_get_assessment_feedback_error(self, mock_filter):
         with raises(peer_api.PeerAssessmentInternalError):
             mock_filter.side_effect = DatabaseError("Oh no.")
@@ -1256,14 +1256,14 @@ class TestPeerApi(CacheResetTest):
         # Tim gets unscored assessments, this used to throw an error
         PeerWorkflowItem.get_unscored_assessments(tim_answer["uuid"])
 
-    @patch('openassessment.assessment.models.peer.PeerWorkflowItem.get_scored_assessments')
+    @patch('ieia.assessment.models.peer.PeerWorkflowItem.get_scored_assessments')
     def test_set_assessment_feedback_error(self, mock_filter):
         with raises(peer_api.PeerAssessmentInternalError):
             mock_filter.side_effect = DatabaseError("Oh no.")
             tim_answer, _ = self._create_student_and_submission("Tim", "Tim's answer", MONDAY)
             peer_api.set_assessment_feedback({'submission_uuid': tim_answer['uuid']})
 
-    @patch('openassessment.assessment.models.AssessmentFeedback.save')
+    @patch('ieia.assessment.models.AssessmentFeedback.save')
     def test_set_assessment_feedback_error_on_save(self, mock_filter):
         with raises(peer_api.PeerAssessmentInternalError):
             mock_filter.side_effect = DatabaseError("Oh no.")
@@ -1275,7 +1275,7 @@ class TestPeerApi(CacheResetTest):
                 }
             )
 
-    @patch('openassessment.assessment.models.AssessmentFeedback.save')
+    @patch('ieia.assessment.models.AssessmentFeedback.save')
     def test_set_assessment_feedback_error_on_huge_save(self, _):
         with raises(peer_api.PeerAssessmentRequestError):
             tim_answer, _ = self._create_student_and_submission("Tim", "Tim's answer", MONDAY)
@@ -1286,20 +1286,20 @@ class TestPeerApi(CacheResetTest):
                 }
             )
 
-    @patch('openassessment.assessment.models.peer.PeerWorkflow.objects.get')
+    @patch('ieia.assessment.models.peer.PeerWorkflow.objects.get')
     def test_failure_to_get_latest_workflow(self, mock_filter):
         with raises(peer_api.PeerAssessmentWorkflowError):
             mock_filter.side_effect = DatabaseError("Oh no.")
             tim_answer, _ = self._create_student_and_submission("Tim", "Tim's answer", MONDAY)
             PeerWorkflow.get_by_submission_uuid(tim_answer['uuid'])
 
-    @patch('openassessment.assessment.models.peer.PeerWorkflow.objects.get_or_create')
+    @patch('ieia.assessment.models.peer.PeerWorkflow.objects.get_or_create')
     def test_create_workflow_error(self, mock_filter):
         with raises(peer_api.PeerAssessmentInternalError):
             mock_filter.side_effect = DatabaseError("Oh no.")
             self._create_student_and_submission("Tim", "Tim's answer", MONDAY)
 
-    @patch('openassessment.assessment.models.peer.PeerWorkflow.objects.get_or_create')
+    @patch('ieia.assessment.models.peer.PeerWorkflow.objects.get_or_create')
     def test_create_workflow_item_error(self, mock_filter):
         with raises(peer_api.PeerAssessmentInternalError):
             mock_filter.side_effect = DatabaseError("Oh no.")
@@ -1358,18 +1358,18 @@ class TestPeerApi(CacheResetTest):
     def test_max_score_db_error(self):
         with raises(peer_api.PeerAssessmentInternalError):
             tim, _ = self._create_student_and_submission("Tim", "Tim's answer")
-            with patch('openassessment.assessment.models.Assessment.objects.filter') as mock_filter:
+            with patch('ieia.assessment.models.Assessment.objects.filter') as mock_filter:
                 mock_filter.side_effect = DatabaseError("Bad things happened")
                 peer_api.get_rubric_max_scores(tim["uuid"])
 
-    @patch('openassessment.assessment.models.peer.PeerWorkflow.objects.get')
+    @patch('ieia.assessment.models.peer.PeerWorkflow.objects.get')
     def test_median_score_db_error(self, mock_filter):
         with raises(peer_api.PeerAssessmentInternalError):
             mock_filter.side_effect = DatabaseError("Bad things happened")
             tim, _ = self._create_student_and_submission("Tim", "Tim's answer")
             peer_api.get_assessment_median_scores(tim["uuid"])
 
-    @patch('openassessment.assessment.models.Assessment.objects.filter')
+    @patch('ieia.assessment.models.Assessment.objects.filter')
     def test_get_assessments_db_error(self, mock_filter):
         with raises(peer_api.PeerAssessmentInternalError):
             mock_filter.return_value = Assessment.objects.none()
@@ -1377,7 +1377,7 @@ class TestPeerApi(CacheResetTest):
             mock_filter.side_effect = DatabaseError("Bad things happened")
             peer_api.get_assessments(tim["uuid"])
 
-    @patch('openassessment.assessment.models.peer.PeerWorkflow.objects.get_or_create')
+    @patch('ieia.assessment.models.peer.PeerWorkflow.objects.get_or_create')
     def test_error_on_assessment_creation(self, mock_filter):
         with raises(peer_api.PeerAssessmentInternalError):
             mock_filter.side_effect = DatabaseError("Bad things happened")
@@ -1393,7 +1393,7 @@ class TestPeerApi(CacheResetTest):
                 MONDAY,
             )
 
-    @patch('openassessment.assessment.models.Assessment.objects.filter')
+    @patch('ieia.assessment.models.Assessment.objects.filter')
     def test_error_on_get_assessment(self, mock_filter):
         with raises(peer_api.PeerAssessmentInternalError):
             mock_filter.return_value = Assessment.objects.none()
@@ -1716,7 +1716,7 @@ class TestPeerApi(CacheResetTest):
             submission, student = self._create_student_and_submission("Jim", "Jim's answer")
             peer_api.get_submission_to_assess(submission['uuid'], 1)
 
-            with patch('openassessment.assessment.models.peer.PeerWorkflow.objects.get') as mock_call:
+            with patch('ieia.assessment.models.peer.PeerWorkflow.objects.get') as mock_call:
                 mock_call.side_effect = DatabaseError("Kaboom!")
                 peer_api.create_assessment(
                     submission['uuid'],
@@ -2174,14 +2174,14 @@ class PeerWorkflowTest(CacheResetTest):
     STUDENT_ITEM = {
         'student_id': 'test_student',
         'course_id': 'test_course',
-        'item_type': 'openassessment',
+        'item_type': 'ieia',
         'item_id': 'test_item'
     }
 
     OTHER_STUDENT = {
         'student_id': 'test_student_2',
         'course_id': 'test_course',
-        'item_type': 'openassessment',
+        'item_type': 'ieia',
         'item_id': 'test_item'
     }
 

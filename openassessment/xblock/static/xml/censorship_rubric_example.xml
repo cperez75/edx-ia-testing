@@ -1,4 +1,4 @@
-<openassessment>
+<ieia>
     <title>
         Censorship in Public Libraries
     </title>
@@ -84,4 +84,4 @@
                     must_grade="1"
                     must_be_graded_by="1" />
     </assessments>
-</openassessment>
+</ieia>

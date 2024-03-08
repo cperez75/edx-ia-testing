@@ -8,7 +8,7 @@ import json
 
 import ddt
 
-from openassessment.assessment.api import peer as peer_api
+from ieia.assessment.api import peer as peer_api
 
 from .base import (
     PEER_ASSESSMENTS,

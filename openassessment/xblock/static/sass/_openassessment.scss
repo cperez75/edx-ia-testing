@@ -1,19 +1,19 @@
-// xblock: openassessment - main style compile
+// xblock: ieia - main style compile
 // ====================
 
 // NOTES:
-// * this Sass compiles into the static CSS needed for the openassessment xblock
+// * this Sass compiles into the static CSS needed for the ieia xblock
 // * Sass partials that can be re-used are organized in the "xb/" directory and listed in "general xblock" segments
 // * theme-based Sass partials are noted by "theme - [theme name]" in the import order to override defaults
-// * openassessment-specific styles are collected within the "oa/" directory and listed in "app -" segment
+// * ieia-specific styles are collected within the "oa/" directory and listed in "app -" segment
 
-// * openassessment-based layouts are sized like media-query breakpoints, but will be applied by specific classes/variables
+// * ieia-based layouts are sized like media-query breakpoints, but will be applied by specific classes/variables
 // * the system/app digesting this xblock will control general page layout and overall screensize-based breakpoints
 
 // --------------------
 
 // KNOWN ISSUES/CONCERNS:
-// * manual syncing of a view's breakpoints/layout with openassessment's sizes is needed on a system/app basis
+// * manual syncing of a view's breakpoints/layout with ieia's sizes is needed on a system/app basis
 // * the system/app ingesting this xblock may have conflicts/redundancies/versioning issues with the utilities used
 
 // --------------------
@@ -68,7 +68,7 @@
 
 
 // --------------------
-// app - openassessment:
+// app - ieia:
 // specific UI for this application
 // --------------------
 @import 'vendor/hint';                         // vendor - hint/tooltip UI
@@ -85,11 +85,11 @@
 @import 'oa/views/oa-jquery-ui-rubric-reuse';  // rubric reuse jquery-ui theming mixin
 @import 'oa/elements/confirm';                 // custom confirm modal jquery-ui theming mixin
 
-// openassessment: contextual
+// ieia: contextual
 @import 'oa/contexts/ie';                      // open assessment-specific Internet Explorer-specific styling
 @import 'oa/contexts/responsive';              // open assessment-specific UI sizes (faking responsive brakpoints)
 
-// openassessment: misc.
+// ieia: misc.
 @import 'oa/utilities/developer';              // developer-friendly file: add rough/WIP styling that needs UI triage
 @import 'oa/utilities/shame';                  // used for any bad-form/orphaned css/clean up code needed
 

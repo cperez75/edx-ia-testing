@@ -1,5 +1,5 @@
 """
-Tests for the LMS compatibility mixin for the OpenAssessment block.
+Tests for the LMS compatibility mixin for the ieia block.
 """
 
 

@@ -6,11 +6,11 @@ Interface for peer asssessment view.
 
 Args:
     element (DOM element): The DOM element representing the XBlock.
-    server (OpenAssessment.Server): The interface to the XBlock server.
-    baseView (OpenAssessment.BaseView): Container view.
+    server (ieia.Server): The interface to the XBlock server.
+    baseView (ieia.BaseView): Container view.
 
 Returns:
-    OpenAssessment.PeerView
+    ieia.PeerView
 * */
 export class PeerView {
     UNSAVED_WARNING_KEY = 'peer-assessment';

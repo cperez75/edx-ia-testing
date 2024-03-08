@@ -1,5 +1,5 @@
 """
-Django admin models for openassessment
+Django admin models for ieia
 """
 
 
@@ -9,11 +9,11 @@ from django.contrib import admin
 from django.urls import reverse_lazy
 from django.utils.html import format_html, format_html_join
 
-from openassessment.assessment.models import (
+from ieia.assessment.models import (
     Assessment, AssessmentFeedback, PeerWorkflow, PeerWorkflowItem, Rubric, SharedFileUpload, StaffWorkflow,
     TeamStaffWorkflow,
 )
-from openassessment.assessment.serializers import RubricSerializer
+from ieia.assessment.serializers import RubricSerializer
 
 
 class RubricAdmin(admin.ModelAdmin):

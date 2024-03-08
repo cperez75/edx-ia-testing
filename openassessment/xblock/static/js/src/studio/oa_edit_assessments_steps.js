@@ -1,12 +1,12 @@
 /**
-Editing interface for OpenAssessment assessments steps.
+Editing interface for ieia assessments steps.
 
 Args:
     element (DOM element): The DOM element representing this view.
     assessmentViews (object literal): Mapping of CSS IDs to view objects.
 
 Returns:
-    OpenAssessment.EditAssessmentsStepsView
+    ieia.EditAssessmentsStepsView
 
 * */
 export class EditAssessmentsStepsView {

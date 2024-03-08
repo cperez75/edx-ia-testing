@@ -13,13 +13,13 @@ from unittest import mock
 import ddt
 import pytz
 
-from openassessment.assessment.api import peer as peer_api
-from openassessment.assessment.models.base import Assessment
-from openassessment.assessment.models.peer import PeerWorkflowItem
-from openassessment.workflow import api as workflow_api
-from openassessment.xblock.apis.assessments.errors import ServerClientUUIDMismatchException
-from openassessment.xblock.apis.assessments.peer_assessment_api import peer_assess
-from openassessment.xblock.utils.data_conversion import create_submission_dict
+from ieia.assessment.api import peer as peer_api
+from ieia.assessment.models.base import Assessment
+from ieia.assessment.models.peer import PeerWorkflowItem
+from ieia.workflow import api as workflow_api
+from ieia.xblock.apis.assessments.errors import ServerClientUUIDMismatchException
+from ieia.xblock.apis.assessments.peer_assessment_api import peer_assess
+from ieia.xblock.utils.data_conversion import create_submission_dict
 
 from .base import SubmissionTestMixin, XBlockHandlerTestCase, scenario
 
@@ -29,7 +29,7 @@ logger = logging.getLogger(__name__)
 @ddt.ddt
 class TestPeerAssessment(XBlockHandlerTestCase, SubmissionTestMixin):
     """
-    Test integration of the OpenAssessment XBlock with the peer assessment API.
+    Test integration of the ieia XBlock with the peer assessment API.
     """
 
     ASSESSMENT = {
@@ -63,7 +63,7 @@ class TestPeerAssessment(XBlockHandlerTestCase, SubmissionTestMixin):
             b"Sally" in peer_response.body or b"Hal" in peer_response.body
         )
 
-    @mock.patch('openassessment.xblock.workflow_mixin.WorkflowMixin.workflow_requirements')
+    @mock.patch('ieia.xblock.workflow_mixin.WorkflowMixin.workflow_requirements')
     @scenario('data/peer_assessment_scenario.xml', user_id='Sally')
     def test_requirements_changed(self, xblock, mock_requirements):
         """
@@ -790,7 +790,7 @@ class TestPeerAssessmentRender(XBlockHandlerTestCase, SubmissionTestMixin):
             xblock.get_workflow_info = mock.Mock(return_value=workflow_info)
 
         # Simulate that we've either finished or not finished required grading
-        patched_module = 'openassessment.assessment.api.peer'
+        patched_module = 'ieia.assessment.api.peer'
         with mock.patch(patched_module + '.has_finished_required_evaluating') as mock_finished:
             mock_finished.return_value = (was_graded_enough, 1)
             path, context = xblock.peer_path_and_context(continue_grading)
@@ -921,19 +921,19 @@ class TestPeerAssessHandler(XBlockHandlerTestCase, SubmissionTestMixin):
             expect_failure=True
         )
 
-    @mock.patch('openassessment.xblock.apis.assessments.peer_assessment_api.peer_api')
+    @mock.patch('ieia.xblock.apis.assessments.peer_assessment_api.peer_api')
     @scenario('data/peer_assessment_scenario.xml', user_id='Bob')
     def test_peer_api_request_error(self, xblock, mock_api):
         mock_api.create_assessment.side_effect = peer_api.PeerAssessmentRequestError
         self._submit_peer_assessment(xblock, "Sally", "Bob", self.ASSESSMENT, expect_failure=True)
 
-    @mock.patch('openassessment.xblock.apis.assessments.peer_assessment_api.peer_api')
+    @mock.patch('ieia.xblock.apis.assessments.peer_assessment_api.peer_api')
     @scenario('data/peer_assessment_scenario.xml', user_id='Bob')
     def test_peer_api_internal_error(self, xblock, mock_api):
         mock_api.create_assessment.side_effect = peer_api.PeerAssessmentInternalError
         self._submit_peer_assessment(xblock, "Sally", "Bob", self.ASSESSMENT, expect_failure=True)
 
-    @mock.patch('openassessment.xblock.workflow_mixin.workflow_api.update_from_assessments')
+    @mock.patch('ieia.xblock.workflow_mixin.workflow_api.update_from_assessments')
     @scenario('data/peer_assessment_scenario.xml', user_id='Bob')
     def test_peer_api_workflow_error(self, xblock, mock_call):
         mock_call.side_effect = workflow_api.AssessmentWorkflowInternalError

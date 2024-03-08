@@ -13,15 +13,15 @@ from django.db import DatabaseError
 from django.utils.timezone import now
 
 from submissions import api as sub_api
-from openassessment.assessment.api import peer as peer_api
-from openassessment.assessment.api import staff as staff_api
-from openassessment.assessment.api.peer import create_assessment as peer_assess
-from openassessment.assessment.api.self import create_assessment as self_assess
-from openassessment.assessment.errors import StaffAssessmentInternalError, StaffAssessmentRequestError
-from openassessment.assessment.models import Assessment, StaffWorkflow, TeamStaffWorkflow
-from openassessment.test_utils import CacheResetTest
-from openassessment.tests.factories import StaffWorkflowFactory, TeamStaffWorkflowFactory, AssessmentFactory
-from openassessment.workflow import api as workflow_api
+from ieia.assessment.api import peer as peer_api
+from ieia.assessment.api import staff as staff_api
+from ieia.assessment.api.peer import create_assessment as peer_assess
+from ieia.assessment.api.self import create_assessment as self_assess
+from ieia.assessment.errors import StaffAssessmentInternalError, StaffAssessmentRequestError
+from ieia.assessment.models import Assessment, StaffWorkflow, TeamStaffWorkflow
+from ieia.test_utils import CacheResetTest
+from ieia.tests.factories import StaffWorkflowFactory, TeamStaffWorkflowFactory, AssessmentFactory
+from ieia.workflow import api as workflow_api
 
 from .constants import OPTIONS_SELECTED_DICT, RUBRIC, RUBRIC_OPTIONS, RUBRIC_POSSIBLE_POINTS, STUDENT_ITEM
 
@@ -327,7 +327,7 @@ class TestStaffAssessment(CacheResetTest):
             RUBRIC,
         )
         workflow_api.get_workflow_for_submission(tim_sub["uuid"], {}, {})
-        with mock.patch('openassessment.workflow.models.sub_api.reset_score') as mock_reset:
+        with mock.patch('ieia.workflow.models.sub_api.reset_score') as mock_reset:
             workflow_api.get_workflow_for_submission(tim_sub["uuid"], {}, {})
             self.assertFalse(mock_reset.called)
 
@@ -401,7 +401,7 @@ class TestStaffAssessment(CacheResetTest):
             )
         self.assertEqual(str(context_manager.exception), "Invalid options were selected in the rubric.")
 
-    @mock.patch('openassessment.assessment.models.Assessment.objects.filter')
+    @mock.patch('ieia.assessment.models.Assessment.objects.filter')
     def test_database_filter_error_handling(self, mock_filter):
         # Create a submission
         mock_filter.return_value = Assessment.objects.none()
@@ -428,7 +428,7 @@ class TestStaffAssessment(CacheResetTest):
             "Error getting staff assessment scores for {}".format(tim_sub["uuid"])
         )
 
-    @mock.patch('openassessment.assessment.models.Assessment.create')
+    @mock.patch('ieia.assessment.models.Assessment.create')
     def test_database_create_error_handling(self, mock_create):
         mock_create.side_effect = DatabaseError("KABOOM!")
 
@@ -485,7 +485,7 @@ class TestStaffAssessment(CacheResetTest):
 
     def test_next_submission_error(self):
         _, tim = self._create_student_and_submission("Tim", "Tim's answer")
-        with mock.patch('openassessment.assessment.api.staff.submissions_api.get_submission') as patched_get_submission:
+        with mock.patch('ieia.assessment.api.staff.submissions_api.get_submission') as patched_get_submission:
             patched_get_submission.side_effect = sub_api.SubmissionNotFoundError('Failed')
             with self.assertRaises(staff_api.StaffAssessmentInternalError):
                 staff_api.get_submission_to_assess(tim['course_id'], tim['item_id'], tim['student_id'])

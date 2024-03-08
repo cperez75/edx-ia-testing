@@ -4,7 +4,7 @@ import { IntlProvider } from 'react-intl';
 import sinon from 'sinon'; 
 import WaitingStepList from 'lms/components/WaitingStepList';
 
-describe('OpenAssessment.WaitingStepList', () => {
+describe('ieia.WaitingStepList', () => {
   window.gettext = sinon.fake((text) => text);
 
   const IntlProviderWrapper = ({ children }) => (

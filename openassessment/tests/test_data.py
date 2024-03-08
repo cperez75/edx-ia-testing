@@ -1,5 +1,5 @@
 """
-Tests for openassessment data aggregation.
+Tests for ieia data aggregation.
 """
 
 from collections import OrderedDict
@@ -19,16 +19,16 @@ from django.core.management import call_command
 from django.test import TestCase, override_settings
 
 from submissions import api as sub_api, team_api as team_sub_api
-import openassessment.assessment.api.peer as peer_api
-from openassessment.data import (
+import ieia.assessment.api.peer as peer_api
+from ieia.data import (
     CsvWriter, OraAggregateData, OraDownloadData, SubmissionFileUpload, OraSubmissionAnswerFactory,
     VersionNotFoundException, ZippedListSubmissionAnswer, OraSubmissionAnswer, ZIPPED_LIST_SUBMISSION_VERSIONS,
     TextOnlySubmissionAnswer, FileMissingException, map_anonymized_ids_to_usernames, map_anonymized_ids_to_user_data,
     generate_assessment_to_data, generate_assessment_from_data, generate_assessment_data, parts_summary,
 )
-from openassessment.test_utils import TransactionCacheResetTest
-from openassessment.tests.factories import *  # pylint: disable=wildcard-import
-from openassessment.workflow import api as workflow_api, team_api as team_workflow_api
+from ieia.test_utils import TransactionCacheResetTest
+from ieia.tests.factories import *  # pylint: disable=wildcard-import
+from ieia.workflow import api as workflow_api, team_api as team_workflow_api
 
 
 COURSE_ID = "Test_Course"
@@ -116,28 +116,28 @@ STUDENT_ITEM = {
     "student_id": STUDENT_ID,
     "course_id": COURSE_ID,
     "item_id": ITEM_ID,
-    "item_type": "openassessment"
+    "item_type": "ieia"
 }
 
 PRE_FILE_SIZE_STUDENT_ITEM = {
     "student_id": PRE_FILE_SIZE_STUDENT_ID,
     "course_id": COURSE_ID,
     "item_id": ITEM_ID,
-    "item_type": "openassessment"
+    "item_type": "ieia"
 }
 
 PRE_FILE_NAME_STUDENT_ITEM = {
     "student_id": PRE_FILE_NAME_STUDENT_ID,
     "course_id": COURSE_ID,
     "item_id": ITEM_ID,
-    "item_type": "openassessment"
+    "item_type": "ieia"
 }
 
 SCORER_ITEM = {
     "student_id": SCORER_ID,
     "course_id": COURSE_ID,
     "item_id": ITEM_ID,
-    "item_type": "openassessment"
+    "item_type": "ieia"
 }
 
 ITEM_DISPLAY_NAMES_MAPPING = {
@@ -208,7 +208,7 @@ COURSE_SETTINGS = {
 @ddt.ddt
 class CsvWriterTest(TransactionCacheResetTest):
     """
-    Test for writing openassessment data to CSV.
+    Test for writing ieia data to CSV.
     """
     longMessage = True
     maxDiff = None
@@ -260,7 +260,7 @@ class CsvWriterTest(TransactionCacheResetTest):
                 'student_id': f"test_user_{index}",
                 'course_id': 'test_course',
                 'item_id': 'test_item',
-                'item_type': 'openassessment',
+                'item_type': 'ieia',
             }
             submission_text = f"test submission {index}"
             submission = sub_api.create_submission(student_item, submission_text)
@@ -399,7 +399,7 @@ class TestOraAggregateData(TransactionCacheResetTest):
         return "\n".join(cell) + "\n"
 
     def test_map_anonymized_ids_to_usernames(self):
-        with patch('openassessment.data.get_user_model') as get_user_model_mock:
+        with patch('ieia.data.get_user_model') as get_user_model_mock:
             get_user_model_mock.return_value.objects.filter.return_value.annotate.return_value.values.return_value = [
                 {'anonymous_id': STUDENT_ID, 'username': STUDENT_USERNAME},
                 {'anonymous_id': PRE_FILE_SIZE_STUDENT_ID, 'username': PRE_FILE_SIZE_STUDENT_USERNAME},
@@ -422,7 +422,7 @@ class TestOraAggregateData(TransactionCacheResetTest):
         self.assertEqual(mapping, USERNAME_MAPPING)
 
     def test_map_anonymized_ids_to_user_data(self):
-        with patch('openassessment.data.get_user_model') as get_user_model_mock:
+        with patch('ieia.data.get_user_model') as get_user_model_mock:
             get_user_model_mock.return_value.objects.filter.return_value \
                 .select_related.return_value.annotate.return_value.values.return_value = [
                     {
@@ -477,7 +477,7 @@ class TestOraAggregateData(TransactionCacheResetTest):
                     "student_id": STUDENT_ID,
                     "course_id": COURSE_ID,
                     "item_id": "some_id",
-                    "item_type": "openassessment",
+                    "item_type": "ieia",
                 },
                 sub_api.create_submission(STUDENT_ITEM, ANSWER),
                 (),
@@ -487,14 +487,14 @@ class TestOraAggregateData(TransactionCacheResetTest):
                     "student_id": SCORER_ID,
                     "course_id": COURSE_ID,
                     "item_id": "some_id",
-                    "item_type": "openassessment",
+                    "item_type": "ieia",
                 },
                 sub_api.create_submission(SCORER_ITEM, ANSWER),
                 (),
             ),
         ]
 
-        with patch("openassessment.data.map_anonymized_ids_to_usernames") as map_mock:
+        with patch("ieia.data.map_anonymized_ids_to_usernames") as map_mock:
             # pylint: disable=protected-access
             OraAggregateData._map_students_and_scorers_ids_to_usernames(
                 test_submission_information
@@ -624,7 +624,7 @@ class TestOraAggregateData(TransactionCacheResetTest):
         self.assertEqual(feedback_cell, "")
 
     @override_settings(LMS_ROOT_URL="https://example.com")
-    @patch('openassessment.xblock.openassessmentblock.OpenAssessmentBlock.get_download_urls_from_submission')
+    @patch('ieia.xblock.openassessmentblock.OpenAssessmentBlock.get_download_urls_from_submission')
     def test_build_response_file_links(self, mock_method):
         """
         Test _build_response_file_links method.
@@ -647,7 +647,7 @@ class TestOraAggregateData(TransactionCacheResetTest):
 @ddt.ddt
 @patch.dict('django.conf.settings.FEATURES', {'ENABLE_ORA_USERNAMES_ON_DATA_EXPORT': True})
 @patch(
-    'openassessment.data.OraAggregateData._map_block_usage_keys_to_display_names',
+    'ieia.data.OraAggregateData._map_block_usage_keys_to_display_names',
     Mock(return_value=ITEM_DISPLAY_NAMES_MAPPING)
 )
 class TestOraAggregateDataIntegration(TransactionCacheResetTest):
@@ -733,8 +733,8 @@ class TestOraAggregateDataIntegration(TransactionCacheResetTest):
         return ITEM_ID + '_' + str(no_of_student)
 
     def test_collect_ora2_data(self):
-        with patch('openassessment.data.map_anonymized_ids_to_usernames') as map_mock:
-            with patch('openassessment.data.peer_api.get_bulk_scored_assessments') as mock_get_scored_assessments:
+        with patch('ieia.data.map_anonymized_ids_to_usernames') as map_mock:
+            with patch('ieia.data.peer_api.get_bulk_scored_assessments') as mock_get_scored_assessments:
                 map_mock.return_value = USERNAME_MAPPING
                 mock_get_scored_assessments.return_value = {Mock(id=self.assessment['id'])}
                 headers, data = OraAggregateData.collect_ora2_data(COURSE_ID)
@@ -817,7 +817,7 @@ class TestOraAggregateDataIntegration(TransactionCacheResetTest):
         """
 
         with patch.dict('django.conf.settings.FEATURES', {'ENABLE_ORA_USERNAMES_ON_DATA_EXPORT': False}):
-            with patch('openassessment.data.peer_api.get_bulk_scored_assessments', return_value=set()):
+            with patch('ieia.data.peer_api.get_bulk_scored_assessments', return_value=set()):
                 headers, data = OraAggregateData.collect_ora2_data(COURSE_ID)
 
         self.assertEqual(headers, [
@@ -904,8 +904,8 @@ class TestOraAggregateDataIntegration(TransactionCacheResetTest):
         submission = sub_api._get_submission_model(self.submission['uuid'])  # pylint: disable=protected-access
         submission.answer = answer
         submission.save()
-        with patch('openassessment.data.map_anonymized_ids_to_usernames') as map_mock:
-            with patch('openassessment.data.peer_api.get_bulk_scored_assessments', return_value=set()):
+        with patch('ieia.data.map_anonymized_ids_to_usernames') as map_mock:
+            with patch('ieia.data.peer_api.get_bulk_scored_assessments', return_value=set()):
                 map_mock.return_value = USERNAME_MAPPING
                 _, rows = OraAggregateData.collect_ora2_data(COURSE_ID)
         self.assertEqual(json.dumps(answer, ensure_ascii=False), rows[1][7])
@@ -996,32 +996,32 @@ class TestOraAggregateDataIntegration(TransactionCacheResetTest):
             "student_id": STUDENT_ID,
             "course_id": COURSE_ID,
             "item_id": item_id2,
-            "item_type": "openassessment"
+            "item_type": "ieia"
         }, ['self'])
         self._create_submission({
             "student_id": student_id2,
             "course_id": COURSE_ID,
             "item_id": item_id2,
-            "item_type": "openassessment"
+            "item_type": "ieia"
         }, STEPS)
 
         self._create_submission({
             "student_id": STUDENT_ID,
             "course_id": COURSE_ID,
             "item_id": item_id3,
-            "item_type": "openassessment"
+            "item_type": "ieia"
         }, ['self'])
         self._create_submission({
             "student_id": student_id2,
             "course_id": COURSE_ID,
             "item_id": item_id3,
-            "item_type": "openassessment"
+            "item_type": "ieia"
         }, ['self'])
         self._create_submission({
             "student_id": student_id3,
             "course_id": COURSE_ID,
             "item_id": item_id3,
-            "item_type": "openassessment"
+            "item_type": "ieia"
         }, STEPS)
 
         self._create_team_submission(
@@ -1452,11 +1452,11 @@ class TestOraDownloadDataIntegration(TransactionCacheResetTest):
         scorer_submission.save()
 
     @patch(
-        'openassessment.data.OraDownloadData._map_ora_usage_keys_to_path_info',
+        'ieia.data.OraDownloadData._map_ora_usage_keys_to_path_info',
         Mock(return_value={ITEM_ID: ITEM_PATH_INFO})
     )
     @patch(
-        'openassessment.data.OraDownloadData._map_student_ids_to_path_ids',
+        'ieia.data.OraDownloadData._map_student_ids_to_path_ids',
         Mock(return_value=USERNAME_MAPPING)
     )
     def test_collect_ora2_submission_files(self):
@@ -1469,7 +1469,7 @@ class TestOraDownloadDataIntegration(TransactionCacheResetTest):
         assert collected_ora_files_data == self.submission_files_data
 
     @patch(
-        'openassessment.data.OraDownloadData._map_ora_usage_keys_to_path_info',
+        'ieia.data.OraDownloadData._map_ora_usage_keys_to_path_info',
         Mock(return_value={ITEM_ID: ITEM_PATH_INFO})
     )
     def test_collect_ora2_submission_files__no_user(self):
@@ -1480,7 +1480,7 @@ class TestOraDownloadDataIntegration(TransactionCacheResetTest):
         username_mapping_no_default_student = USERNAME_MAPPING.copy()
         del username_mapping_no_default_student[STUDENT_ID]
 
-        with patch('openassessment.data.OraDownloadData._map_student_ids_to_path_ids') as mock_map_student_ids:
+        with patch('ieia.data.OraDownloadData._map_student_ids_to_path_ids') as mock_map_student_ids:
             mock_map_student_ids.return_value = username_mapping_no_default_student
             collected_ora_files_data = list(OraDownloadData.collect_ora2_submission_files(COURSE_ID))
 
@@ -1501,7 +1501,7 @@ class TestOraDownloadDataIntegration(TransactionCacheResetTest):
         file_content = b'file_content'
 
         with patch(
-            'openassessment.data.OraDownloadData._download_file_by_key', return_value=file_content
+            'ieia.data.OraDownloadData._download_file_by_key', return_value=file_content
         ) as download_mock:
             OraDownloadData.create_zip_with_attachments(file, self.submission_files_data)
 
@@ -1562,7 +1562,7 @@ class TestOraDownloadDataIntegration(TransactionCacheResetTest):
 
         file_content = b'file_content'
 
-        with patch('openassessment.data.OraDownloadData._download_file_by_key', return_value=file_content):
+        with patch('ieia.data.OraDownloadData._download_file_by_key', return_value=file_content):
             OraDownloadData.create_zip_with_attachments(file, self.submission_files_data)
 
         with zipfile.ZipFile(file) as zip_file:
@@ -1584,7 +1584,7 @@ class TestOraDownloadDataIntegration(TransactionCacheResetTest):
         file = BytesIO()
 
         with patch(
-            'openassessment.data.OraDownloadData._download_file_by_key'
+            'ieia.data.OraDownloadData._download_file_by_key'
         ) as download_mock:
             download_mock.side_effect = FileMissingException
             OraDownloadData.create_zip_with_attachments(file, self.submission_files_data)
@@ -1632,7 +1632,7 @@ class TestOraDownloadDataIntegration(TransactionCacheResetTest):
         file = BytesIO()
 
         with patch(
-            'openassessment.data.OraDownloadData._download_file_by_key'
+            'ieia.data.OraDownloadData._download_file_by_key'
         ) as download_mock:
             download_mock.side_effect = FileMissingException
             OraDownloadData.create_zip_with_attachments(file, self.submission_files_data)
@@ -1974,10 +1974,10 @@ class ListAssessmentsTest(TestCase):
     Unit tests for functions related to `list_assessments_from` and `list_assessments_to` handlers
     """
 
-    patch_submission_api = patch("openassessment.data.sub_api.get_submission_and_student")
-    patch_submissions = patch("openassessment.data.Submission.objects.filter")
-    patch_assessments = patch("openassessment.data.Assessment.objects.filter")
-    patch_users = patch("openassessment.data.get_user_model")
+    patch_submission_api = patch("ieia.data.sub_api.get_submission_and_student")
+    patch_submissions = patch("ieia.data.Submission.objects.filter")
+    patch_assessments = patch("ieia.data.Assessment.objects.filter")
+    patch_users = patch("ieia.data.get_user_model")
 
     def setUp(self) -> None:
         self.submission_uuid = "test_submission_uuid"

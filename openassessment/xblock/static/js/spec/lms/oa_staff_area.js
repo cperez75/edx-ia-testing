@@ -1,10 +1,10 @@
 import BaseView from 'lms/oa_base';
 import StaffAreaView from 'lms/oa_staff_area';
 /**
- * Tests for OpenAssessment Student Training view.
+ * Tests for ieia Student Training view.
  */
 /* eslint new-cap: 0 */
-describe('OpenAssessment.StaffAreaView', function() {
+describe('ieia.StaffAreaView', function() {
     'use strict';
 
     var successPromise = $.Deferred(
@@ -91,7 +91,7 @@ describe('OpenAssessment.StaffAreaView', function() {
      *
      * @param {dict} serverResponse An optional fake response from the server.
      * @param {string} staffAreaTemplate - An optional template to use.
-     * @returns {OpenAssessment.StaffAreaView} The staff area view.
+     * @returns {ieia.StaffAreaView} The staff area view.
      */
     var createStaffArea = function(serverResponse, staffAreaTemplate) {
         if (serverResponse) {
@@ -100,7 +100,7 @@ describe('OpenAssessment.StaffAreaView', function() {
         if (staffAreaTemplate) {
             server.staffAreaTemplate = staffAreaTemplate;
         }
-        var assessmentElement = $('.openassessment').get(0);
+        var assessmentElement = $('.ieia').get(0);
         var data = {
             TEXT_RESPONSE_EDITOR: 'text',
             AVAILABLE_EDITORS: {
@@ -116,7 +116,7 @@ describe('OpenAssessment.StaffAreaView', function() {
     };
 
     var createGradeAvailableResponsesView = function() {
-        var assessmentElement = $('.openassessment').get(0);
+        var assessmentElement = $('.ieia').get(0);
         var data = {
             TEXT_RESPONSE_EDITOR: 'text',
             AVAILABLE_EDITORS: {

@@ -11,12 +11,12 @@ from django.test.testcases import TestCase
 from freezegun import freeze_time
 from mock import Mock, patch
 
-from openassessment.staffgrader.serializers.submission_list import (
+from ieia.staffgrader.serializers.submission_list import (
     MissingContextException, SubmissionListSerializer, SubmissionListScoreSerializer, TeamSubmissionListSerializer
 )
-from openassessment.staffgrader.models.submission_lock import SubmissionGradingLock
-from openassessment.staffgrader.serializers.submission_lock import SubmissionLockSerializer
-from openassessment.test_utils import CacheResetTest
+from ieia.staffgrader.models.submission_lock import SubmissionGradingLock
+from ieia.staffgrader.serializers.submission_lock import SubmissionLockSerializer
+from ieia.test_utils import CacheResetTest
 
 
 TEST_TIME = datetime(2020, 8, 29, 2, 14, tzinfo=timezone(offset=timedelta(hours=-4)))
@@ -226,7 +226,7 @@ class TestSubmissionListSerializer(BaseSerializerTest):
 
         with self.mock_serializer_methods(gradedBy=True, username=True, email=True, fullname=True, verify=True):
             with patch(
-                'openassessment.staffgrader.serializers.submission_list.SubmissionListScoreSerializer'
+                'ieia.staffgrader.serializers.submission_list.SubmissionListScoreSerializer'
             ) as mock_score_serializer:
                 result = SubmissionListSerializer(
                     mock_workflow,

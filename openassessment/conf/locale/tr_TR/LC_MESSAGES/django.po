@@ -2386,8 +2386,8 @@ msgid "Validation error: {error}"
 msgstr "Doğrulama hatası: {error}"
 
 #: xblock/studio_mixin.py:323
-msgid "Successfully updated OpenAssessment XBlock"
-msgstr "OpenAssessment XBlock başarıyla yüklendi."
+msgid "Successfully updated ieia XBlock"
+msgstr "ieia XBlock başarıyla yüklendi."
 
 #: xblock/utils/data_conversion.py:315
 msgid "You must provide options selected in the assessment."

@@ -1,6 +1,6 @@
 """ External API for ORA Configuration data """
 
-from openassessment.xblock.utils.user_data import get_user_preferences
+from ieia.xblock.utils.user_data import get_user_preferences
 
 
 class ORAConfigAPI:

@@ -69,11 +69,11 @@ export const ItemUtilities = {
  container object. Constructs a new Prompt element.
 
  Args:
- element (OpenAssessment.Container): The container that the prompt is a member of.
- notifier (OpenAssessment.Notifier): Used to send notifications of updates to prompts.
+ element (ieia.Container): The container that the prompt is a member of.
+ notifier (ieia.Notifier): Used to send notifications of updates to prompts.
 
  Returns:
- OpenAssessment.Prompt
+ ieia.Prompt
  * */
 export class Prompt {
   constructor(element, notifier) {
@@ -89,10 +89,10 @@ export class Prompt {
      Attach Wysiwyg editor to the textarea field.
 
      Args:
-     el (OpenAssessment.Container): The container that the prompt is a member of.
+     el (ieia.Container): The container that the prompt is a member of.
 
      Returns:
-     Updated OpenAssessment.Container
+     Updated ieia.Container
 
      * */
   attachWysiwygToPrompt(el) {
@@ -222,11 +222,11 @@ export class Prompt {
  container object. Constructs a new RubricOption element.
 
  Args:
- element (OpenAssessment.Container): The container that the option is a member of.
- notifier (OpenAssessment.Notifier): Used to send notifications of updates to rubric options.
+ element (ieia.Container): The container that the option is a member of.
+ notifier (ieia.Notifier): Used to send notifications of updates to rubric options.
 
  Returns:
- OpenAssessment.RubricOption
+ ieia.RubricOption
  * */
 export class RubricOption {
   constructor(element, notifier) {
@@ -427,10 +427,10 @@ export class RubricOption {
 
  Args:
  element (JQuery Object): The selection which describes the scope of the criterion.
- notifier (OpenAssessment.Notifier): Used to send notifications of updates to rubric criteria.
+ notifier (ieia.Notifier): Used to send notifications of updates to rubric criteria.
 
  Returns:
- OpenAssessment.RubricCriterion
+ ieia.RubricCriterion
  * */
 export class RubricCriterion {
   constructor(element, notifier) {
@@ -650,7 +650,7 @@ export class RubricCriterion {
  element (JQuery Object): the selection which identifies the scope of the training example.
 
  Returns:
- OpenAssessment.TrainingExample
+ ieia.TrainingExample
 
  * */
 export class TrainingExample {
@@ -770,7 +770,7 @@ export class TrainingExample {
  hiddenElement (JQuery Object): element with ``is--hidden`` class, that will be showed.
 
  Returns:
- OpenAssessment.ShowControl
+ ieia.ShowControl
 
  * */
 export class ShowControl {

@@ -11,11 +11,11 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from xblock.core import XBlock
 from submissions.errors import SubmissionNotFoundError
-from openassessment.assessment.errors import PeerAssessmentInternalError
-from openassessment.fileupload.api import delete_shared_files_for_team, remove_file
-from openassessment.workflow.errors import AssessmentWorkflowError, AssessmentWorkflowInternalError
-from openassessment.xblock.utils.data_conversion import create_submission_dict
-from openassessment.xblock.utils.resolve_dates import DISTANT_FUTURE, DISTANT_PAST
+from ieia.assessment.errors import PeerAssessmentInternalError
+from ieia.fileupload.api import delete_shared_files_for_team, remove_file
+from ieia.workflow.errors import AssessmentWorkflowError, AssessmentWorkflowInternalError
+from ieia.xblock.utils.data_conversion import create_submission_dict
+from ieia.xblock.utils.resolve_dates import DISTANT_FUTURE, DISTANT_PAST
 
 from .utils.user_data import get_user_preferences
 
@@ -176,7 +176,7 @@ class StaffAreaMixin:
         Returns a context with staff assessment "ungraded" and "in-progress" counts.
         """
         # Import is placed here to avoid model import at project startup.
-        from openassessment.assessment.api import staff as staff_api
+        from ieia.assessment.api import staff as staff_api
         grading_stats = staff_api.get_staff_grading_statistics(course_id, item_id)
 
         return {
@@ -197,10 +197,10 @@ class StaffAreaMixin:
         peer_step_config = self.get_assessment_module('peer-assessment')
 
         # Import is placed here to avoid model import at project startup.
-        from openassessment.assessment.api import peer as peer_api
-        from openassessment.assessment.api import staff as staff_api
-        from openassessment.workflow.api import get_workflows_for_status
-        from openassessment.data import map_anonymized_ids_to_usernames
+        from ieia.assessment.api import peer as peer_api
+        from ieia.assessment.api import staff as staff_api
+        from ieia.workflow.api import get_workflows_for_status
+        from ieia.data import map_anonymized_ids_to_usernames
 
         # Retrieve all items in the `waiting` and `done` steps
         workflows_waiting = get_workflows_for_status(
@@ -350,7 +350,7 @@ class StaffAreaMixin:
         Must be course staff to render this view.
         """
         # Import is placed here to avoid model import at project startup.
-        from openassessment.assessment.api import staff as staff_api
+        from ieia.assessment.api import staff as staff_api
         from submissions import api as submission_api
         try:
             student_item_dict = self.get_student_item_dict()
@@ -526,9 +526,9 @@ class StaffAreaMixin:
             context: the context to update with additional information
         """
         # Import is placed here to avoid model import at project startup.
-        from openassessment.assessment.api import peer as peer_api
-        from openassessment.assessment.api import self as self_api
-        from openassessment.assessment.api import staff as staff_api
+        from ieia.assessment.api import peer as peer_api
+        from ieia.assessment.api import self as self_api
+        from ieia.assessment.api import staff as staff_api
 
         assessment_steps = self.assessment_steps
 
@@ -612,7 +612,7 @@ class StaffAreaMixin:
             'course_id': course_id,
             'student_id': user_id,
             'item_id': item_id,
-            'item_type': 'openassessment',
+            'item_type': 'ieia',
         }
         submissions = submission_api.get_submissions(student_item)
 
@@ -734,7 +734,7 @@ class StaffAreaMixin:
         If requesting_user is not provided, we will use the user to which this xblock is currently bound.
         """
         # Import is placed here to avoid model import at project startup.
-        from openassessment.workflow import api as workflow_api
+        from ieia.workflow import api as workflow_api
         try:
             assessment_requirements = self.workflow_requirements()
             course_settings = self.get_course_workflow_settings()
@@ -772,7 +772,7 @@ class StaffAreaMixin:
         If requesting_user is not provided, we will use the user to which this xblock is currently bound.
         """
         # Import is placed here to avoid model import at project startup.
-        from openassessment.workflow import team_api as team_workflow_api
+        from ieia.workflow import team_api as team_workflow_api
         try:
             if requesting_user_id is None:
                 # The student_id is actually the bound user, which is the staff user in this context.

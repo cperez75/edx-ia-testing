@@ -6,12 +6,12 @@ from collections import OrderedDict
 from uuid import uuid4
 from mock import patch, Mock
 
-from openassessment.staffgrader.tests.test_base import StaffGraderMixinTestBase
-from openassessment.tests.factories import (
+from ieia.staffgrader.tests.test_base import StaffGraderMixinTestBase
+from ieia.tests.factories import (
     AssessmentFactory, AssessmentPartFactory, CriterionFactory, CriterionOptionFactory
 )
-from openassessment.assessment.models.staff import StaffWorkflow
-from openassessment.xblock.test.base import scenario
+from ieia.assessment.models.staff import StaffWorkflow
+from ieia.xblock.test.base import scenario
 
 
 class GetAssessmentInfoTests(StaffGraderMixinTestBase):
@@ -37,7 +37,7 @@ class GetAssessmentInfoTests(StaffGraderMixinTestBase):
     def _mock_get_staff_workflow(self, **kwargs):
         """ Context manager for mocking the lookup of Staff Workflows """
         with patch(
-            'openassessment.staffgrader.staff_grader_mixin.StaffWorkflow.get_staff_workflow',
+            'ieia.staffgrader.staff_grader_mixin.StaffWorkflow.get_staff_workflow',
             **kwargs
         ) as mock_get:
             yield mock_get
@@ -46,7 +46,7 @@ class GetAssessmentInfoTests(StaffGraderMixinTestBase):
     def _mock_get_team_staff_workflow(self, **kwargs):
         """ Context manager for mocking the lookup of Team Staff Workflows """
         with patch(
-            'openassessment.staffgrader.staff_grader_mixin.TeamStaffWorkflow.get_team_staff_workflow',
+            'ieia.staffgrader.staff_grader_mixin.TeamStaffWorkflow.get_team_staff_workflow',
             **kwargs
         ) as mock_get:
             yield mock_get

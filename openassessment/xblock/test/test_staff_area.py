@@ -16,17 +16,17 @@ from submissions import api as sub_api
 from submissions import team_api as team_sub_api
 from submissions.errors import SubmissionNotFoundError
 
-from openassessment.assessment.api import peer as peer_api
-from openassessment.assessment.api import self as self_api
-from openassessment.assessment.api import staff as staff_api
-from openassessment.assessment.api import teams as teams_api
-from openassessment.fileupload.exceptions import FileUploadInternalError
-from openassessment.tests.factories import UserFactory
-from openassessment.workflow import api as workflow_api
-from openassessment.workflow import team_api as team_workflow_api
-from openassessment.xblock.utils.data_conversion import prepare_submission_for_serialization
-from openassessment.xblock.test.base import XBlockHandlerTestCase, scenario
-from openassessment.xblock.test.test_team import (
+from ieia.assessment.api import peer as peer_api
+from ieia.assessment.api import self as self_api
+from ieia.assessment.api import staff as staff_api
+from ieia.assessment.api import teams as teams_api
+from ieia.fileupload.exceptions import FileUploadInternalError
+from ieia.tests.factories import UserFactory
+from ieia.workflow import api as workflow_api
+from ieia.workflow import team_api as team_workflow_api
+from ieia.xblock.utils.data_conversion import prepare_submission_for_serialization
+from ieia.xblock.test.base import XBlockHandlerTestCase, scenario
+from ieia.xblock.test.test_team import (
     MockTeamsService,
     MOCK_TEAM_MEMBER_USERNAMES,
     MOCK_TEAM_MEMBER_USERNAMES_CONV,
@@ -43,14 +43,14 @@ STUDENT_ITEM = {
     "student_id": "Bob",
     "course_id": "test_course",
     "item_id": "item_one",
-    "item_type": "openassessment",
+    "item_type": "ieia",
 }
 
 TEAMMATE_ITEM = {
     "student_id": MOCK_TEAM_MEMBER_STUDENT_IDS[0],
     "course_id": "test_course",
     "item_id": "item_one",
-    "item_type": "openassessment",
+    "item_type": "ieia",
 }
 
 ASSESSMENT_DICT = {
@@ -486,7 +486,7 @@ class TestCourseStaff(XBlockHandlerTestCase):
         }, ['self'])
 
         # Mock the file upload API to avoid hitting S3
-        with patch("openassessment.data.get_download_url") as get_download_url:
+        with patch("ieia.data.get_download_url") as get_download_url:
             get_download_url.return_value = "http://www.example.com/image.jpeg"
 
             # also fake a file_upload_type so our patched url gets rendered
@@ -546,7 +546,7 @@ class TestCourseStaff(XBlockHandlerTestCase):
         }, ['self'])
 
         # Mock the file upload API to avoid hitting S3
-        with patch("openassessment.data.get_download_url") as get_download_url:
+        with patch("ieia.data.get_download_url") as get_download_url:
             get_download_url.return_value = Mock()
             get_download_url.side_effect = lambda file_key: file_keys_with_images[file_key]
 
@@ -598,7 +598,7 @@ class TestCourseStaff(XBlockHandlerTestCase):
         }, ['self'])
 
         # Mock the file upload API to simulate an error
-        with patch("openassessment.data.get_download_url") as file_api_call:
+        with patch("ieia.data.get_download_url") as file_api_call:
             file_api_call.side_effect = FileUploadInternalError("Error!")
             __, context = xblock.get_student_info_path_and_context("Bob")
 
@@ -950,7 +950,7 @@ class TestCourseStaff(XBlockHandlerTestCase):
         resp = xblock.render_student_info(request)
         self.assertIn("response was not found", resp.body.decode('utf-8').lower())
 
-    @patch('openassessment.xblock.staff_area_mixin.remove_file')
+    @patch('ieia.xblock.staff_area_mixin.remove_file')
     @scenario('data/self_only_scenario.xml', user_id='Bob')
     def test_staff_delete_student_state_with_files(self, xblock, remove_file_patch):
         # Given we are course staff...
@@ -1015,7 +1015,7 @@ class TestCourseStaff(XBlockHandlerTestCase):
         # And the submissions are cleared to allow a new submission workflow
         self.assertEqual(xblock.get_team_workflow_info(), {})
 
-    @patch('openassessment.xblock.staff_area_mixin.delete_shared_files_for_team')
+    @patch('ieia.xblock.staff_area_mixin.delete_shared_files_for_team')
     @scenario('data/team_submission.xml', user_id='Bob')
     def test_staff_clear_team_state_with_submission_clears_files(self, xblock, delete_files_patch):
         # Given we are staff
@@ -1037,7 +1037,7 @@ class TestCourseStaff(XBlockHandlerTestCase):
         # Then we delete files for the team
         delete_files_patch.assert_called_with(STUDENT_ITEM['course_id'], xblock.scope_ids.usage_id, MOCK_TEAM_ID)
 
-    @patch('openassessment.xblock.staff_area_mixin.delete_shared_files_for_team')
+    @patch('ieia.xblock.staff_area_mixin.delete_shared_files_for_team')
     @scenario('data/team_submission.xml', user_id='Bob')
     def test_staff_clear_team_state_without_submission(self, xblock, delete_files_patch):
         # Given we are staff
@@ -1061,7 +1061,7 @@ class TestCourseStaff(XBlockHandlerTestCase):
         }
 
     @log_capture()
-    @patch('openassessment.xblock.config_mixin.ConfigMixin.user_state_upload_data_enabled')
+    @patch('ieia.xblock.config_mixin.ConfigMixin.user_state_upload_data_enabled')
     @scenario('data/file_upload_missing_scenario.xml', user_id='Bob')
     def test_staff_area_student_upload_info_from_user_state(self, xblock, waffle_patch, logger):
         """
@@ -1074,7 +1074,7 @@ class TestCourseStaff(XBlockHandlerTestCase):
         """
         waffle_patch.return_value = True
         self._setup_xblock_and_create_submission(xblock)
-        with patch("openassessment.fileupload.api.get_download_url") as get_download_url:
+        with patch("ieia.fileupload.api.get_download_url") as get_download_url:
             get_download_url.return_value = FILE_URL
             __, context = xblock.get_student_info_path_and_context('Bob')
             self._verify_user_state_usage_log_present(logger, **{'location': xblock.location})
@@ -1098,7 +1098,7 @@ class TestCourseStaff(XBlockHandlerTestCase):
                 FILE_URL,
             )
 
-    @patch('openassessment.xblock.config_mixin.ConfigMixin.user_state_upload_data_enabled', new_callable=PropertyMock)
+    @patch('ieia.xblock.config_mixin.ConfigMixin.user_state_upload_data_enabled', new_callable=PropertyMock)
     @scenario('data/file_upload_missing_scenario.xml', user_id='Bob')
     def test_staff_area_student_user_state_not_used(self, xblock, waffle_patch):
         """
@@ -1161,7 +1161,7 @@ class TestCourseStaff(XBlockHandlerTestCase):
         self.assertFalse(context['is_team_assignment'])
         self.assertIsNone(context['team_name'])
 
-    @patch('openassessment.data.map_anonymized_ids_to_usernames')
+    @patch('ieia.data.map_anonymized_ids_to_usernames')
     @scenario('data/peer_assessment_scenario.xml', user_id='Bob')
     def test_waiting_step_details_api(self, xblock, username_map_patch):
         """
@@ -1214,7 +1214,7 @@ class TestCourseStaff(XBlockHandlerTestCase):
             "bob_username"
         )
 
-    @patch('openassessment.data.map_anonymized_ids_to_usernames')
+    @patch('ieia.data.map_anonymized_ids_to_usernames')
     @scenario('data/basic_scenario.xml', user_id='Bob')
     def test_waiting_step_details_api_no_permission(self, xblock, username_map_patch):
         """
@@ -1297,7 +1297,7 @@ class TestCourseStaff(XBlockHandlerTestCase):
 
     @scenario('data/basic_scenario.xml', user_id='Bob')
     @patch(
-        'openassessment.xblock.config_mixin.ConfigMixin.is_enhanced_staff_grader_enabled',
+        'ieia.xblock.config_mixin.ConfigMixin.is_enhanced_staff_grader_enabled',
         new_callable=PropertyMock
     )
     def test_staff_area_esg_on_staff_assessment_is_not_required(self, xblock, mock_esg_flag):
@@ -1318,7 +1318,7 @@ class TestCourseStaff(XBlockHandlerTestCase):
     )
     @ddt.data(False, True)
     @patch(
-        'openassessment.xblock.config_mixin.ConfigMixin.is_enhanced_staff_grader_enabled',
+        'ieia.xblock.config_mixin.ConfigMixin.is_enhanced_staff_grader_enabled',
         new_callable=PropertyMock
     )
     @scenario('data/staff_grade_scenario.xml', user_id='Bob')
@@ -1339,7 +1339,7 @@ class TestCourseStaff(XBlockHandlerTestCase):
         ))
 
     @log_capture()
-    @patch('openassessment.xblock.config_mixin.ConfigMixin.user_state_upload_data_enabled')
+    @patch('ieia.xblock.config_mixin.ConfigMixin.user_state_upload_data_enabled')
     @scenario('data/file_upload_missing_scenario.xml', user_id='Bob')
     def test_student_userstate_not_used_when_upload_info_in_submission(self, xblock, waffle_patch, logger):
         """
@@ -1358,16 +1358,16 @@ class TestCourseStaff(XBlockHandlerTestCase):
             'files_names': [SAVED_FILES_NAMES[1], SAVED_FILES_NAMES[0]],
             'files_sizes': [],
         })
-        with patch("openassessment.data.get_download_url") as get_download_url:
+        with patch("ieia.data.get_download_url") as get_download_url:
             get_download_url.return_value = FILE_URL
             __, __ = xblock.get_student_info_path_and_context('Bob')  # pylint: disable=redeclared-assigned-name
         with self.assertRaises(AssertionError):
             self._verify_user_state_usage_log_present(logger, **{'location': xblock.location})
 
     @log_capture()
-    @patch("openassessment.fileupload.api.get_download_url")
-    @patch('openassessment.xblock.config_mixin.ConfigMixin.is_fetch_all_urls_waffle_enabled')
-    @patch('openassessment.xblock.config_mixin.ConfigMixin.user_state_upload_data_enabled')
+    @patch("ieia.fileupload.api.get_download_url")
+    @patch('ieia.xblock.config_mixin.ConfigMixin.is_fetch_all_urls_waffle_enabled')
+    @patch('ieia.xblock.config_mixin.ConfigMixin.user_state_upload_data_enabled')
     @scenario('data/file_upload_missing_scenario.xml', user_id='Bob')
     def test_staff_area_student_all_uploads(self, xblock, user_state_waffle, all_files_waffle, download_url, logger):
         """
@@ -1485,7 +1485,7 @@ class TestCourseStaff(XBlockHandlerTestCase):
         }, ['self'])
 
         # Mock the file upload API to avoid hitting S3
-        with patch("openassessment.data.get_download_url") as get_download_url:
+        with patch("ieia.data.get_download_url") as get_download_url:
             get_download_url.return_value = "http://www.example.com/image.jpeg"
             # also fake a file_upload_type so our patched url gets rendered
             xblock.file_upload_type_raw = 'image'
@@ -1629,7 +1629,7 @@ class TestCourseStaff(XBlockHandlerTestCase):
         """
         logger.check_present(
             (
-                'openassessment.xblock.staff_area_mixin',
+                'ieia.xblock.staff_area_mixin',
                 'INFO',
                 'Checking student module for upload info for user: {username} in block: {block}'.format(
                     username=kwargs.get('username', 'Bob'),

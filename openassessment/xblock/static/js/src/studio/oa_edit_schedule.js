@@ -1,13 +1,13 @@
 import { DatetimeControl, SelectControl } from './oa_edit_fields';
 import Notifier from './oa_edit_notifier';
 /**
-Editing interface for OpenAssessment schedule settings.
+Editing interface for ieia schedule settings.
 
 Args:
     element (DOM element): The DOM element representing this view.
 
 Returns:
-    OpenAssessment.EditScheduleView
+    ieia.EditScheduleView
 
 * */
 export class EditScheduleView {

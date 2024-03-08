@@ -6,7 +6,7 @@ the assessment workflow only begins after a submission has been created.
 NOTE: We've switched to migrations, so if you make any edits to this file, you
 need to then generate a matching migration for it using:
 
-    ./manage.py schemamigration openassessment.workflow --auto
+    ./manage.py schemamigration ieia.workflow --auto
 
 """
 
@@ -24,12 +24,12 @@ from model_utils import Choices
 from model_utils.models import StatusModel, TimeStampedModel
 
 from submissions import api as sub_api, team_api as sub_team_api
-from openassessment.assessment.errors.base import AssessmentError
-from openassessment.assessment.signals import assessment_complete_signal
+from ieia.assessment.errors.base import AssessmentError
+from ieia.assessment.signals import assessment_complete_signal
 
 from .errors import AssessmentApiLoadError, AssessmentWorkflowError, AssessmentWorkflowInternalError
 
-logger = logging.getLogger('openassessment.workflow.models')  # pylint: disable=invalid-name
+logger = logging.getLogger('ieia.workflow.models')  # pylint: disable=invalid-name
 
 
 # To encapsulate the workflow API from the assessment API,
@@ -38,9 +38,9 @@ logger = logging.getLogger('openassessment.workflow.models')  # pylint: disable=
 # that implements the corresponding assessment API.
 # For backwards compatibility, we provide a default configuration as well
 DEFAULT_ASSESSMENT_API_DICT = {
-    'peer': 'openassessment.assessment.api.peer',
-    'self': 'openassessment.assessment.api.self',
-    'training': 'openassessment.assessment.api.student_training',
+    'peer': 'ieia.assessment.api.peer',
+    'self': 'ieia.assessment.api.self',
+    'training': 'ieia.assessment.api.student_training',
 }
 ASSESSMENT_API_DICT = getattr(
     settings, 'ORA2_ASSESSMENTS',
@@ -914,9 +914,9 @@ class AssessmentWorkflowStep(models.Model):
         # Staff APIs should always be available
         if self.is_staff_step() and not api_path:
             if self.name == AssessmentWorkflow.STAFF_STEP_NAME:
-                api_path = 'openassessment.assessment.api.staff'
+                api_path = 'ieia.assessment.api.staff'
             elif self.name == TeamAssessmentWorkflow.TEAM_STAFF_STEP_NAME:
-                api_path = 'openassessment.assessment.api.teams'
+                api_path = 'ieia.assessment.api.teams'
             else:
                 raise AssessmentWorkflowInternalError(f'Staff step type {self.name} has no associated api')
         if api_path is not None:

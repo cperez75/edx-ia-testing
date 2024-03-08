@@ -10,9 +10,9 @@ from django.core.management.base import BaseCommand, CommandError
 
 import loremipsum
 from submissions import api as sub_api
-from openassessment.assessment.api import peer as peer_api
-from openassessment.assessment.api import self as self_api
-from openassessment.workflow import api as workflow_api
+from ieia.assessment.api import peer as peer_api
+from ieia.assessment.api import self as self_api
+from ieia.workflow import api as workflow_api
 
 STEPS = ['peer', 'self']
 
@@ -85,7 +85,7 @@ class Command(BaseCommand):
                 'student_id': uuid4().hex[0:10],
                 'course_id': course_id,
                 'item_id': item_id,
-                'item_type': 'openassessment'
+                'item_type': 'ieia'
             }
             submission_uuid = self._create_dummy_submission(student_item)
             self._student_items.append(student_item)

@@ -12,7 +12,7 @@ from ..exceptions import FileUploadInternalError
 from .base import BaseBackend
 
 log = logging.getLogger(
-    "openassessment.fileupload.api"
+    "ieia.fileupload.api"
 )  # pylint: disable=invalid-name
 
 

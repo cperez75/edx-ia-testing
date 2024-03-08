@@ -5,8 +5,8 @@ Part of Enhanced Staff Grader (ESG).
 from django.db import models
 from django.utils.timezone import now
 
-from openassessment.assessment.models.staff import StaffWorkflow
-from openassessment.staffgrader.errors.submission_lock import SubmissionLockContestedError
+from ieia.assessment.models.staff import StaffWorkflow
+from ieia.staffgrader.errors.submission_lock import SubmissionLockContestedError
 
 
 class SubmissionGradingLock(models.Model):

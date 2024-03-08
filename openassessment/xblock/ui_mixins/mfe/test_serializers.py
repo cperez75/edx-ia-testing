@@ -7,13 +7,13 @@ import ddt
 import pytz
 
 
-from openassessment.xblock.ui_mixins.mfe.ora_config_serializer import (
+from ieia.xblock.ui_mixins.mfe.ora_config_serializer import (
     AssessmentStepsSerializer,
     LeaderboardConfigSerializer,
     RubricConfigSerializer,
     SubmissionConfigSerializer,
 )
-from openassessment.xblock.test.base import XBlockHandlerTestCase, scenario
+from ieia.xblock.test.base import XBlockHandlerTestCase, scenario
 
 
 class TestSubmissionConfigSerializer(XBlockHandlerTestCase):

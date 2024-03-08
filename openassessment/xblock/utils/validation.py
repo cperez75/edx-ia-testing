@@ -4,10 +4,10 @@ Validate changes to an XBlock before it is updated.
 
 from collections import Counter
 
-from openassessment.assessment.api.student_training import validate_training_examples
-from openassessment.assessment.serializers import InvalidRubric, rubric_from_dict
-from openassessment.xblock.utils.data_conversion import convert_training_examples_list_to_dict
-from openassessment.xblock.utils.resolve_dates import DateValidationError, InvalidDateFormat, resolve_dates
+from ieia.assessment.api.student_training import validate_training_examples
+from ieia.assessment.serializers import InvalidRubric, rubric_from_dict
+from ieia.xblock.utils.data_conversion import convert_training_examples_list_to_dict
+from ieia.xblock.utils.resolve_dates import DateValidationError, InvalidDateFormat, resolve_dates
 
 
 def _match_by_order(items, others):

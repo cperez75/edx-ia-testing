@@ -3093,7 +3093,7 @@ msgid "Validation error: {error}"
 msgstr "Välïdätïön érrör: {error} Ⱡ'σяєм ιρѕυм ∂σłσя ѕιт αмєт, #"
 
 #: xblock/studio_mixin.py
-msgid "Successfully updated OpenAssessment XBlock"
+msgid "Successfully updated ieia XBlock"
 msgstr ""
 "Süççéssfüllý üpdätéd ÖpénÀsséssmént XBlöçk Ⱡ'σяєм ιρѕυм ∂σłσя ѕιт αмєт, "
 "¢σηѕє¢тєтυя #"

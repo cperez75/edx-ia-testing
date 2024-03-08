@@ -1,4 +1,4 @@
-// openassessment: utilities - developer
+// ieia: utilities - developer
 // ====================
 
 // NOTES:
@@ -36,7 +36,7 @@
   display: none;
 }
 
-.wrapper--openassessment .wrapper--staff-area {
+.wrapper--ieia .wrapper--staff-area {
   width: 100%;
   overflow: auto;
   margin-top: $baseline-v;
@@ -261,7 +261,7 @@
 // Developer Styles for Studio Editing of OA problems
 // --------------------
 
-#openassessment-editor {
+#ieia-editor {
   margin-bottom: 0;
   height: 100%;
 
@@ -1118,7 +1118,7 @@
   height: 100%;
 }
 
-#openassessment-editor {
+#ieia-editor {
   .openassessment_highlighted_field{
      border-color: red;
      border-width: 2px;
@@ -1250,7 +1250,7 @@
   }
 }
 
-#openassessment-editor .wrapper-comp-settings .list-input.settings-list .field.comp-setting-entry select {
+#ieia-editor .wrapper-comp-settings .list-input.settings-list .field.comp-setting-entry select {
   padding: 5px;
 }
 
@@ -1390,7 +1390,7 @@
   max-width: 100%;
 }
 
-.openassessment {
+.ieia {
   .step--leaderboard {
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 

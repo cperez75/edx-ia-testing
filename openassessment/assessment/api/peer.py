@@ -12,14 +12,14 @@ from django.db import DatabaseError, IntegrityError, transaction
 from django.utils import timezone
 
 from submissions import api as sub_api
-from openassessment.assessment.errors import (PeerAssessmentInternalError, PeerAssessmentRequestError,
+from ieia.assessment.errors import (PeerAssessmentInternalError, PeerAssessmentRequestError,
                                               PeerAssessmentWorkflowError)
-from openassessment.assessment.models import (Assessment, AssessmentFeedback, AssessmentPart, InvalidRubricSelection,
+from ieia.assessment.models import (Assessment, AssessmentFeedback, AssessmentPart, InvalidRubricSelection,
                                               PeerWorkflow, PeerWorkflowItem)
-from openassessment.assessment.serializers import (AssessmentFeedbackSerializer, InvalidRubric, RubricSerializer,
+from ieia.assessment.serializers import (AssessmentFeedbackSerializer, InvalidRubric, RubricSerializer,
                                                    full_assessment_dict, rubric_from_dict, serialize_assessments)
 
-logger = logging.getLogger("openassessment.assessment.api.peer")  # pylint: disable=invalid-name
+logger = logging.getLogger("ieia.assessment.api.peer")  # pylint: disable=invalid-name
 
 PEER_TYPE = "PE"
 

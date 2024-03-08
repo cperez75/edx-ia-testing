@@ -1,6 +1,6 @@
 import Notifier from 'studio/oa_edit_notifier';
 
-describe("OpenAssessment.Notifier", function() {
+describe("ieia.Notifier", function() {
 
     var notifier = null;
     var listeners = [];

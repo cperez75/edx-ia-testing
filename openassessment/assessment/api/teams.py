@@ -10,11 +10,11 @@ from django.utils.timezone import now
 
 from submissions import team_api as team_submissions_api
 
-from openassessment.assessment.api.staff import _complete_assessment
-from openassessment.assessment.errors import StaffAssessmentInternalError, StaffAssessmentRequestError
-from openassessment.assessment.models import Assessment, TeamStaffWorkflow, InvalidRubricSelection
-from openassessment.assessment.serializers import InvalidRubric, full_assessment_dict
-from openassessment.assessment.score_type_constants import STAFF_TYPE
+from ieia.assessment.api.staff import _complete_assessment
+from ieia.assessment.errors import StaffAssessmentInternalError, StaffAssessmentRequestError
+from ieia.assessment.models import Assessment, TeamStaffWorkflow, InvalidRubricSelection
+from ieia.assessment.serializers import InvalidRubric, full_assessment_dict
+from ieia.assessment.score_type_constants import STAFF_TYPE
 
 logger = logging.getLogger(__name__)  # pylint: disable=invalid-name
 
@@ -311,7 +311,7 @@ def create_assessment(
     """
     Creates an assessment for each member of the submitting team.
 
-    Closely mirrors openassessment.assessment.api.staff.py::create_assessment
+    Closely mirrors ieia.assessment.api.staff.py::create_assessment
 
     Can use _complete_assessment from Staff API as is, but has the side-effect
     of only associating the last graded assessment with the workflow

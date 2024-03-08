@@ -2393,8 +2393,8 @@ msgid "Validation error: {error}"
 msgstr "Błąd walidacji: {error}"
 
 #: xblock/studio_mixin.py:323
-msgid "Successfully updated OpenAssessment XBlock"
-msgstr "Pomyślnie zaktualizowano OpenAssessment XBlock"
+msgid "Successfully updated ieia XBlock"
+msgstr "Pomyślnie zaktualizowano ieia XBlock"
 
 #: xblock/utils/data_conversion.py:315
 msgid "You must provide options selected in the assessment."

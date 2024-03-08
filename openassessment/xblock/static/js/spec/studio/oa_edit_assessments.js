@@ -11,7 +11,7 @@ import {
 Tests for assessment editing views.
 **/
 
-describe("OpenAssessment edit assessment views", function() {
+describe("ieia edit assessment views", function() {
 
     var testEnableAndDisable = function(view) {
         view.isEnabled(false);
@@ -62,7 +62,7 @@ describe("OpenAssessment edit assessment views", function() {
     });
 
 
-    describe("OpenAssessment.EditPeerAssessmentView", function() {
+    describe("ieia.EditPeerAssessmentView", function() {
         var view = null;
 
         beforeEach(function() {
@@ -119,7 +119,7 @@ describe("OpenAssessment edit assessment views", function() {
         it("shows an alert when disabled", function() { testAlertOnDisable(view); });
     });
 
-    describe("OpenAssessment.EditSelfAssessmentView", function() {
+    describe("ieia.EditSelfAssessmentView", function() {
         var view = null;
 
         beforeEach(function() {
@@ -143,7 +143,7 @@ describe("OpenAssessment edit assessment views", function() {
         it("shows an alert when disabled", function() { testAlertOnDisable(view); });
     });
 
-    describe("OpenAssessment.EditStudentTrainingView", function() {
+    describe("ieia.EditStudentTrainingView", function() {
         var view = null;
 
         beforeEach(function() {
@@ -220,7 +220,7 @@ describe("OpenAssessment edit assessment views", function() {
         });
     });
 
-    describe("OpenAssessment.EditStaffAssessmentView", function() {
+    describe("ieia.EditStaffAssessmentView", function() {
         var view = null;
 
         beforeEach(function() {

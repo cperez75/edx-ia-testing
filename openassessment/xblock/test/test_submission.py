@@ -1,5 +1,5 @@
 """
-Test submission to the OpenAssessment XBlock.
+Test submission to the ieia XBlock.
 """
 
 import datetime as dt
@@ -21,17 +21,17 @@ from submissions import api as sub_api
 from submissions import team_api as team_sub_api
 from submissions.api import SubmissionInternalError, SubmissionRequestError
 from submissions.models import TeamSubmission
-from openassessment.fileupload import api
-from openassessment.workflow import (
+from ieia.fileupload import api
+from ieia.workflow import (
     api as workflow_api,
     team_api as team_workflow_api
 )
-from openassessment.xblock.apis.submissions import submissions_actions
-from openassessment.xblock.utils.data_conversion import create_submission_dict, prepare_submission_for_serialization
-from openassessment.xblock.openassessmentblock import OpenAssessmentBlock
-from openassessment.xblock.ui_mixins.legacy.views.submission import get_team_submission_context
-from openassessment.xblock.workflow_mixin import WorkflowMixin
-from openassessment.xblock.test.test_team import MockTeamsService, MOCK_TEAM_ID
+from ieia.xblock.apis.submissions import submissions_actions
+from ieia.xblock.utils.data_conversion import create_submission_dict, prepare_submission_for_serialization
+from ieia.xblock.openassessmentblock import OpenAssessmentBlock
+from ieia.xblock.ui_mixins.legacy.views.submission import get_team_submission_context
+from ieia.xblock.workflow_mixin import WorkflowMixin
+from ieia.xblock.test.test_team import MockTeamsService, MOCK_TEAM_ID
 
 from .base import SubmissionTestMixin, XBlockHandlerTestCase, scenario
 from .test_staff_area import NullUserService, UserStateService
@@ -205,7 +205,7 @@ class SubmissionTest(SubmissionXBlockHandlerTestCase, SubmissionTestMixin):
         FILE_UPLOAD_STORAGE_BUCKET_NAME="mybucket"
     )
     @scenario('data/single_file_upload_scenario.xml')
-    @patch('openassessment.xblock.apis.submissions.file_api.file_upload_api.get_download_url')
+    @patch('ieia.xblock.apis.submissions.file_api.file_upload_api.get_download_url')
     def test_upload_url_single_file(self, xblock, mock_download_url):
         """ Test generate correct upload URL """
         xblock.xmodule_runtime = Mock(
@@ -409,7 +409,7 @@ class SubmissionTest(SubmissionXBlockHandlerTestCase, SubmissionTestMixin):
         Tests the old corner-case of a user being able to save files
         without descriptions.
         """
-        with patch('openassessment.fileupload.api.get_download_url') as mock_download_url:
+        with patch('ieia.fileupload.api.get_download_url') as mock_download_url:
             # Pretend there are two uploaded files for this XBlock.
             mock_download_url.side_effect = [
                 Mock(),
@@ -518,7 +518,7 @@ class SubmissionTest(SubmissionXBlockHandlerTestCase, SubmissionTestMixin):
         all_submissions = sub_api.get_all_submissions(
             course_id=xblock.course_id,
             item_id=str(xblock.scope_ids.usage_id),
-            item_type='openassessment',
+            item_type='ieia',
         )
 
         submission_user_ids = set()
@@ -547,7 +547,7 @@ class SubmissionTest(SubmissionXBlockHandlerTestCase, SubmissionTestMixin):
                 'files_sizes': []
             },
         }
-        with patch('openassessment.data.get_download_url') as mock_download_url:
+        with patch('ieia.data.get_download_url') as mock_download_url:
             # Pretend there are two uploaded files for this XBlock.
             mock_download_url.side_effect = [
                 'download-url-1',
@@ -588,7 +588,7 @@ class SubmissionTest(SubmissionXBlockHandlerTestCase, SubmissionTestMixin):
                 'file_key': 'key-1',
             },
         }
-        with patch('openassessment.data.get_download_url') as mock_download_url:
+        with patch('ieia.data.get_download_url') as mock_download_url:
             # Pretend there are two uploaded files for this XBlock.
             mock_download_url.side_effect = [
                 'download-url-1',
@@ -623,7 +623,7 @@ class SubmissionTest(SubmissionXBlockHandlerTestCase, SubmissionTestMixin):
             self.assertEqual(context, {})
             logger.check_present(
                 (
-                    'openassessment.xblock.ui_mixins.legacy.views.submission',
+                    'ieia.xblock.ui_mixins.legacy.views.submission',
                     'ERROR',
                     '{}: Teams service is unavailable'.format(
                         xblock.location,
@@ -638,7 +638,7 @@ class SubmissionTest(SubmissionXBlockHandlerTestCase, SubmissionTestMixin):
             self.assertEqual(context, {})
             logger.check_present(
                 (
-                    'openassessment.xblock.ui_mixins.legacy.views.submission',
+                    'ieia.xblock.ui_mixins.legacy.views.submission',
                     'ERROR',
                     '{}: User associated with anonymous_user_id {} can not be found.'.format(
                         xblock.location,
@@ -1030,7 +1030,7 @@ class SubmissionRenderTest(SubmissionXBlockHandlerTestCase, SubmissionTestMixin)
         )
 
         # delete file-2
-        with patch('openassessment.fileupload.api.remove_file'):
+        with patch('ieia.fileupload.api.remove_file'):
             xblock.file_manager.delete_upload(1)
 
         payload = json.dumps({'submission': ('A man must have a code', 'A man must have an umbrella too.')})
@@ -1188,7 +1188,7 @@ class SubmissionRenderTest(SubmissionXBlockHandlerTestCase, SubmissionTestMixin)
 
         self.assertEqual(expected_file_uploads, actual_file_uploads)
 
-    @patch('openassessment.fileupload.api.get_download_url')
+    @patch('ieia.fileupload.api.get_download_url')
     @scenario('data/save_scenario.xml', user_id="Valchek")
     def test_render_shared_files(self, xblock, mock_get_download_url):
         """
@@ -1609,7 +1609,7 @@ class SubmissionRenderTest(SubmissionXBlockHandlerTestCase, SubmissionTestMixin)
         resp = self.request(xblock, 'render_submission', json.dumps({}))
         self.assertIn('your response has been submitted', resp.decode('utf-8').lower())
 
-    @patch('openassessment.xblock.apis.submissions.file_api.file_upload_api', autospec=True)
+    @patch('ieia.xblock.apis.submissions.file_api.file_upload_api', autospec=True)
     @scenario('data/submission_open.xml', user_id="Bob")
     def test_can_delete_file(self, xblock, mock_file_api):
         xblock.get_team_info = Mock(return_value={'team_id': 'my-team-id'})
@@ -1625,7 +1625,7 @@ class SubmissionRenderTest(SubmissionXBlockHandlerTestCase, SubmissionTestMixin)
         mock_get_student_file_key.assert_called_once_with(xblock.get_student_item_dict(), index=5)
         mock_can_delete_file.assert_called_once_with('Bob', True, mock_get_student_file_key.return_value, 'my-team-id')
 
-    @patch('openassessment.xblock.apis.submissions.file_api.file_upload_api', autospec=True)
+    @patch('ieia.xblock.apis.submissions.file_api.file_upload_api', autospec=True)
     @scenario('data/submission_open.xml', user_id="Bob")
     def test_can_delete_file_no_team_info(self, xblock, mock_file_api):
         xblock.get_team_info = Mock(return_value={})

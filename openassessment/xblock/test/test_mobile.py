@@ -3,7 +3,7 @@
 from unittest import mock
 from django.test import TestCase
 
-from openassessment.xblock.mobile import togglable_mobile_support
+from ieia.xblock.mobile import togglable_mobile_support
 
 
 class MobileSupportTest(TestCase):
@@ -11,7 +11,7 @@ class MobileSupportTest(TestCase):
 
     @mock.patch('xblock.core.XBlock.supports')
     @mock.patch(
-        'openassessment.xblock.config_mixin.ConfigMixin.is_mobile_support_enabled',
+        'ieia.xblock.config_mixin.ConfigMixin.is_mobile_support_enabled',
         new_callable=mock.PropertyMock
     )
     def test_mobile_support_enabled(self, config_mixin_mock, xblock_mock):
@@ -31,7 +31,7 @@ class MobileSupportTest(TestCase):
 
     @mock.patch('xblock.core.XBlock.supports')
     @mock.patch(
-        'openassessment.xblock.config_mixin.ConfigMixin.is_mobile_support_enabled',
+        'ieia.xblock.config_mixin.ConfigMixin.is_mobile_support_enabled',
         new_callable=mock.PropertyMock
     )
     def test_mobile_support_disabled(self, config_mixin_mock, xblock_mock):

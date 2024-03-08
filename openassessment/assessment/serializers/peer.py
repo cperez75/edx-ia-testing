@@ -5,7 +5,7 @@ Serializers specific to peer assessment.
 
 from rest_framework import serializers
 
-from openassessment.assessment.models import (AssessmentFeedback, AssessmentFeedbackOption, PeerWorkflow,
+from ieia.assessment.models import (AssessmentFeedback, AssessmentFeedbackOption, PeerWorkflow,
                                               PeerWorkflowItem)
 
 from .base import AssessmentSerializer

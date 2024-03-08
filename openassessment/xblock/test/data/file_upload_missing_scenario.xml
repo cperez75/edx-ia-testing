@@ -1,4 +1,4 @@
-<openassessment file_upload_response="optional" file_upload_type="custom" white_listed_file_types="pdf,srt,txt">
+<ieia file_upload_response="optional" file_upload_type="custom" white_listed_file_types="pdf,srt,txt">
     <title>Open Assessment Test</title>
     <prompts>
         <prompt>
@@ -25,4 +25,4 @@
     <assessments>
         <assessment name="staff-assessment" required="True"/>
     </assessments>
-</openassessment>
+</ieia>

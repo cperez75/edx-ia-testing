@@ -4,8 +4,8 @@ import json
 from mock import patch, Mock
 from submissions import api as sub_api
 
-from openassessment.xblock.test.base import XBlockHandlerTestCase
-from openassessment.workflow import api as workflow_api
+from ieia.xblock.test.base import XBlockHandlerTestCase
+from ieia.workflow import api as workflow_api
 
 
 class StaffGraderMixinTestBase(XBlockHandlerTestCase):
@@ -20,7 +20,7 @@ class StaffGraderMixinTestBase(XBlockHandlerTestCase):
 
     @contextmanager
     def _mock_get_download_url(self):
-        with patch('openassessment.data.get_download_url') as mock_get_url:
+        with patch('ieia.data.get_download_url') as mock_get_url:
             mock_get_url.side_effect = lambda file_key: f"www.file_url.com/{file_key}"
             yield mock_get_url
 
@@ -28,7 +28,7 @@ class StaffGraderMixinTestBase(XBlockHandlerTestCase):
     def _mock_get_submission(self, **kwargs):
         """ Context manager to mock the fetching of a submission """
         with patch(
-            'openassessment.staffgrader.staff_grader_mixin.get_submission',
+            'ieia.staffgrader.staff_grader_mixin.get_submission',
             **kwargs
         ) as mock_get:
             yield mock_get
@@ -74,7 +74,7 @@ class StaffGraderMixinTestBase(XBlockHandlerTestCase):
             'course_id': course_id or 'TestCourseId',
             'item_id': item_id or 'TestItemId',
             'student_id': student_id,
-            'item_type': 'openassessment'
+            'item_type': 'ieia'
         }
 
     @staticmethod

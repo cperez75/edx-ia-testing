@@ -10,10 +10,10 @@ from uuid import uuid4
 
 from freezegun import freeze_time
 
-from openassessment.assessment.errors.staff import StaffAssessmentError
-from openassessment.staffgrader.models.submission_lock import SubmissionGradingLock
-from openassessment.tests.factories import UserFactory
-from openassessment.xblock.test.base import (
+from ieia.assessment.errors.staff import StaffAssessmentError
+from ieia.staffgrader.models.submission_lock import SubmissionGradingLock
+from ieia.tests.factories import UserFactory
+from ieia.xblock.test.base import (
     STAFF_GOOD_ASSESSMENT,
     XBlockHandlerTestCase,
     scenario,
@@ -103,7 +103,7 @@ class TestStaffGraderMixin(XBlockHandlerTestCase):
             "lock_status": "in-progress",
         })
 
-    @patch('openassessment.staffgrader.staff_grader_mixin.get_submission')
+    @patch('ieia.staffgrader.staff_grader_mixin.get_submission')
     @scenario('data/basic_scenario.xml', user_id="staff")
     def test_claim_submission_lock(self, xblock, _):
         """ A submission lock can be claimed on a submission w/out an active lock """
@@ -119,7 +119,7 @@ class TestStaffGraderMixin(XBlockHandlerTestCase):
             "lock_status": "in-progress",
         })
 
-    @patch('openassessment.staffgrader.staff_grader_mixin.get_submission')
+    @patch('ieia.staffgrader.staff_grader_mixin.get_submission')
     @scenario('data/basic_scenario.xml', user_id="staff")
     def test_reclaim_submission_lock(self, xblock, _):
         """ A lock owner can re-claim a submission lock, updating the timestamp """
@@ -140,7 +140,7 @@ class TestStaffGraderMixin(XBlockHandlerTestCase):
             "lock_status": "in-progress",
         })
 
-    @patch('openassessment.staffgrader.staff_grader_mixin.get_submission')
+    @patch('ieia.staffgrader.staff_grader_mixin.get_submission')
     @scenario('data/basic_scenario.xml', user_id="staff")
     def test_claim_submission_lock_contested(self, xblock, _):
         """ Trying to claim a lock on a submission with an active lock raises an error """
@@ -236,7 +236,7 @@ class TestStaffGraderMixin(XBlockHandlerTestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIsNone(response_body)
 
-    @patch("openassessment.staffgrader.staff_grader_mixin.generate_assessment_from_data")
+    @patch("ieia.staffgrader.staff_grader_mixin.generate_assessment_from_data")
     @scenario("data/basic_scenario.xml", user_id="staff")
     def test_list_assessments_from(self, xblock, assessment_from_data_mock: Mock):
         """ List assessments returns received assessments """
@@ -266,7 +266,7 @@ class TestStaffGraderMixin(XBlockHandlerTestCase):
         self.assertIsInstance(response_body, dict)
         self.assertEqual(response_body, assessments)
 
-    @patch("openassessment.staffgrader.staff_grader_mixin.generate_assessment_to_data")
+    @patch("ieia.staffgrader.staff_grader_mixin.generate_assessment_to_data")
     @scenario("data/basic_scenario.xml", user_id="staff")
     def test_list_assessments_to(self, xblock, assessment_to_data_mock: Mock):
         """ List assessments returns given assessments """
@@ -341,8 +341,8 @@ class TestStaffGraderMixin(XBlockHandlerTestCase):
             submission_uuid=self.test_other_submission_uuid
         ).exists()
 
-    @patch('openassessment.staffgrader.staff_grader_mixin.get_submission')
-    @patch('openassessment.staffgrader.staff_grader_mixin.do_staff_assessment')
+    @patch('ieia.staffgrader.staff_grader_mixin.get_submission')
+    @patch('ieia.staffgrader.staff_grader_mixin.do_staff_assessment')
     @scenario('data/basic_scenario.xml', user_id="staff")
     def test_submit_staff_assessment(self, xblock, mock_do_assessment, _):
         """Simple connectivity and routing test for submit staff assessment"""
@@ -369,8 +369,8 @@ class TestStaffGraderMixin(XBlockHandlerTestCase):
             'msg': ''
         })
 
-    @patch('openassessment.staffgrader.staff_grader_mixin.get_team_submission')
-    @patch('openassessment.staffgrader.staff_grader_mixin.do_team_staff_assessment')
+    @patch('ieia.staffgrader.staff_grader_mixin.get_team_submission')
+    @patch('ieia.staffgrader.staff_grader_mixin.do_team_staff_assessment')
     @scenario('data/team_submission.xml', user_id="staff")
     def test_submit_team_staff_assessment(self, xblock, mock_do_assessment, _):
         """Simple connectivity and routing test for submit team staff assessment"""
@@ -397,8 +397,8 @@ class TestStaffGraderMixin(XBlockHandlerTestCase):
             'msg': ''
         })
 
-    @patch('openassessment.staffgrader.staff_grader_mixin.get_submission')
-    @patch('openassessment.staffgrader.staff_grader_mixin.do_staff_assessment')
+    @patch('ieia.staffgrader.staff_grader_mixin.get_submission')
+    @patch('ieia.staffgrader.staff_grader_mixin.do_staff_assessment')
     @scenario('data/basic_scenario.xml', user_id="staff")
     def test_submit_staff_assessment__error(self, xblock, mock_do_assessment, _):
         """Error case for submit_staff_assessment"""

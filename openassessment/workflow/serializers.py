@@ -6,7 +6,7 @@ scope of the ORA2 APIs.
 
 from rest_framework import serializers
 
-from openassessment.workflow.models import AssessmentWorkflow, AssessmentWorkflowCancellation, TeamAssessmentWorkflow
+from ieia.workflow.models import AssessmentWorkflow, AssessmentWorkflowCancellation, TeamAssessmentWorkflow
 
 
 class AssessmentWorkflowSerializer(serializers.ModelSerializer):

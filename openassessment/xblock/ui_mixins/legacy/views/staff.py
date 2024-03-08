@@ -4,7 +4,7 @@ A mixin for staff grading.
 
 import logging
 
-from openassessment.assessment.api import (
+from ieia.assessment.api import (
     staff as staff_api,
 )
 

@@ -3,19 +3,19 @@ External API for ORA Peer Assessment data
 """
 import logging
 
-from openassessment.assessment.errors import PeerAssessmentWorkflowError
-from openassessment.assessment.api import peer as peer_api
-from openassessment.assessment.errors.peer import PeerAssessmentInternalError, PeerAssessmentRequestError
-from openassessment.assessment.models.peer import PeerWorkflowItem
-from openassessment.assessment.serializers.base import serialize_assessments
-from openassessment.workflow.errors import AssessmentWorkflowError
-from openassessment.xblock.apis.assessments.errors import (
+from ieia.assessment.errors import PeerAssessmentWorkflowError
+from ieia.assessment.api import peer as peer_api
+from ieia.assessment.errors.peer import PeerAssessmentInternalError, PeerAssessmentRequestError
+from ieia.assessment.models.peer import PeerWorkflowItem
+from ieia.assessment.serializers.base import serialize_assessments
+from ieia.workflow.errors import AssessmentWorkflowError
+from ieia.xblock.apis.assessments.errors import (
     ReviewerMustHaveSubmittedException,
     ServerClientUUIDMismatchException,
 )
-from openassessment.xblock.utils.data_conversion import create_submission_dict
-from openassessment.xblock.apis.step_data_api import StepDataAPI
-from openassessment.xblock.utils.data_conversion import (
+from ieia.xblock.utils.data_conversion import create_submission_dict
+from ieia.xblock.apis.step_data_api import StepDataAPI
+from ieia.xblock.utils.data_conversion import (
     clean_criterion_feedback,
     create_rubric_dict,
 )
@@ -192,7 +192,7 @@ def peer_assess(
     peer_step_data,
     assessed_submission_uuid=None,
 ):
-    """Place a peer assessment into OpenAssessment system
+    """Place a peer assessment into ieia system
 
     Assess a Peer Submission.  Performs basic workflow validation to ensure
     that an assessment can be performed as this time.

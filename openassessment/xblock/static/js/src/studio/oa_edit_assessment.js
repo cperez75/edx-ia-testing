@@ -19,7 +19,7 @@ import Notifier from './oa_edit_notifier';
  element (DOM element): The DOM element representing this view.
  scheduleElement (DOM element): The DOM element representing EditScheduleView.
  Returns:
- OpenAssessment.EditPeerAssessmentView
+ ieia.EditPeerAssessmentView
 
  * */
 
@@ -249,7 +249,7 @@ export class EditPeerAssessmentView {
  element (DOM element): The DOM element representing this view.
 
  Returns:
- OpenAssessment.EditSelfAssessmentView
+ ieia.EditSelfAssessmentView
 
  * */
 export class EditSelfAssessmentView {
@@ -407,7 +407,7 @@ export class EditSelfAssessmentView {
  element (DOM element): The DOM element representing this view.
 
  Returns:
- OpenAssessment.EditStudentTrainingView
+ ieia.EditStudentTrainingView
 
  * */
 export class EditStudentTrainingView {

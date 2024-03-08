@@ -1,4 +1,4 @@
-<openassessment>
+<ieia>
     <title>Open Assessment Test</title>
     <prompts>
         <prompt>
@@ -23,4 +23,4 @@
         <assessment name="peer-assessment" must_grade="1" must_be_graded_by="1" />
         <assessment name="self-assessment" />
     </assessments>
-</openassessment>
+</ieia>

@@ -2,10 +2,10 @@ import BaseView from 'lms/oa_base';
 import SelfView from 'lms/oa_self';
 
 /**
- Tests for OpenAssessment Self view.
+ Tests for ieia Self view.
  **/
 
-describe("OpenAssessment.SelfView", function() {
+describe("ieia.SelfView", function() {
 
     // Stub server
     var StubServer = function() {

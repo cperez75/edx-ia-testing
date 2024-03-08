@@ -4,12 +4,12 @@ External API for ORA Self Assessment data
 import logging
 from submissions import api as submission_api
 
-from openassessment.assessment.api import self as self_api
-from openassessment.assessment.errors.self import SelfAssessmentInternalError, SelfAssessmentRequestError
-from openassessment.workflow.errors import AssessmentWorkflowInternalError, AssessmentWorkflowRequestError
-from openassessment.xblock.apis.assessments.errors import ReviewerMustHaveSubmittedException
-from openassessment.xblock.apis.step_data_api import StepDataAPI
-from openassessment.xblock.utils.data_conversion import (
+from ieia.assessment.api import self as self_api
+from ieia.assessment.errors.self import SelfAssessmentInternalError, SelfAssessmentRequestError
+from ieia.workflow.errors import AssessmentWorkflowInternalError, AssessmentWorkflowRequestError
+from ieia.xblock.apis.assessments.errors import ReviewerMustHaveSubmittedException
+from ieia.xblock.apis.step_data_api import StepDataAPI
+from ieia.xblock.utils.data_conversion import (
     clean_criterion_feedback,
     create_rubric_dict,
     create_submission_dict,

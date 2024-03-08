@@ -3,7 +3,7 @@ A class which controls the validation alert which we place at the top of the rub
 changes are made which will propagate to the settings section.
 
 Returns:
-    Openassessment.ValidationAlert
+    ieia.ValidationAlert
  */
 export class ValidationAlert {
   constructor() {
@@ -34,7 +34,7 @@ export class ValidationAlert {
     Hides the alert.
 
     Returns:
-        OpenAssessment.ValidationAlert
+        ieia.ValidationAlert
     */
   hide() {
     // Finds the height of all other elements in the editor_and_tabs (the Header) and sets the height
@@ -58,7 +58,7 @@ export class ValidationAlert {
     Displays the alert.
 
     Returns:
-        OpenAssessment.ValidationAlert
+        ieia.ValidationAlert
     */
   show() {
     const view = this;
@@ -100,7 +100,7 @@ export class ValidationAlert {
         newMessage (string): the new text that the message's body will contain
 
     Returns:
-        OpenAssessment.ValidationAlert
+        ieia.ValidationAlert
     */
   setMessage(newTitle, newMessage) {
     this.title.text(newTitle);

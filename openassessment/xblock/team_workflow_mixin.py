@@ -1,5 +1,5 @@
 """
-Handle OpenAssessment XBlock requests around team functionality to the Workflow API.
+Handle ieia XBlock requests around team functionality to the Workflow API.
 """
 
 import logging
@@ -7,15 +7,15 @@ import logging
 from xblock.core import XBlock
 from submissions import team_api as team_sub_api
 from submissions.errors import TeamSubmissionNotFoundError, TeamSubmissionInternalError
-from openassessment.workflow import team_api as team_workflow_api
-from openassessment.workflow.models import AssessmentWorkflowCancellation
+from ieia.workflow import team_api as team_workflow_api
+from ieia.workflow.models import AssessmentWorkflowCancellation
 
 logger = logging.getLogger(__name__)  # pylint: disable=invalid-name
 
 
 class TeamWorkflowMixin:
     """
-    Handle OpenAssessment, team centric XBlock requests to the Workflow API.
+    Handle ieia, team centric XBlock requests to the Workflow API.
     """
 
     @XBlock.json_handler

@@ -5,9 +5,9 @@ from uuid import uuid4
 from mock import patch, Mock
 from submissions import api as sub_api
 
-from openassessment.xblock.test.base import scenario
-from openassessment.data import VersionNotFoundException
-from openassessment.staffgrader.tests.test_base import StaffGraderMixinTestBase
+from ieia.xblock.test.base import scenario
+from ieia.data import VersionNotFoundException
+from ieia.staffgrader.tests.test_base import StaffGraderMixinTestBase
 
 
 class GetSubmissionInfoTests(StaffGraderMixinTestBase):
@@ -34,7 +34,7 @@ class GetSubmissionInfoTests(StaffGraderMixinTestBase):
     def _mock_parse_submission_raw_answer(self, **kwargs):
         """ Context manager to mock the parsing of a raw answer into an nswer object """
         with patch(
-            'openassessment.staffgrader.staff_grader_mixin.OraSubmissionAnswerFactory.parse_submission_raw_answer',
+            'ieia.staffgrader.staff_grader_mixin.OraSubmissionAnswerFactory.parse_submission_raw_answer',
             **kwargs
         ) as mock_parse:
             yield mock_parse
@@ -42,7 +42,7 @@ class GetSubmissionInfoTests(StaffGraderMixinTestBase):
     @contextmanager
     def _mock_get_download_urls(self, **kwargs):
         """ Helper method to mock the get_download_urls_from_submission method """
-        with patch("openassessment.data.get_download_url", **kwargs) as mock_get_download_url:
+        with patch("ieia.data.get_download_url", **kwargs) as mock_get_download_url:
             yield mock_get_download_url
 
     @scenario('data/simple_self_staff_scenario.xml', user_id='Bob')

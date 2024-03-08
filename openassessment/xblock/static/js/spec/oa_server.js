@@ -3,7 +3,7 @@ import Server from 'oa_server';
 Tests for OA XBlock server interactions.
 */
 
-describe("OpenAssessment.Server", function() {
+describe("ieia.Server", function() {
 
     // Stub runtime implementation that returns the handler as the URL
     var runtime = {

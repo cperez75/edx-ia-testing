@@ -1,66 +1,66 @@
 {
     "promptless": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
                 "<rubric>",
                 "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ],
         "prompts": [{"description": ""}]
     },
 
     "rubric_prompt": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
                 "<rubric>",
                     "<prompt>Test prompt</prompt>",
                 "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ],
         "prompts": [{"description": "Test prompt"}]
     },
 
     "rubric_prompt_empty": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
                 "<rubric>",
                     "<prompt></prompt>",
                 "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ],
         "prompts": [{"description": ""}]
     },
 
     "rubric_prompt_unicode": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
                 "<prompts>",
                     "<prompt><description>ՇєรՇ קг๏๓קՇ</description></prompt>",
                 "</prompts>",
                 "<rubric>",
                     "<prompt>Test prompt</prompt>",
                 "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ],
         "prompts": [{"description": "ՇєรՇ קг๏๓קՇ"}]
     },
 
     "prompts_one": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
                 "<prompts>",
                     "<prompt><description>Test prompt</description></prompt>",
                 "</prompts>",
                 "<rubric>",
                 "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ],
         "prompts": [{"description": "Test prompt"}]
     },
 
     "prompts_multiple": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
                 "<prompts>",
                     "<prompt><description>Test prompt 1</description></prompt>",
                     "<prompt><description>Test prompt 2</description></prompt>",
@@ -68,27 +68,27 @@
                 "</prompts>",
                 "<rubric>",
                 "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ],
         "prompts": [{"description": "Test prompt 1"}, {"description": "Test prompt 2"}, {"description": "Test prompt 3"}]
     },
 
     "prompts_empty": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
                 "<prompts>",
                     "<prompt><description></description></prompt>",
                 "</prompts>",
                 "<rubric>",
                 "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ],
         "prompts": [{"description": ""}]
     },
 
     "prompts_multiple_empty": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
                 "<prompts>",
                     "<prompt><description></description></prompt>",
                     "<prompt><description></description></prompt>",
@@ -96,28 +96,28 @@
                 "<rubric>",
                     "<prompt>Test prompt</prompt>",
                 "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ],
         "prompts": [{"description": ""}, {"description": ""}]
     },
 
     "prompts_unicode": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
                 "<prompts>",
                     "<prompt><description>ՇєรՇ קг๏๓קՇ 1</description></prompt>",
                     "<prompt><description>ՇєรՇ קг๏๓קՇ 2</description></prompt>",
                 "</prompts>",
                 "<rubric>",
                 "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ],
         "prompts": [{"description": "ՇєรՇ קг๏๓קՇ 1"}, {"description": "ՇєรՇ קг๏๓קՇ 2"}]
     },
 
     "rubric_prompt_and_prompts": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
                 "<prompts>",
                     "<prompt><description>Test prompt 1</description></prompt>",
                     "<prompt><description>Test prompt 2</description></prompt>",
@@ -125,7 +125,7 @@
                 "<rubric>",
                     "<prompt>Test prompt</prompt>",
                 "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ],
         "prompts": [{"description": "Test prompt 1"}, {"description": "Test prompt 2"}]
     }

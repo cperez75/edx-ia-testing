@@ -1,4 +1,4 @@
-<openassessment submission_due="1999-03-05">
+<ieia submission_due="1999-03-05">
     <title>Open Assessment Test</title>
     <prompt>
         Given the state of the world today, what do you think should be done to
@@ -43,4 +43,4 @@
         <assessment name="peer-assessment" must_grade="1" must_be_graded_by="1" due="2000-01-02"/>
         <assessment name="self-assessment" due="2000-01-8"/>
     </assessments>
-</openassessment>
+</ieia>

@@ -4,7 +4,7 @@ import ResponseEditorLoader from 'lms/oa_response_editor'
 /**
  * Tests for ResponseEditorLoader
  */
-describe("OpenAssessment.ResponseEditorLoader", function () {
+describe("ieia.ResponseEditorLoader", function () {
 
     let cssFile = '/example/css/file.css'
 

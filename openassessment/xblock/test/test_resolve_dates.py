@@ -10,8 +10,8 @@ import pytz
 from django.test import TestCase
 
 from workbench.runtime import WorkBenchUserService
-from openassessment.xblock.utils.resolve_dates import DISTANT_FUTURE, DISTANT_PAST, resolve_dates
-from openassessment.xblock.utils.user_data import get_user_preferences
+from ieia.xblock.utils.resolve_dates import DISTANT_FUTURE, DISTANT_PAST, resolve_dates
+from ieia.xblock.utils.user_data import get_user_preferences
 
 
 def STUB_I18N(x):

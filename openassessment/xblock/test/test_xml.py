@@ -12,9 +12,9 @@ import pytz
 from django.test import TestCase
 
 from lxml import etree
-from openassessment.xblock.utils.data_conversion import create_prompts_list
-from openassessment.xblock.openassessmentblock import OpenAssessmentBlock
-from openassessment.xblock.utils.xml import (
+from ieia.xblock.utils.data_conversion import create_prompts_list
+from ieia.xblock.openassessmentblock import OpenAssessmentBlock
+from ieia.xblock.utils.xml import (
     UpdateFromXmlError,
     _parse_prompts_xml,
     parse_assessments_xml,
@@ -46,7 +46,7 @@ def _parse_date(value):
 @ddt.ddt
 class TestSerializeContent(TestCase):
     """
-    Test serialization of OpenAssessment XBlock content to XML.
+    Test serialization of ieia XBlock content to XML.
     """
     BASIC_CRITERIA = [
         {
@@ -507,7 +507,7 @@ class TestParseAssessmentsFromXml(TestCase):
 @ddt.ddt
 class TestParseFromXml(TestCase):
     """
-    Test deserialization of OpenAssessment XBlock content from XML.
+    Test deserialization of ieia XBlock content from XML.
     """
     maxDiff = None
 

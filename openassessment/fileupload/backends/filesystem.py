@@ -14,12 +14,12 @@ from .base import BaseBackend
 
 class Backend(BaseBackend):
     """
-    Upload openassessment student files to a local filesystem. Note
+    Upload ieia student files to a local filesystem. Note
     that in order to use this file storage backend, you need to include the
-    urls from openassessment.fileupload in your urls.py file:
+    urls from ieia.fileupload in your urls.py file:
 
     E.g:
-        url(r'^openassessment/storage', include(openassessment.fileupload.urls)),
+        url(r'^ieia/storage', include(ieia.fileupload.urls)),
 
     The ORA2_FILEUPLOAD_CACHE_NAME setting will also have to be defined for the
     name of the django.core.cache instance which will maintain the list of
@@ -50,16 +50,16 @@ class Backend(BaseBackend):
         return None
 
     def remove_file(self, key):
-        from openassessment.fileupload.views_filesystem import get_file_path, safe_remove
+        from ieia.fileupload.views_filesystem import get_file_path, safe_remove
         return safe_remove(get_file_path(self._get_key_name(key)))
 
     def _get_url(self, key):
         key_name = self._get_key_name(key)
-        url = reverse("openassessment-filesystem-storage", kwargs={'key': key_name})
+        url = reverse("ieia-filesystem-storage", kwargs={'key': key_name})
         return url
 
     def _file_exists(self, key_name):
-        from openassessment.fileupload.views_filesystem import get_file_path
+        from ieia.fileupload.views_filesystem import get_file_path
 
         file_path = get_file_path(key_name)
         file_path = Path(file_path)

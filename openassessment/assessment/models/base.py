@@ -8,7 +8,7 @@ were made.
 NOTE: We've switched to migrations, so if you make any edits to this file, you
 need to then generate a matching migration for it using:
 
-    ./manage.py schemamigration openassessment.assessment --auto
+    ./manage.py schemamigration ieia.assessment --auto
 
 """
 
@@ -31,7 +31,7 @@ from model_utils.models import TimeStampedModel
 
 from lazy import lazy
 
-logger = logging.getLogger("openassessment.assessment.models")  # pylint: disable=invalid-name
+logger = logging.getLogger("ieia.assessment.models")  # pylint: disable=invalid-name
 
 KEY_SEPARATOR = '/'
 

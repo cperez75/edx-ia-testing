@@ -6,11 +6,11 @@ import ConfirmationAlert from './oa_confirmation_alert';
  *
  * Args:
  *   element (DOM element): The DOM element representing the XBlock.
- *   server (OpenAssessment.Server): The interface to the XBlock server.
- *   baseView (OpenAssessment.BaseView): Container view.
+ *   server (ieia.Server): The interface to the XBlock server.
+ *   baseView (ieia.BaseView): Container view.
  *
  * Returns:
- *   OpenAssessment.StaffAreaView
+ *   ieia.StaffAreaView
  */
 export class StaffAreaView {
     FULL_GRADE_UNSAVED_WARNING_KEY = 'staff-grade';

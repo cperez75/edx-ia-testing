@@ -4,7 +4,7 @@ import CourseItemsListingView from 'lms/oa_course_items_listing';
  Tests for course items listing.
  **/
 
-describe("OpenAssessment.CourseItemsListingView", function() {
+describe("ieia.CourseItemsListingView", function() {
 
     // Stubs
     var view = null;
@@ -41,7 +41,7 @@ describe("OpenAssessment.CourseItemsListingView", function() {
     };
 
     var oraCourseItems = {
-        "block-v1:SomeOrg+ORA101+2017+type@openassessment+block@9d1af6220a4d4ecbafb22a3506effcce": {
+        "block-v1:SomeOrg+ORA101+2017+type@ieia+block@9d1af6220a4d4ecbafb22a3506effcce": {
             "name": "Test ORA 1",
             "staff_assessment": false,
             "parent": {
@@ -60,7 +60,7 @@ describe("OpenAssessment.CourseItemsListingView", function() {
                 "staff": 0
             }
         },
-        "block-v1:SomeOrg+ORA101+2017+type@openassessment+block@3ec2343a95734a87af494455f52b1141": {
+        "block-v1:SomeOrg+ORA101+2017+type@ieia+block@3ec2343a95734a87af494455f52b1141": {
             "name": "Test ORA 2",
             "staff_assessment": true,
             "parent": {
@@ -79,11 +79,11 @@ describe("OpenAssessment.CourseItemsListingView", function() {
                 "staff": 0
             }
         },
-        "block-v1:SomeOrg+ORA101+2017+type@openassessment+block@40b4edfe60bc47d9ba037a3180c44e97": {
+        "block-v1:SomeOrg+ORA101+2017+type@ieia+block@40b4edfe60bc47d9ba037a3180c44e97": {
             "name": "Test ORA 3",
             "staff_assessment": false,
             "parent": {
-                "id": "block-v1:SomeOrg+ORA101+2017+type@openassessment+block@40b4edfe60bc47d9ba037a3180c44e97",
+                "id": "block-v1:SomeOrg+ORA101+2017+type@ieia+block@40b4edfe60bc47d9ba037a3180c44e97",
                 "name": "Vertical 3"
             },
             "responses": {

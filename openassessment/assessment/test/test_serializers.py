@@ -6,10 +6,10 @@ import copy
 import json
 import os.path
 
-from openassessment.assessment.models import Assessment, AssessmentFeedback, AssessmentPart
-from openassessment.assessment.serializers import (AssessmentFeedbackSerializer, InvalidRubric, full_assessment_dict,
+from ieia.assessment.models import Assessment, AssessmentFeedback, AssessmentPart
+from ieia.assessment.serializers import (AssessmentFeedbackSerializer, InvalidRubric, full_assessment_dict,
                                                    rubric_from_dict)
-from openassessment.test_utils import CacheResetTest
+from ieia.test_utils import CacheResetTest
 
 from .constants import RUBRIC
 

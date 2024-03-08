@@ -2,10 +2,10 @@ import EditPromptsView from 'studio/oa_edit_prompts';
 import { Prompt } from 'studio/oa_container_item';
 
 /**
-Tests for OpenAssessment prompt editing view.
+Tests for ieia prompt editing view.
 **/
 
-describe("OpenAssessment.EditPromptViews", function() {
+describe("ieia.EditPromptViews", function() {
 
     // Use a stub notifier implementation that simply stores
     // the notifications it receives.
@@ -81,7 +81,7 @@ describe("OpenAssessment.EditPromptViews", function() {
     });
 });
 
-describe("OpenAssessment.EditPromptViews after release", function() {
+describe("ieia.EditPromptViews after release", function() {
 
     // Use a stub notifier implementation that simply stores
     // the notifications it receives.
@@ -101,7 +101,7 @@ describe("OpenAssessment.EditPromptViews after release", function() {
     beforeEach(function() {
         // Load the DOM fixture
         loadFixtures('oa_edit.html');
-        $("#openassessment-editor").attr('data-is-released', 'true');
+        $("#ieia-editor").attr('data-is-released', 'true');
 
         // Create the view
         var element = $("#oa_prompts_editor_wrapper").get(0);

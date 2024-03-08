@@ -7,8 +7,8 @@ from django.test import TestCase
 from django.test.utils import override_settings
 from moto import mock_s3
 
-from openassessment.assessment.models.base import SharedFileUpload
-from openassessment.fileupload.api import FileUploadManager
+from ieia.assessment.models.base import SharedFileUpload
+from ieia.fileupload.api import FileUploadManager
 
 
 class MockBlock:
@@ -55,7 +55,7 @@ class MockBlock:
             student_id=self.student_id,
             item_id=self.item_id,
             course_id=self.course_id,
-            item_type='openassessment'
+            item_type='ieia'
         )
 
 
@@ -183,7 +183,7 @@ class FileUploadManagerTests(TestCase):
         other_users_block.student_id = MockBlock.STUDENT_ID + '317'
 
         with mock.patch(
-            'openassessment.fileupload.backends.django_storage.Backend.get_download_url'
+            'ieia.fileupload.backends.django_storage.Backend.get_download_url'
         ) as mock_get_download_url:
             other_users_file_manager = FileUploadManager(other_users_block)
 

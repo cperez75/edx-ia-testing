@@ -19,11 +19,11 @@ Interface for student-facing views.
 Args:
     runtime (Runtime): an XBlock runtime instance.
     element (DOM element): The DOM element representing this XBlock.
-    server (OpenAssessment.Server): The interface to the XBlock server.
+    server (ieia.Server): The interface to the XBlock server.
     data (Object): The data object passed from XBlock backend.
 
 Returns:
-    OpenAssessment.BaseView
+    ieia.BaseView
 * */
 export class BaseView {
     IS_SHOWING_CLASS = 'is--showing';
@@ -311,7 +311,7 @@ export class BaseView {
         // Currently this seems to be only reasonable way to detect if we are in preview mode.
         // Other way would be detecting url started with preview. Either way isn't ideal.
         // The ideal way is to pass the argument from backend like IS_STUDIO. However, it seems
-        // that openassessment.in_studio_preview is not working.
+        // that ieia.in_studio_preview is not working.
         const isPreview = $('.wrapper-preview-menu')?.length > 0;
         let xblockPath = 'xblock';
         if (IS_STUDIO) {

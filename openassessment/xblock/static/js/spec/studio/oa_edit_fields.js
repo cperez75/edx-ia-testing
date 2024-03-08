@@ -18,7 +18,7 @@ var StubNotifier = function() {
     };
 };
 
-describe("OpenAssessment.DatetimeControl", function() {
+describe("ieia.DatetimeControl", function() {
 
     var datetimeControl = null;
 
@@ -104,7 +104,7 @@ describe("OpenAssessment.DatetimeControl", function() {
     });
 });
 
-describe("OpenAssessment.ToggleControl", function() {
+describe("ieia.ToggleControl", function() {
 
     var notifier = null;
     var toggleControl = null;
@@ -176,7 +176,7 @@ describe("OpenAssessment.ToggleControl", function() {
 });
 
 
-describe("OpenAssessment.SelectControl", function() {
+describe("ieia.SelectControl", function() {
 
     var notifier = null;
     var selectControl = null;
@@ -243,7 +243,7 @@ describe("OpenAssessment.SelectControl", function() {
 });
 
 
-describe("OpenAssessment.InputControl", function() {
+describe("ieia.InputControl", function() {
 
     var inputControl = null;
     var validator = jasmine.createSpy('validator');

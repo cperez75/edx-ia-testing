@@ -1,4 +1,4 @@
-<openassessment submission_due="2014-03-05">
+<ieia submission_due="2014-03-05">
     <title>Open Assessment Test</title>
     <prompts>
         <prompt>
@@ -46,4 +46,4 @@
         <assessment name="peer-assessment" must_grade="1" must_be_graded_by="1" start="2014-03-02"/>
         <assessment name="self-assessment" start="2014-03-8"/>
     </assessments>
-</openassessment>
+</ieia>

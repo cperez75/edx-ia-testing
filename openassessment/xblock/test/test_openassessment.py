@@ -14,12 +14,12 @@ import pytz
 
 from freezegun import freeze_time
 from lxml import etree
-from openassessment.workflow.errors import AssessmentWorkflowError
-from openassessment.xblock import openassessmentblock
-from openassessment.xblock.utils import defaults
-from openassessment.xblock.utils.resolve_dates import DateValidationError, DISTANT_FUTURE, DISTANT_PAST
-from openassessment.xblock.openassesment_template_mixin import UI_MODELS
-from openassessment.xblock.apis.assessments.staff_assessment_api import StaffAssessmentAPI
+from ieia.workflow.errors import AssessmentWorkflowError
+from ieia.xblock import openassessmentblock
+from ieia.xblock.utils import defaults
+from ieia.xblock.utils.resolve_dates import DateValidationError, DISTANT_FUTURE, DISTANT_PAST
+from ieia.xblock.openassesment_template_mixin import UI_MODELS
+from ieia.xblock.apis.assessments.staff_assessment_api import StaffAssessmentAPI
 
 from .base import XBlockHandlerTestCase, scenario
 
@@ -69,7 +69,7 @@ def assert_is_closed(
 class TestOpenAssessment(XBlockHandlerTestCase):
     """Test Open Assessment XBlock functionality"""
 
-    TIME_ZONE_FN_PATH = 'openassessment.xblock.utils.user_data.get_user_preferences'
+    TIME_ZONE_FN_PATH = 'ieia.xblock.utils.user_data.get_user_preferences'
 
     @scenario('data/basic_scenario.xml')
     def test_load_student_view(self, xblock):
@@ -208,7 +208,7 @@ class TestOpenAssessment(XBlockHandlerTestCase):
         ORA_GRADING_MICROFRONTEND_URL='some_url'
     )
     @patch(
-        'openassessment.xblock.config_mixin.ConfigMixin.is_enhanced_staff_grader_enabled',
+        'ieia.xblock.config_mixin.ConfigMixin.is_enhanced_staff_grader_enabled',
         PropertyMock(return_value=False)
     )
     def test_ora_blocks_listing_view(self, xblock):
@@ -263,7 +263,7 @@ class TestOpenAssessment(XBlockHandlerTestCase):
     )
     @ddt.data(False, True)
     @patch(
-        'openassessment.xblock.config_mixin.ConfigMixin.is_enhanced_staff_grader_enabled',
+        'ieia.xblock.config_mixin.ConfigMixin.is_enhanced_staff_grader_enabled',
         new_callable=PropertyMock
     )
     def test_ora_blocks_listing_view_include_esg_flag(self, xblock, esg_flag_input, mock_esg):
@@ -287,7 +287,7 @@ class TestOpenAssessment(XBlockHandlerTestCase):
     @scenario('data/basic_scenario.xml')
     @ddt.data(False, True)
     @patch(
-        'openassessment.xblock.config_mixin.ConfigMixin.is_selectable_learner_waiting_review_enabled',
+        'ieia.xblock.config_mixin.ConfigMixin.is_selectable_learner_waiting_review_enabled',
         new_callable=PropertyMock
     )
     def test_ora_waiting_step_details_view_include_esg_flag(
@@ -331,7 +331,7 @@ class TestOpenAssessment(XBlockHandlerTestCase):
         xblock.mfe_views_enabled = True
 
         # No submission made, so don't update the workflow
-        with patch('openassessment.xblock.workflow_mixin.workflow_api') as mock_api:
+        with patch('ieia.xblock.workflow_mixin.workflow_api') as mock_api:
             self.runtime.render(xblock, "student_view")
             self.assertEqual(mock_api.update_from_assessments.call_count, 0)
 
@@ -339,7 +339,7 @@ class TestOpenAssessment(XBlockHandlerTestCase):
         xblock.submission_uuid = 'test_submission'
 
         # Now that we have a submission, the workflow should get updated
-        with patch('openassessment.xblock.workflow_mixin.workflow_api') as mock_api:
+        with patch('ieia.xblock.workflow_mixin.workflow_api') as mock_api:
             self.runtime.render(xblock, "student_view")
             expected_reqs = {
                 "peer": {"must_grade": 5, "must_be_graded_by": 3, "enable_flexible_grading": False}
@@ -355,7 +355,7 @@ class TestOpenAssessment(XBlockHandlerTestCase):
 
         # Simulate an error from updating the workflow
         xblock.submission_uuid = 'test_submission'
-        with patch('openassessment.xblock.workflow_mixin.workflow_api') as mock_api:
+        with patch('ieia.xblock.workflow_mixin.workflow_api') as mock_api:
             mock_api.update_from_assessments.side_effect = AssessmentWorkflowError
             xblock_fragment = self.runtime.render(xblock, "student_view")
 
@@ -372,7 +372,7 @@ class TestOpenAssessment(XBlockHandlerTestCase):
         Open Assessment XBlock. We don't want to match too heavily against the
         contents.
         """
-        with patch('openassessment.xblock.utils.user_data.get_user_preferences') as time_zone_fn:
+        with patch('ieia.xblock.utils.user_data.get_user_preferences') as time_zone_fn:
             time_zone_fn.return_value['user_timezone'] = pytz.timezone(time_zone)
 
             xblock = self.load_scenario('data/dates_scenario.xml')

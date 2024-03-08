@@ -1,5 +1,5 @@
 """
-Grade step in the OpenAssessment XBlock.
+Grade step in the ieia XBlock.
 """
 
 
@@ -10,7 +10,7 @@ from xblock.core import XBlock
 
 from django.utils.translation import gettext as _
 
-from openassessment.assessment.errors import PeerAssessmentError, SelfAssessmentError
+from ieia.assessment.errors import PeerAssessmentError, SelfAssessmentError
 
 from .utils.data_conversion import create_submission_dict
 
@@ -91,9 +91,9 @@ class GradeMixin:
         # Import is placed here to avoid model import at project startup.
         from submissions import api as sub_api
 
-        from openassessment.assessment.api import peer as peer_api
-        from openassessment.assessment.api import self as self_api
-        from openassessment.assessment.api import staff as staff_api
+        from ieia.assessment.api import peer as peer_api
+        from ieia.assessment.api import self as self_api
+        from ieia.assessment.api import staff as staff_api
 
         # Peer specific stuff...
         assessment_steps = self.assessment_steps
@@ -206,7 +206,7 @@ class GradeMixin:
 
         """
         # Import is placed here to avoid model import at project startup.
-        from openassessment.assessment.api import peer as peer_api
+        from ieia.assessment.api import peer as peer_api
 
         feedback_text = data.get('feedback_text', '')
         feedback_options = data.get('feedback_options', [])
@@ -270,9 +270,9 @@ class GradeMixin:
 
         """
         # Import is placed here to avoid model import at project startup.
-        from openassessment.assessment.api import peer as peer_api
-        from openassessment.assessment.api import self as self_api
-        from openassessment.assessment.api import staff as staff_api
+        from ieia.assessment.api import peer as peer_api
+        from ieia.assessment.api import self as self_api
+        from ieia.assessment.api import staff as staff_api
 
         criteria = copy.deepcopy(self.rubric_criteria_with_labels)
 
@@ -422,7 +422,7 @@ class GradeMixin:
 
         """
         # Import is placed here to avoid model import at project startup.
-        from openassessment.assessment.api import peer as peer_api
+        from ieia.assessment.api import peer as peer_api
 
         median_scores = peer_api.get_assessment_median_scores(submission_uuid)
         median_score = median_scores.get(criterion['name'], None)
@@ -716,7 +716,7 @@ class GradeMixin:
                     'Assessment scored At': 2020-02-01 10:03:07.218280+00:00',,
                 })
         """
-        from openassessment.data import OraAggregateData
+        from ieia.data import OraAggregateData
 
         xblock_id = self.get_xblock_id()
         num_rows = 0

@@ -48,11 +48,11 @@ def get_version(*file_paths):
     raise RuntimeError("Unable to find version string.")
 
 
-VERSION = get_version("openassessment", "__init__.py")
+VERSION = get_version("ieia", "__init__.py")
 
 
 setup(
-    name='ora2',
+    name='ieia',
     version=VERSION,
     author='edX',
     author_email='oscm@edx.org',
@@ -71,13 +71,13 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.8',
     ],
-    packages=find_packages(include=['openassessment*'], exclude=['*.test', '*.tests']),
+    packages=find_packages(include=['ieia*'], exclude=['*.test', '*.tests']),
     include_package_data=True,
     install_requires=load_requirements('requirements/base.in'),
     tests_require=load_requirements('requirements/test.in'),
     entry_points={
         'xblock.v1': [
-            'openassessment = openassessment.xblock.openassessmentblock:OpenAssessmentBlock',
+            'ieia = ieia.xblock.openassessmentblock:OpenAssessmentBlock',
         ]
     },
 )

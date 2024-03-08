@@ -11,9 +11,9 @@ from urllib.parse import urlparse
 import boto3
 import moto
 from submissions import api as sub_api
-from openassessment.management.commands import upload_oa_data
-from openassessment.test_utils import CacheResetTest
-from openassessment.workflow import api as workflow_api
+from ieia.management.commands import upload_oa_data
+from ieia.test_utils import CacheResetTest
+from ieia.workflow import api as workflow_api
 
 
 class UploadDataTest(CacheResetTest):
@@ -43,7 +43,7 @@ class UploadDataTest(CacheResetTest):
                 'student_id': f"test_user_{index}",
                 'course_id': self.COURSE_ID,
                 'item_id': 'test_item',
-                'item_type': 'openassessment',
+                'item_type': 'ieia',
             }
             submission_text = f"test submission {index}"
             submission = sub_api.create_submission(student_item, submission_text)

@@ -1,4 +1,4 @@
-<openassessment>
+<ieia>
     <title>Feedback only criterion</title>
     <prompts>
         <prompt>
@@ -17,4 +17,4 @@
     <assessments>
         <assessment name="staff-assessment" required="true"/>
     </assessments>
-</openassessment>
+</ieia>

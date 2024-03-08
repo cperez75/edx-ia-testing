@@ -5,7 +5,7 @@ Args:
     element (DOM element): The DOM element representing the rubric.
 
 Returns:
-    OpenAssessment.Rubric
+    ieia.Rubric
 * */
 export class Rubric {
   constructor(element) {

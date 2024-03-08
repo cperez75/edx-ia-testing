@@ -4,7 +4,7 @@ from unittest.mock import patch
 
 from django.core.management import call_command
 
-from openassessment.test_utils import CacheResetTest
+from ieia.test_utils import CacheResetTest
 
 
 class CollectOra2DataTest(CacheResetTest):
@@ -76,13 +76,13 @@ class CollectOra2DataTest(CacheResetTest):
             "𝓨𝓸𝓾",
         ]
 
-    @patch('openassessment.management.commands.collect_ora2_data.OraAggregateData.collect_ora2_data')
+    @patch('ieia.management.commands.collect_ora2_data.OraAggregateData.collect_ora2_data')
     def test_valid_data_output_to_file(self, mock_data):
         """ Verify that management command writes valid ORA2 data to file. """
 
         mock_data.return_value = (self.test_header, self.test_rows)
 
-        with patch('openassessment.management.commands.collect_ora2_data.csv') as mock_write:
+        with patch('ieia.management.commands.collect_ora2_data.csv') as mock_write:
             call_command('collect_ora2_data', self.COURSE_ID)
 
             mock_writerow = mock_write.writer.return_value.writerow

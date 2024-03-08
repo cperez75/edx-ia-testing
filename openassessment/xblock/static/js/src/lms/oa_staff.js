@@ -2,8 +2,8 @@
  * Interface for staff assessment view.
  *
  * @param {Element} element - The DOM element representing the XBlock.
- * @param {OpenAssessment.Server} server - The interface to the XBlock server.
- * @param {OpenAssessment.BaseView} baseView - Container view.
+ * @param {ieia.Server} server - The interface to the XBlock server.
+ * @param {ieia.BaseView} baseView - Container view.
  */
 export class StaffView {
   constructor(element, server, baseView) {

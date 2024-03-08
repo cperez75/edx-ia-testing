@@ -7,13 +7,13 @@ import Prompts from './oa_prompts';
 
  Args:
  element (DOM element): The DOM element representing the XBlock.
- server (OpenAssessment.Server): The interface to the XBlock server.
- fileUploader (OpenAssessment.FileUploader): File uploader instance.
- baseView (OpenAssessment.BaseView): Container view.
+ server (ieia.Server): The interface to the XBlock server.
+ fileUploader (ieia.FileUploader): File uploader instance.
+ baseView (ieia.BaseView): Container view.
  data (Object): The data object passed from XBlock backend.
 
  Returns:
- OpenAssessment.ResponseView
+ ieia.ResponseView
  * */
 export class ResponseView {
     // Milliseconds between checks for whether we should autosave.

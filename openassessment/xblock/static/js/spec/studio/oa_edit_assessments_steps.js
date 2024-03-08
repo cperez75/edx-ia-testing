@@ -3,7 +3,7 @@ import EditAssessmentsStepsView from 'studio/oa_edit_assessments_steps';
 /**
 Tests for the edit assessments step view.
 **/
-describe("OpenAssessment.EditAssessmentsStepsView", function() {
+describe("ieia.EditAssessmentsStepsView", function() {
 
     var StubView = function(name, descriptionText) {
         this.name = name;

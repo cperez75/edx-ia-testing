@@ -28,7 +28,7 @@ You can then initialize the container:
 >>> var template = $("#test_item_template").get(0);
 >>> var addButton = $("#test_item_add_button").get(0);
 >>>
->>> container = OpenAssessment.Container(
+>>> container = ieia.Container(
 >>>     ContainerItem, {
 >>>         containerElement: container,
 >>>         templateElement: template,
@@ -55,7 +55,7 @@ Kwargs:
         There may be one of these for each item in the container.
     containerItemClass (string): The CSS class of items in the container.
         New items will be assigned this class.
-    notifier (OpenAssessment.Notifier): Used to send notifications of updates to container items.
+    notifier (ieia.Notifier): Used to send notifications of updates to container items.
 
 * */
 export class Container {

@@ -3,10 +3,10 @@ import uuid
 
 from submissions import team_api as sub_team_api
 
-from openassessment.workflow.models import TeamAssessmentWorkflow, AssessmentWorkflowStep
-from openassessment.test_utils import CacheResetTest
-from openassessment.workflow import team_api
-from openassessment.tests.factories import UserFactory
+from ieia.workflow.models import TeamAssessmentWorkflow, AssessmentWorkflowStep
+from ieia.test_utils import CacheResetTest
+from ieia.workflow import team_api
+from ieia.tests.factories import UserFactory
 
 
 class TestTeamAssessmentWorkflowApi(CacheResetTest):

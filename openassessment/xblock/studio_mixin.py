@@ -1,5 +1,5 @@
 """
-Studio editing view for OpenAssessment XBlock.
+Studio editing view for ieia XBlock.
 """
 
 
@@ -15,29 +15,29 @@ from xblock.fields import List, Scope
 from django.template.loader import get_template
 from django.utils.translation import gettext_lazy
 
-from openassessment.xblock.utils.data_conversion import (
+from ieia.xblock.utils.data_conversion import (
     create_rubric_dict,
     make_django_template_key,
     update_assessments_format
 )
-from openassessment.xblock.utils.defaults import DEFAULT_EDITOR_ASSESSMENTS_ORDER, DEFAULT_RUBRIC_FEEDBACK_TEXT
-from openassessment.xblock.utils.editor_config import AVAILABLE_EDITORS
-from openassessment.xblock.load_static import LoadStatic
-from openassessment.xblock.utils.resolve_dates import (
+from ieia.xblock.utils.defaults import DEFAULT_EDITOR_ASSESSMENTS_ORDER, DEFAULT_RUBRIC_FEEDBACK_TEXT
+from ieia.xblock.utils.editor_config import AVAILABLE_EDITORS
+from ieia.xblock.load_static import LoadStatic
+from ieia.xblock.utils.resolve_dates import (
     DateValidationError,
     InvalidDateFormat,
     parse_date_value,
     resolve_dates,
 )
-from openassessment.xblock.utils.schema import EDITOR_UPDATE_SCHEMA
-from openassessment.xblock.utils.validation import validator
+from ieia.xblock.utils.schema import EDITOR_UPDATE_SCHEMA
+from ieia.xblock.utils.validation import validator
 
 logger = logging.getLogger(__name__)  # pylint: disable=invalid-name
 
 
 class StudioMixin:
     """
-    Studio editing view for OpenAssessment XBlock.
+    Studio editing view for ieia XBlock.
     """
 
     DEFAULT_CRITERIA = [
@@ -81,7 +81,7 @@ class StudioMixin:
 
     def studio_view(self, context=None):  # pylint: disable=unused-argument
         """
-        Render the OpenAssessment XBlock for editing in Studio.
+        Render the ieia XBlock for editing in Studio.
 
         Args:
             context: Not actively used for this view.
@@ -94,7 +94,7 @@ class StudioMixin:
         ).render(self.editor_context())
         fragment = Fragment(rendered_template)
 
-        fragment.add_javascript_url(LoadStatic.get_url('openassessment-studio.js'))
+        fragment.add_javascript_url(LoadStatic.get_url('ieia-studio.js'))
 
         js_context_dict = {
             "ALLOWED_IMAGE_EXTENSIONS": self.ALLOWED_IMAGE_EXTENSIONS,
@@ -320,7 +320,7 @@ class StudioMixin:
         self.show_rubric_during_response = data.get('show_rubric_during_response', False)
         self.date_config_type = data['date_config_type']
 
-        return {'success': True, 'msg': self._('Successfully updated OpenAssessment XBlock')}
+        return {'success': True, 'msg': self._('Successfully updated ieia XBlock')}
 
     @XBlock.json_handler
     def check_released(self, data, suffix=''):  # pylint: disable=unused-argument

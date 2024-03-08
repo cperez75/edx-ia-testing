@@ -1,5 +1,5 @@
 """
-View-level tests for Studio view of OpenAssessment XBlock.
+View-level tests for Studio view of ieia XBlock.
 """
 
 import copy
@@ -10,7 +10,7 @@ from unittest.mock import MagicMock, patch, Mock, PropertyMock
 from ddt import ddt, file_data
 import pytz
 
-from openassessment.xblock.config_mixin import ConfigMixin
+from ieia.xblock.config_mixin import ConfigMixin
 from .base import XBlockHandlerTestCase, scenario
 
 
@@ -28,7 +28,7 @@ def disable_rubric_reuse(func):
 @ddt
 class StudioViewTest(XBlockHandlerTestCase):
     """
-    Test the view and handlers for editing the OpenAssessment XBlock in Studio.
+    Test the view and handlers for editing the ieia XBlock in Studio.
     """
     UPDATE_EDITOR_DATA = {
         "title": "Test title",
@@ -126,7 +126,7 @@ class StudioViewTest(XBlockHandlerTestCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.waffle_course_flag_patcher = patch(
-            'openassessment.xblock.config_mixin.import_course_waffle_flag'
+            'ieia.xblock.config_mixin.import_course_waffle_flag'
         )
         cls.waffle_course_flag_patcher.start()
 
@@ -145,14 +145,14 @@ class StudioViewTest(XBlockHandlerTestCase):
     def test_render_studio_view(self, xblock):
         self._mock_teamsets(xblock)
         frag = self.runtime.render(xblock, 'studio_view')
-        self.assertTrue(frag.body_html().find('openassessment-edit'))
+        self.assertTrue(frag.body_html().find('ieia-edit'))
 
     @disable_rubric_reuse
     @scenario('data/student_training.xml')
     def test_render_studio_with_training(self, xblock):
         self._mock_teamsets(xblock)
         frag = self.runtime.render(xblock, 'studio_view')
-        self.assertTrue(frag.body_html().find('openassessment-edit'))
+        self.assertTrue(frag.body_html().find('ieia-edit'))
 
     @scenario('data/basic_scenario.xml')
     def test_render_studio_with_rubric_reuse(self, xblock):
@@ -165,7 +165,7 @@ class StudioViewTest(XBlockHandlerTestCase):
                 } for i in range(10)
             ]
             frag = self.runtime.render(xblock, 'studio_view')
-            self.assertTrue(frag.body_html().find('openassessment-edit'))
+            self.assertTrue(frag.body_html().find('ieia-edit'))
             mock_get_rubrics.assert_called_once()
 
     @file_data('data/update_xblock.json')
@@ -426,4 +426,4 @@ class StudioViewTest(XBlockHandlerTestCase):
     def test_invalid_dates_still_renders(self, xblock):
         self._mock_teamsets(xblock)
         frag = self.runtime.render(xblock, 'studio_view')
-        self.assertTrue(frag.body_html().find('openassessment-edit'))
+        self.assertTrue(frag.body_html().find('ieia-edit'))

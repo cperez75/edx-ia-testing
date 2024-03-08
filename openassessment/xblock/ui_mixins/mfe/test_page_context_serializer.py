@@ -10,20 +10,20 @@ from unittest.mock import Mock, PropertyMock, patch
 import ddt
 from rest_framework.fields import ValidationError
 
-from openassessment.fileupload.api import TeamFileDescriptor
-from openassessment.workflow.api import cancel_workflow
-from openassessment.xblock.apis.submissions.submissions_actions import create_team_submission
-from openassessment.xblock.apis.submissions.submissions_api import SubmissionAPI
-from openassessment.xblock.apis.workflow_api import WorkflowAPI
-from openassessment.xblock.test.base import (
+from ieia.fileupload.api import TeamFileDescriptor
+from ieia.workflow.api import cancel_workflow
+from ieia.xblock.apis.submissions.submissions_actions import create_team_submission
+from ieia.xblock.apis.submissions.submissions_api import SubmissionAPI
+from ieia.xblock.apis.workflow_api import WorkflowAPI
+from ieia.xblock.test.base import (
     PEER_ASSESSMENTS,
     SELF_ASSESSMENT,
     SubmitAssessmentsMixin,
     XBlockHandlerTestCase,
     scenario,
 )
-from openassessment.xblock.test.test_submission import setup_mock_team
-from openassessment.xblock.ui_mixins.mfe.page_context_serializer import (
+from ieia.xblock.test.test_submission import setup_mock_team
+from ieia.xblock.ui_mixins.mfe.page_context_serializer import (
     PageDataSerializer,
     ProgressSerializer,
     TeamInfoSerializer,
@@ -34,8 +34,8 @@ from openassessment.xblock.ui_mixins.mfe.page_context_serializer import (
 @ddt.ddt
 class TestPageContextSerializer(XBlockHandlerTestCase, SubmitAssessmentsMixin):
 
-    @patch("openassessment.xblock.ui_mixins.mfe.page_context_serializer.AssessmentResponseSerializer")
-    @patch("openassessment.xblock.ui_mixins.mfe.page_context_serializer.DraftResponseSerializer")
+    @patch("ieia.xblock.ui_mixins.mfe.page_context_serializer.AssessmentResponseSerializer")
+    @patch("ieia.xblock.ui_mixins.mfe.page_context_serializer.DraftResponseSerializer")
     @scenario("data/basic_scenario.xml", user_id="Alan")
     def test_submission_view(self, xblock, mock_submission_serializer, mock_assessment_serializer):
         # Given we are asking for the submission view
@@ -48,8 +48,8 @@ class TestPageContextSerializer(XBlockHandlerTestCase, SubmitAssessmentsMixin):
         mock_submission_serializer.assert_called_once()
         mock_assessment_serializer.assert_not_called()
 
-    @patch("openassessment.xblock.ui_mixins.mfe.page_context_serializer.AssessmentResponseSerializer")
-    @patch("openassessment.xblock.ui_mixins.mfe.page_context_serializer.SubmissionSerializer")
+    @patch("ieia.xblock.ui_mixins.mfe.page_context_serializer.AssessmentResponseSerializer")
+    @patch("ieia.xblock.ui_mixins.mfe.page_context_serializer.SubmissionSerializer")
     @scenario("data/basic_scenario.xml", user_id="Alan")
     def test_assessment_view(self, xblock, mock_submission_serializer, mock_assessment_serializer):
         # Given we are asking for the assessment view
@@ -74,8 +74,8 @@ class TestPageContextSerializer(XBlockHandlerTestCase, SubmitAssessmentsMixin):
         with self.assertRaises(ValidationError):
             _ = PageDataSerializer(xblock, context=context).data
 
-    @patch("openassessment.xblock.ui_mixins.mfe.page_context_serializer.AssessmentResponseSerializer")
-    @patch("openassessment.xblock.ui_mixins.mfe.page_context_serializer.SubmissionSerializer")
+    @patch("ieia.xblock.ui_mixins.mfe.page_context_serializer.AssessmentResponseSerializer")
+    @patch("ieia.xblock.ui_mixins.mfe.page_context_serializer.SubmissionSerializer")
     @scenario("data/basic_scenario.xml", user_id="Alan")
     def test_no_requested_step(self, xblock, mock_submission_serializer, mock_assessment_serializer):
         # Given I don't request a step (allowed for asking progress data)

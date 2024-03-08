@@ -1,5 +1,5 @@
 """
-Test OpenAssessment XBlock validation.
+Test ieia XBlock validation.
 """
 import copy
 from datetime import datetime as dt
@@ -10,8 +10,8 @@ import pytz
 
 from django.test import TestCase
 
-from openassessment.xblock.openassessmentblock import OpenAssessmentBlock
-from openassessment.xblock.utils.validation import (
+from ieia.xblock.openassessmentblock import OpenAssessmentBlock
+from ieia.xblock.utils.validation import (
     validate_assessment_examples,
     validate_assessments,
     validate_dates,

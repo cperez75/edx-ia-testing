@@ -3,7 +3,7 @@ import fetchMock from 'fetch-mock';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import WaitingStepDetailsContainer from 'lms/containers/WaitingStepDetailsContainer';
 
-describe('OpenAssessment.WaitingStepDetailsPage', () => {
+describe('ieia.WaitingStepDetailsPage', () => {
   beforeEach(() => {
     fetchMock.get(
       '*',

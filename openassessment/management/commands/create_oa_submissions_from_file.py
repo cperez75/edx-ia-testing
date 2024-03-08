@@ -13,11 +13,11 @@ from opaque_keys.edx.keys import CourseKey
 
 import loremipsum
 from submissions import api as sub_api
-from openassessment.assessment.api import staff as staff_api
-from openassessment.runtime_imports.functions import anonymous_id_for_user, modulestore
-from openassessment.workflow import api as workflow_api
-from openassessment.xblock.utils.data_conversion import create_rubric_dict
-from openassessment.staffgrader.models import SubmissionGradingLock
+from ieia.assessment.api import staff as staff_api
+from ieia.runtime_imports.functions import anonymous_id_for_user, modulestore
+from ieia.workflow import api as workflow_api
+from ieia.xblock.utils.data_conversion import create_rubric_dict
+from ieia.staffgrader.models import SubmissionGradingLock
 
 log = logging.getLogger('create_oa_submissions_from_file')
 
@@ -227,11 +227,11 @@ class Command(BaseCommand):
 
     def _load_ora_blocks_from_modulestore(self, course_id):
         """
-        Look up openassessment blocks for the course from the modulestore
+        Look up ieia blocks for the course from the modulestore
         """
         try:
             return modulestore().get_items(
-                course_id, qualifiers={'category': 'openassessment'}
+                course_id, qualifiers={'category': 'ieia'}
             )
         except ModuleNotFoundError as e:
             raise CommandError((
@@ -241,7 +241,7 @@ class Command(BaseCommand):
 
     def load_ora_blocks(self, course_id, display_names):
         """
-        Look up openassessment blocks for the course from the modulestore, and save the ones that match the given
+        Look up ieia blocks for the course from the modulestore, and save the ones that match the given
         display names in a dict mapping from display name to block in self.display_name_to_block
         """
         openassessment_blocks = self._load_ora_blocks_from_modulestore(course_id)
@@ -344,7 +344,7 @@ class Command(BaseCommand):
             'student_id': self.username_to_anonymous_user_id[username],
             'course_id': str(course_id),
             'item_id': str(self.display_name_to_block[ora_display_name].location),
-            'item_type': 'openassessment'
+            'item_type': 'ieia'
         }
 
     def lookup_criterion_and_option_name(self, criterion_label, option_label, rubric_dict):

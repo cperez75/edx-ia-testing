@@ -40,7 +40,7 @@ class TestGradeExplanation(XBlockHandlerTestCase, SubmitAssessmentsMixin, Submis
     @data(*assessment_score_priority)
     def test_render_grade_explanation_self_only(self, xblock, assessment_score_priority):
         with patch(
-            'openassessment.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
+            'ieia.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
             assessment_score_priority
         ):
             self.create_submission_and_assessments(
@@ -55,7 +55,7 @@ class TestGradeExplanation(XBlockHandlerTestCase, SubmitAssessmentsMixin, Submis
     @data(*assessment_score_priority)
     def test_render_explanation_grade_staff_only(self, xblock, assessment_score_priority):
         with patch(
-            'openassessment.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
+            'ieia.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
             assessment_score_priority
         ):
             submission = self.create_test_submission(xblock)
@@ -68,7 +68,7 @@ class TestGradeExplanation(XBlockHandlerTestCase, SubmitAssessmentsMixin, Submis
     @data(*assessment_score_priority)
     def test_render_grade_explanation_peer_only(self, xblock, assessment_score_priority):
         with patch(
-            'openassessment.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
+            'ieia.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
             assessment_score_priority
         ):
             self.create_submission_and_assessments(
@@ -82,7 +82,7 @@ class TestGradeExplanation(XBlockHandlerTestCase, SubmitAssessmentsMixin, Submis
     @data(*assessment_score_priority)
     def test_render_grade_explanation_self_and_peer(self, xblock, assessment_score_priority):
         with patch(
-            'openassessment.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
+            'ieia.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
             assessment_score_priority
         ):
             self.create_submission_and_assessments(
@@ -99,7 +99,7 @@ class TestGradeExplanation(XBlockHandlerTestCase, SubmitAssessmentsMixin, Submis
     @data(*assessment_score_priority)
     def test_render_grade_explanation_self_and_staff(self, xblock, assessment_score_priority):
         with patch(
-            'openassessment.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
+            'ieia.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
             assessment_score_priority
         ):
             submission = self.create_submission_and_assessments(
@@ -114,7 +114,7 @@ class TestGradeExplanation(XBlockHandlerTestCase, SubmitAssessmentsMixin, Submis
     @data(*assessment_score_priority)
     def test_render_grade_explanation_staff_and_peer(self, xblock, assessment_score_priority):
         with patch(
-            'openassessment.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
+            'ieia.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
             assessment_score_priority
         ):
             submission = self.create_submission_and_assessments(
@@ -129,7 +129,7 @@ class TestGradeExplanation(XBlockHandlerTestCase, SubmitAssessmentsMixin, Submis
     @data(*assessment_score_priority)
     def test_render_grade_explanation_self_staff_and_peer(self, xblock, assessment_score_priority):
         with patch(
-            'openassessment.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
+            'ieia.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
             assessment_score_priority
         ):
             submission = self.create_submission_and_assessments(
@@ -146,7 +146,7 @@ class TestGradeExplanation(XBlockHandlerTestCase, SubmitAssessmentsMixin, Submis
     @data(*assessment_score_priority)
     def test_render_grade_explanation_self_incomplete_assessment(self, xblock, assessment_score_priority):
         with patch(
-            'openassessment.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
+            'ieia.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
             assessment_score_priority
         ):
             self.create_submission_and_assessments(
@@ -160,7 +160,7 @@ class TestGradeExplanation(XBlockHandlerTestCase, SubmitAssessmentsMixin, Submis
     @data(*assessment_score_priority)
     def test_render_explanation_grade_staff_incomplete_assessment(self, xblock, assessment_score_priority):
         with patch(
-            'openassessment.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
+            'ieia.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
             assessment_score_priority
         ):
             self.create_test_submission(xblock)
@@ -172,7 +172,7 @@ class TestGradeExplanation(XBlockHandlerTestCase, SubmitAssessmentsMixin, Submis
     @data(*assessment_score_priority)
     def test_render_grade_explanation_peer_incomplete_assessments(self, xblock, assessment_score_priority):
         with patch(
-            'openassessment.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
+            'ieia.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
             assessment_score_priority
         ):
             self.create_submission_and_assessments(
@@ -190,7 +190,7 @@ class TestGradeExplanation(XBlockHandlerTestCase, SubmitAssessmentsMixin, Submis
     @data(*assessment_score_priority)
     def test_render_grade_explanation_self_and_peer_with_self_missing(self, xblock, assessment_score_priority):
         with patch(
-            'openassessment.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
+            'ieia.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
             assessment_score_priority
         ):
             self.create_submission_and_assessments(
@@ -207,7 +207,7 @@ class TestGradeExplanation(XBlockHandlerTestCase, SubmitAssessmentsMixin, Submis
     @data(*assessment_score_priority)
     def test_render_grade_explanation_self_and_peer_with_peer_missing(self, xblock, assessment_score_priority):
         with patch(
-            'openassessment.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
+            'ieia.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
             assessment_score_priority
         ):
             self.create_submission_and_assessments(
@@ -224,7 +224,7 @@ class TestGradeExplanation(XBlockHandlerTestCase, SubmitAssessmentsMixin, Submis
     @data(*assessment_score_priority)
     def test_render_grade_explanation_self_and_staff_with_self_missing(self, xblock, assessment_score_priority):
         with patch(
-            'openassessment.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
+            'ieia.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
             assessment_score_priority
         ):
             submission = self.create_submission_and_assessments(
@@ -239,7 +239,7 @@ class TestGradeExplanation(XBlockHandlerTestCase, SubmitAssessmentsMixin, Submis
     @data(*assessment_score_priority)
     def test_render_grade_explanation_self_and_staff_with_staff_missing(self, xblock, assessment_score_priority):
         with patch(
-            'openassessment.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
+            'ieia.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
             assessment_score_priority
         ):
             self.create_submission_and_assessments(
@@ -253,7 +253,7 @@ class TestGradeExplanation(XBlockHandlerTestCase, SubmitAssessmentsMixin, Submis
     @data(*assessment_score_priority)
     def test_render_grade_explanation_staff_and_peer_with_staff_missing(self, xblock, assessment_score_priority):
         with patch(
-            'openassessment.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
+            'ieia.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
             assessment_score_priority
         ):
             self.create_submission_and_assessments(
@@ -267,7 +267,7 @@ class TestGradeExplanation(XBlockHandlerTestCase, SubmitAssessmentsMixin, Submis
     @data(*assessment_score_priority)
     def test_render_grade_explanation_staff_and_peer_with_peer_missing(self, xblock, assessment_score_priority):
         with patch(
-            'openassessment.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
+            'ieia.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
             assessment_score_priority
         ):
             submission = self.create_submission_and_assessments(
@@ -282,7 +282,7 @@ class TestGradeExplanation(XBlockHandlerTestCase, SubmitAssessmentsMixin, Submis
     @data(*assessment_score_priority)
     def test_render_grade_explanation_self_staff_and_peer_with_self_missing(self, xblock, assessment_score_priority):
         with patch(
-            'openassessment.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
+            'ieia.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
             assessment_score_priority
         ):
             submission = self.create_submission_and_assessments(
@@ -297,7 +297,7 @@ class TestGradeExplanation(XBlockHandlerTestCase, SubmitAssessmentsMixin, Submis
     @data(*assessment_score_priority)
     def test_render_grade_explanation_self_staff_and_peer_with_staff_missing(self, xblock, assessment_score_priority):
         with patch(
-            'openassessment.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
+            'ieia.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
             assessment_score_priority
         ):
             self.create_submission_and_assessments(
@@ -311,7 +311,7 @@ class TestGradeExplanation(XBlockHandlerTestCase, SubmitAssessmentsMixin, Submis
     @data(*assessment_score_priority)
     def test_render_grade_explanation_self_staff_and_peer_with_peer_missing(self, xblock, assessment_score_priority):
         with patch(
-            'openassessment.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
+            'ieia.workflow.models.AssessmentWorkflow.ASSESSMENT_SCORE_PRIORITY',
             assessment_score_priority
         ):
             submission = self.create_submission_and_assessments(

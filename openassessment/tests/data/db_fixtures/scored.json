@@ -9,7 +9,7 @@
       "submission_uuid": "28cebeca-d0ab-11e3-a6ab-14109fd8dc43",
       "modified": "2014-04-30T21:28:41.814Z",
       "course_id": "edX/Enchantment_101/April_1",
-      "item_id": "openassessmentblock-poverty-rubric.openassessment.d0.u0",
+      "item_id": "openassessmentblock-poverty-rubric.ieia.d0.u0",
       "status_changed": "2014-04-30T21:28:41.814Z"
     }
   },
@@ -23,7 +23,7 @@
       "submission_uuid": "cf5190b8-d0aa-11e3-a734-14109fd8dc43",
       "modified": "2014-04-30T21:28:49.284Z",
       "course_id": "edX/Enchantment_101/April_1",
-      "item_id": "openassessmentblock-poverty-rubric.openassessment.d0.u0",
+      "item_id": "openassessmentblock-poverty-rubric.ieia.d0.u0",
       "status_changed": "2014-04-30T21:28:49.284Z"
     }
   },
@@ -867,7 +867,7 @@
     "fields": {
       "student_id": "student_1",
       "created_at": "2014-04-30T21:02:59.297Z",
-      "item_id": "openassessmentblock-poverty-rubric.openassessment.d0.u0",
+      "item_id": "openassessmentblock-poverty-rubric.ieia.d0.u0",
       "submission_uuid": "cf5190b8-d0aa-11e3-a734-14109fd8dc43",
       "completed_at": "2014-04-30T21:07:46.612Z",
       "course_id": "edX/Enchantment_101/April_1",
@@ -880,7 +880,7 @@
     "fields": {
       "student_id": "other",
       "created_at": "2014-04-30T21:05:29.427Z",
-      "item_id": "openassessmentblock-poverty-rubric.openassessment.d0.u0",
+      "item_id": "openassessmentblock-poverty-rubric.ieia.d0.u0",
       "submission_uuid": "28cebeca-d0ab-11e3-a6ab-14109fd8dc43",
       "completed_at": "2014-04-30T21:06:35.332Z",
       "course_id": "edX/Enchantment_101/April_1",
@@ -917,8 +917,8 @@
     "fields": {
       "course_id": "edX/Enchantment_101/April_1",
       "student_id": "student_1",
-      "item_id": "openassessmentblock-poverty-rubric.openassessment.d0.u0",
-      "item_type": "openassessment"
+      "item_id": "openassessmentblock-poverty-rubric.ieia.d0.u0",
+      "item_type": "ieia"
     }
   },
   {
@@ -927,8 +927,8 @@
     "fields": {
       "course_id": "edX/Enchantment_101/April_1",
       "student_id": "other",
-      "item_id": "openassessmentblock-poverty-rubric.openassessment.d0.u0",
-      "item_type": "openassessment"
+      "item_id": "openassessmentblock-poverty-rubric.ieia.d0.u0",
+      "item_type": "ieia"
     }
   },
   {

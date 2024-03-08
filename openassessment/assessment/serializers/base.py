@@ -11,7 +11,7 @@ from rest_framework.fields import DateTimeField, IntegerField
 
 from django.core.cache import cache
 
-from openassessment.assessment.models import Assessment, AssessmentPart, Criterion, CriterionOption, Rubric
+from ieia.assessment.models import Assessment, AssessmentPart, Criterion, CriterionOption, Rubric
 
 logger = logging.getLogger(__name__)  # pylint: disable=invalid-name
 

@@ -9,9 +9,9 @@ import logging
 from django.db import DatabaseError, models
 from django.utils.timezone import now
 
-from openassessment.assessment.errors import StaffAssessmentInternalError
+from ieia.assessment.errors import StaffAssessmentInternalError
 
-logger = logging.getLogger("openassessment.assessment.models")  # pylint: disable=invalid-name
+logger = logging.getLogger("ieia.assessment.models")  # pylint: disable=invalid-name
 
 
 class StaffWorkflow(models.Model):

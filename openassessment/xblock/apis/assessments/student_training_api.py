@@ -3,18 +3,18 @@ External API for ORA Student Training data
 """
 
 import logging
-from openassessment.assessment.api.student_training import (
+from ieia.assessment.api.student_training import (
     get_num_completed,
     get_training_example,
     assess_training_example,
 )
-from openassessment.assessment.errors.student_training import StudentTrainingError
-from openassessment.workflow.errors import AssessmentWorkflowError
-from openassessment.xblock.utils.data_conversion import (
+from ieia.assessment.errors.student_training import StudentTrainingError
+from ieia.workflow.errors import AssessmentWorkflowError
+from ieia.xblock.utils.data_conversion import (
     convert_training_examples_list_to_dict,
     create_submission_dict,
 )
-from openassessment.xblock.apis.step_data_api import StepDataAPI
+from ieia.xblock.apis.step_data_api import StepDataAPI
 
 
 logger = logging.getLogger(__name__)
@@ -195,7 +195,7 @@ def training_assess(
     try:
         corrections = assess_training_example(submission_uuid, options_selected)
         config_data.publish_event(
-            "openassessment.student_training_assess_example",
+            "ieia.student_training_assess_example",
             {
                 "submission_uuid": submission_uuid,
                 "options_selected": options_selected,

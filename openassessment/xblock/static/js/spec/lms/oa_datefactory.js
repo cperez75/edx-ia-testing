@@ -4,7 +4,7 @@ import DateTimeFactory from 'lms/oa_datefactory';
 Tests for OA dateutil factory.
 **/
 
-describe('OpenAssessment.DateTimeFactory', function() {
+describe('ieia.DateTimeFactory', function() {
 
     beforeEach(function() {
         // Load the DOM fixture

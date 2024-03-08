@@ -8,7 +8,7 @@ from unittest import mock
 import ddt
 import pytz
 
-from openassessment.xblock.openassessmentblock import OpenAssessmentBlock
+from ieia.xblock.openassessmentblock import OpenAssessmentBlock
 
 from .base import XBlockHandlerTestCase, scenario
 

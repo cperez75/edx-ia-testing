@@ -3,10 +3,10 @@ import logging
 
 from django.utils.functional import cached_property
 
-from openassessment.fileupload import api as file_upload_api
-from openassessment.fileupload.exceptions import FileUploadError
+from ieia.fileupload import api as file_upload_api
+from ieia.fileupload.exceptions import FileUploadError
 
-from openassessment.data import OraSubmissionAnswerFactory
+from ieia.data import OraSubmissionAnswerFactory
 
 logger = logging.getLogger(__name__)  # pylint: disable=invalid-name
 

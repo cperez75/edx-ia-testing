@@ -5,16 +5,16 @@ Mixin to cover various template and UI related utilities
 from django.utils.translation import gettext as _
 from web_fragments.fragment import Fragment
 
-from openassessment.xblock.utils.defaults import (
+from ieia.xblock.utils.defaults import (
     PEER_ASSESSMENT_MODULES,
     SELF_ASSESSMENT_MODULES,
     SELF_TO_PEER_ASSESSMENT_MODULES,
     SELF_TO_STAFF_ASSESSMENT_MODULES,
     STAFF_ASSESSMENT_MODULES,
 )
-from openassessment.xblock.utils.editor_config import AVAILABLE_EDITORS
-from openassessment.xblock.apis.assessments.staff_assessment_api import StaffAssessmentAPI
-from openassessment.xblock.load_static import LoadStatic
+from ieia.xblock.utils.editor_config import AVAILABLE_EDITORS
+from ieia.xblock.apis.assessments.staff_assessment_api import StaffAssessmentAPI
+from ieia.xblock.load_static import LoadStatic
 
 
 UI_MODELS = {
@@ -63,11 +63,11 @@ class OpenAssessmentTemplatesMixin:
     """
 
     VALID_ASSESSMENT_TYPES_DISPLAY_NAMES = {
-        "peer-assessment": _("Peer Assessment Only"),
-        "self-assessment": _("Self Assessment Only"),
-        "staff-assessment": _("Staff Assessment Only"),
-        "self-to-peer": _("Self Assessment to Peer Assessment"),
-        "self-to-staff": _("Self Assessment to Staff Assessment")
+        "peer-assessment": _("Peer Assessment Only IA"),
+        "self-assessment": _("Self Assessment Only IA"),
+        "staff-assessment": _("Staff Assessment Only IA"),
+        "self-to-peer": _("Self Assessment to Peer AssessmentIA "),
+        "self-to-staff": _("Self Assessment to Staff Assessment IA")
     }
 
     VALID_ASSESSMENT_TYPES_ASSESSMENT_MODULE = {
@@ -203,9 +203,9 @@ class OpenAssessmentTemplatesMixin:
 
         i18n_service = self.runtime.service(self, 'i18n')
         if hasattr(i18n_service, 'get_language_bidi') and i18n_service.get_language_bidi():
-            css_url = LoadStatic.get_url("openassessment-rtl.css")
+            css_url = LoadStatic.get_url("ieia-rtl.css")
         else:
-            css_url = LoadStatic.get_url("openassessment-ltr.css")
+            css_url = LoadStatic.get_url("ieia-ltr.css")
 
         # TODO: load CSS and JavaScript as URLs once they can be served by the CDN
         for css in additional_css:
@@ -213,7 +213,7 @@ class OpenAssessmentTemplatesMixin:
         fragment.add_css_url(css_url)
 
         # minified additional_js should be already included in 'make javascript'
-        fragment.add_javascript_url(LoadStatic.get_url("openassessment-lms.js"))
+        fragment.add_javascript_url(LoadStatic.get_url("ieia-lms.js"))
 
         js_context_dict = {
             "ALLOWED_IMAGE_MIME_TYPES": self.ALLOWED_IMAGE_MIME_TYPES,

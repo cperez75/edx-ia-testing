@@ -7,11 +7,11 @@ from django.test.utils import override_settings
 from pytest import raises
 
 import submissions.api as sub_api
-from openassessment.assessment.models import PeerWorkflow, StudentTrainingWorkflow
-from openassessment.test_utils import CacheResetTest
-import openassessment.workflow.api as workflow_api
-from openassessment.workflow.errors import AssessmentWorkflowInternalError
-from openassessment.workflow.models import AssessmentWorkflow
+from ieia.assessment.models import PeerWorkflow, StudentTrainingWorkflow
+from ieia.test_utils import CacheResetTest
+import ieia.workflow.api as workflow_api
+from ieia.workflow.errors import AssessmentWorkflowInternalError
+from ieia.workflow.models import AssessmentWorkflow
 
 RUBRIC_DICT = {
     "criteria": [
@@ -33,14 +33,14 @@ ITEM_1 = {
     "student_id": "Optimus Prime 001",
     "item_id": "Matrix of Leadership",
     "course_id": "Advanced Auto Mechanics 200",
-    "item_type": "openassessment",
+    "item_type": "ieia",
 }
 
 ITEM_2 = {
     "student_id": "Optimus Prime 002",
     "item_id": "Matrix of Leadership(COPY)",
     "course_id": "Advanced Auto Mechanics 201",
-    "item_type": "openassessment",
+    "item_type": "ieia",
 }
 
 
@@ -130,14 +130,14 @@ class TestAssessmentWorkflowApi(CacheResetTest):
         peer_workflows = list(PeerWorkflow.objects.filter(submission_uuid=submission["uuid"]))
         self.assertTrue(peer_workflows)
 
-        with patch('openassessment.assessment.api.peer.submitter_is_finished') as mock_peer_submit:
+        with patch('ieia.assessment.api.peer.submitter_is_finished') as mock_peer_submit:
             mock_peer_submit.return_value = True
             workflow = workflow_api.get_workflow_for_submission(
                 submission["uuid"], requirements, {}
             )
         self.assertEqual("self", workflow['status'])
 
-        with patch('openassessment.assessment.api.self.submitter_is_finished') as mock_self_submit:
+        with patch('ieia.assessment.api.self.submitter_is_finished') as mock_self_submit:
             mock_self_submit.return_value = True
             workflow = workflow_api.get_workflow_for_submission(
                 submission["uuid"], requirements, {}
@@ -203,7 +203,7 @@ class TestAssessmentWorkflowApi(CacheResetTest):
             mock_get.side_effect = Exception("Kaboom!")
             workflow_api.create_workflow("zzzzzzzzzzzzzzz", data["steps"])
 
-    @patch('openassessment.workflow.models.AssessmentWorkflow.objects.create')
+    @patch('ieia.workflow.models.AssessmentWorkflow.objects.create')
     @ddt.file_data('data/assessments.json')
     def test_unexpected_workflow_errors_wrapped(self, data, mock_create):
         with raises(workflow_api.AssessmentWorkflowInternalError):
@@ -211,15 +211,15 @@ class TestAssessmentWorkflowApi(CacheResetTest):
             submission = sub_api.create_submission(ITEM_1, ANSWER_2)
             workflow_api.create_workflow(submission["uuid"], data["steps"])
 
-    @patch('openassessment.assessment.models.peer.PeerWorkflow.objects.get_or_create')
+    @patch('ieia.assessment.models.peer.PeerWorkflow.objects.get_or_create')
     def test_unexpected_peer_workflow_errors_wrapped(self, mock_create):
         with raises(workflow_api.AssessmentWorkflowInternalError):
             mock_create.side_effect = DatabaseError("Kaboom!")
             submission = sub_api.create_submission(ITEM_1, ANSWER_2)
             workflow_api.create_workflow(submission["uuid"], ["peer", "self"])
 
-    @patch('openassessment.assessment.api.staff.get_score')
-    @patch('openassessment.assessment.models.peer.PeerWorkflow.objects.get_or_create')
+    @patch('ieia.assessment.api.staff.get_score')
+    @patch('ieia.assessment.models.peer.PeerWorkflow.objects.get_or_create')
     def test_no_peer_assessment_error_handled(self, mock_get_workflow, mock_get_staff_score):
         """
         Tests to verify that, given a problem that requires the peer step and a submission associated with a workflow
@@ -253,7 +253,7 @@ class TestAssessmentWorkflowApi(CacheResetTest):
                 override_submitter_requirements=True
             )
 
-    @patch('openassessment.workflow.models.AssessmentWorkflow.objects.get')
+    @patch('ieia.workflow.models.AssessmentWorkflow.objects.get')
     @ddt.file_data('data/assessments.json')
     def test_unexpected_exception_wrapped(self, data, mock_create):
         with raises(workflow_api.AssessmentWorkflowInternalError):
@@ -287,7 +287,7 @@ class TestAssessmentWorkflowApi(CacheResetTest):
             "student_id": "test student",
             "course_id": "test course",
             "item_id": "test item",
-            "item_type": "openassessment",
+            "item_type": "ieia",
         }, "test answer")
 
         # Create the model object directly, bypassing start_workflow()
@@ -378,7 +378,7 @@ class TestAssessmentWorkflowApi(CacheResetTest):
             "student_id": "test student",
             "course_id": "test course",
             "item_id": "test item",
-            "item_type": "openassessment",
+            "item_type": "ieia",
         }, "test answer")
 
         with self.assertRaises(AssessmentWorkflowInternalError):
@@ -542,7 +542,7 @@ class TestAssessmentWorkflowApi(CacheResetTest):
             "student_id": student_id,
             "course_id": course_id,
             "item_id": item_id,
-            "item_type": "openassessment",
+            "item_type": "ieia",
         }, answer)
 
         workflow = workflow_api.create_workflow(submission['uuid'], steps)

@@ -3,7 +3,7 @@ Django admin models for staffgrader
 """
 
 from django.contrib import admin
-from openassessment.staffgrader.models import SubmissionGradingLock
+from ieia.staffgrader.models import SubmissionGradingLock
 
 
 class SubmissionGradingLockAdmin(admin.ModelAdmin):

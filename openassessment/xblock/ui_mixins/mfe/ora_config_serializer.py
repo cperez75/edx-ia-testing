@@ -13,10 +13,10 @@ from rest_framework.serializers import (
     SerializerMethodField,
 )
 
-from openassessment.xblock.utils.resolve_dates import DISTANT_FUTURE, DISTANT_PAST
-from openassessment.xblock.apis.workflow_api import WorkflowStep
+from ieia.xblock.utils.resolve_dates import DISTANT_FUTURE, DISTANT_PAST
+from ieia.xblock.apis.workflow_api import WorkflowStep
 
-from openassessment.xblock.ui_mixins.mfe.serializer_utils import (
+from ieia.xblock.ui_mixins.mfe.serializer_utils import (
     STEP_NAME_MAPPINGS,
     CharListField,
     IsRequiredField,

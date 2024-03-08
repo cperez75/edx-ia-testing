@@ -16,10 +16,10 @@ from django.test.utils import override_settings
 import boto3
 from moto import mock_s3
 from pytest import raises
-from openassessment.fileupload import api, exceptions, urls
-from openassessment.fileupload import views_filesystem as views
-from openassessment.fileupload.backends.base import Settings as FileUploadSettings
-from openassessment.fileupload.backends.filesystem import (
+from ieia.fileupload import api, exceptions, urls
+from ieia.fileupload import views_filesystem as views
+from ieia.fileupload.backends.base import Settings as FileUploadSettings
+from ieia.fileupload.backends.filesystem import (
     get_cache as get_filesystem_cache,
 )
 
@@ -192,7 +192,7 @@ class TestFileUploadServiceWithFilesystemBackend(TestCase):
         non_existing_path = "/non/existing/path"
 
         with patch(
-            "openassessment.fileupload.views_filesystem.get_metadata_path"
+            "ieia.fileupload.views_filesystem.get_metadata_path"
         ) as mock_get_metadata_path:
             mock_get_metadata_path.return_value = non_existing_path
             self.assertRaises(
@@ -279,7 +279,7 @@ class TestFileUploadServiceWithFilesystemBackend(TestCase):
 
     def test_upload_with_unauthorized_key(self):
         upload_url = reverse_lazy(
-            "openassessment-filesystem-storage", kwargs={"key": self.key_name}
+            "ieia-filesystem-storage", kwargs={"key": self.key_name}
         )
 
         cache_before_request = get_filesystem_cache().get(self.key_name)
@@ -293,7 +293,7 @@ class TestFileUploadServiceWithFilesystemBackend(TestCase):
 
     def test_download_url_with_unauthorized_key(self):
         download_url = reverse_lazy(
-            "openassessment-filesystem-storage", kwargs={"key": self.key_name}
+            "ieia-filesystem-storage", kwargs={"key": self.key_name}
         )
         views.save_to_file(self.key_name, "uploaded content")
         download_response = self.client.get(download_url)
@@ -374,7 +374,7 @@ class TestSwiftBackend(TestCase):
         url = self.backend.get_upload_url("foo", "_text")
         self._verify_url(url)
 
-    @patch("openassessment.fileupload.backends.swift.requests.get")
+    @patch("ieia.fileupload.backends.swift.requests.get")
     def test_get_download_url_success(self, requests_get_mock):
         """
         Verify the download URL when the object already exists in storage.
@@ -385,7 +385,7 @@ class TestSwiftBackend(TestCase):
         url = self.backend.get_download_url("foo")
         self._verify_url(url)
 
-    @patch("openassessment.fileupload.backends.swift.requests.get")
+    @patch("ieia.fileupload.backends.swift.requests.get")
     def test_get_download_url_no_object(self, requests_get_mock):
         """
         Verify the download URL is empty when the object

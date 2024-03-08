@@ -7,10 +7,10 @@ from freezegun import freeze_time
 
 from django.utils.timezone import now
 
-from openassessment.test_utils import CacheResetTest
-from openassessment.workflow.errors import AssessmentWorkflowInternalError
-from openassessment.workflow.models import TeamAssessmentWorkflow, AssessmentWorkflowStep
-from openassessment.workflow.test.factories import AssessmentWorkflowStepFactory
+from ieia.test_utils import CacheResetTest
+from ieia.workflow.errors import AssessmentWorkflowInternalError
+from ieia.workflow.models import TeamAssessmentWorkflow, AssessmentWorkflowStep
+from ieia.workflow.test.factories import AssessmentWorkflowStepFactory
 
 
 @ddt.ddt
@@ -42,7 +42,7 @@ class TeamAssessmentTest(CacheResetTest):
     def mock_submissions_api_get(self, return_value=None):
         return_value = return_value or self.MOCK_TEAM_SUBMISSION
         with mock.patch(
-            'openassessment.workflow.models.sub_team_api.get_team_submission',
+            'ieia.workflow.models.sub_team_api.get_team_submission',
             return_value=return_value
         ):
             yield
@@ -95,14 +95,14 @@ class TeamAssessmentTest(CacheResetTest):
     def _update_from_assessments(self, workflow, submissions_api_fake_score, assessment_api_fake_score):
         self.mock_assessment_api.get_score.return_value = assessment_api_fake_score
         with mock.patch(
-            'openassessment.workflow.models.sub_api.get_latest_score_for_submission',
+            'ieia.workflow.models.sub_api.get_latest_score_for_submission',
             return_value=submissions_api_fake_score
         ):
             workflow.update_from_assessments()
 
     @freeze_time("2020-05-03")
     @ddt.data(None, 5)
-    @mock.patch('openassessment.workflow.models.sub_team_api.set_score')
+    @mock.patch('ieia.workflow.models.sub_team_api.set_score')
     def test_update_from_assessments(self, old_score_points_earned, mock_set_team_score):
         """
         There is no score recorded in the submissions api, or the score is different than the one we
@@ -141,7 +141,7 @@ class TeamAssessmentTest(CacheResetTest):
         )
 
     @freeze_time("2020-05-03")
-    @mock.patch('openassessment.workflow.models.sub_team_api.set_score')
+    @mock.patch('ieia.workflow.models.sub_team_api.set_score')
     def test_update_from_assessments_old_and_new_points_equal(self, mock_set_team_score):
         """ There is already an equal score recorded in the submissions API """
         submissions_api_fake_score = {

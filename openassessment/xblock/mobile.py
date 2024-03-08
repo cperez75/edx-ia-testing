@@ -1,15 +1,15 @@
 """
-Togglable decorator used to display/hide openassessment units in mobile apps.
+Togglable decorator used to display/hide ieia units in mobile apps.
 """
 from xblock.core import XBlock
 
-from openassessment.xblock.config_mixin import ConfigMixin
+from ieia.xblock.config_mixin import ConfigMixin
 
 
 class TogglableMobileSupport(ConfigMixin):
     """
     A class decorator used to enable/disable mobile support for
-     openassessment units.
+     ieia units.
     """
     def __call__(self, view):
         """

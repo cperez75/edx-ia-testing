@@ -15,8 +15,8 @@ from django.test.utils import override_settings
 import boto3
 from moto import mock_s3
 from submissions import api as sub_api
-from openassessment.fileupload import api
-from openassessment.xblock.utils.data_conversion import create_submission_dict, prepare_submission_for_serialization
+from ieia.fileupload import api
+from ieia.xblock.utils.data_conversion import create_submission_dict, prepare_submission_for_serialization
 
 from .base import XBlockHandlerTransactionTestCase, scenario
 

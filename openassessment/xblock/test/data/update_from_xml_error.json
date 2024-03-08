@@ -1,13 +1,13 @@
 {
     "empty_string": {"xml": [""]},
 
-    "invalid_syntax": {"xml": ["<openassessment><div>no closing tag</openassessment>"]},
+    "invalid_syntax": {"xml": ["<ieia><div>no closing tag</ieia>"]},
 
     "missing_root": {"xml": "<div>Incorrect</div>"},
 
     "missing_assessment_name": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
             "<title>Foo</title>",
             "<assessments>",
                 "<assessment start=\"2014-02-27T09:46:28\" due=\"2014-03-01T00:00:00\" must_grade=\"5\" must_be_graded_by=\"3\" />",
@@ -20,13 +20,13 @@
                     "<option points=\"2\"><name>Yes</name><explanation>Yes explanation</explanation></option>",
                 "</criterion>",
             "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ]
     },
 
     "missing_title": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
             "<assessments>",
                 "<assessment name=\"peer-assessment\" start=\"2014-02-27T09:46:28\" due=\"2014-03-01T00:00:00\" must_grade=\"5\" must_be_graded_by=\"3\" />",
             "</assessments>",
@@ -38,24 +38,24 @@
                     "<option points=\"2\"><name>Yes</name><explanation>Yes explanation</explanation></option>",
                 "</criterion>",
             "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ]
     },
 
     "missing_rubric": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
             "<title>Foo</title>",
             "<assessments>",
                 "<assessment name=\"peer-assessment\" start=\"2014-02-27T09:46:28\" due=\"2014-03-01T00:00:00\" must_grade=\"5\" must_be_graded_by=\"3\" />",
             "</assessments>",
-            "</openassessment>"
+            "</ieia>"
         ]
     },
 
     "missing_assessments": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
             "<title>Foo</title>",
             "<rubric>",
                 "<prompt>Test prompt</prompt>",
@@ -65,13 +65,13 @@
                     "<option points=\"2\"><name>Yes</name><explanation>Yes explanation</explanation></option>",
                 "</criterion>",
             "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ]
     },
 
     "missing_prompt_description": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
             "<title>Foo</title>",
             "<assessments>",
                 "<assessment name=\"peer-assessment\" start=\"2014-02-27T09:46:28\" due=\"2014-03-01T00:00:00\" must_grade=\"5\" must_be_graded_by=\"3\" />",
@@ -87,13 +87,13 @@
                     "<option points=\"2\"><name>Yes</name><explanation>Yes explanation</explanation></option>",
                 "</criterion>",
             "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ]
     },
 
     "non_numeric_points": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
             "<title>Foo</title>",
             "<assessments>",
                 "<assessment name=\"peer-assessment\" start=\"2014-02-27T09:46:28\" due=\"2014-03-01T00:00:00\" must_grade=\"5\" must_be_graded_by=\"3\" />",
@@ -106,13 +106,13 @@
                     "<option points=\"non-numeric\"><name>Yes</name><explanation>Yes explanation</explanation></option>",
                 "</criterion>",
             "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ]
     },
 
     "non_numeric_must_grade": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
             "<title>Foo</title>",
             "<assessments>",
                 "<assessment name=\"peer-assessment\" start=\"2014-02-27T09:46:28\" due=\"2014-03-01T00:00:00\" must_grade=\"non-numeric\" must_be_graded_by=\"3\" />",
@@ -125,13 +125,13 @@
                     "<option points=\"5\"><name>Yes</name><explanation>Yes explanation</explanation></option>",
                 "</criterion>",
             "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ]
     },
 
     "non_numeric_must_be_graded_by": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
             "<title>Foo</title>",
             "<assessments>",
                 "<assessment name=\"peer-assessment\" start=\"2014-02-27T09:46:28\" due=\"2014-03-01T00:00:00\" must_grade=\"2\" must_be_graded_by=\"non-numeric\" />",
@@ -144,13 +144,13 @@
                     "<option points=\"5\"><name>Yes</name><explanation>Yes explanation</explanation></option>",
                 "</criterion>",
             "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ]
     },
 
     "invalid_start_date": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
             "<title>Foo</title>",
             "<assessments>",
                 "<assessment name=\"peer-assessment\" start=\"non-date\" due=\"2014-03-01T00:00:00\" must_grade=\"2\" must_be_graded_by=\"5\" />",
@@ -163,13 +163,13 @@
                     "<option points=\"5\"><name>Yes</name><explanation>Yes explanation</explanation></option>",
                 "</criterion>",
             "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ]
     },
 
     "invalid_due_date": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
             "<title>Foo</title>",
             "<assessments>",
                 "<assessment name=\"peer-assessment\" start=\"2014-03-01T00:00:00\" due=\"non-date\" must_grade=\"2\" must_be_graded_by=\"5\" />",
@@ -182,13 +182,13 @@
                     "<option points=\"5\"><name>Yes</name><explanation>Yes explanation</explanation></option>",
                 "</criterion>",
             "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ]
     },
 
     "invalid_submission_due_date": {
         "xml": [
-            "<openassessment submission_due=\"non-date\">",
+            "<ieia submission_due=\"non-date\">",
             "<title>Foo</title>",
             "<assessments>",
                 "<assessment name=\"peer-assessment\" start=\"2014-03-01T00:00:00\" must_grade=\"2\" must_be_graded_by=\"5\" />",
@@ -201,13 +201,13 @@
                     "<option points=\"5\"><name>Yes</name><explanation>Yes explanation</explanation></option>",
                 "</criterion>",
             "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ]
     },
 
     "invalid_submission_start_date": {
         "xml": [
-            "<openassessment submission_start=\"non-date\">",
+            "<ieia submission_start=\"non-date\">",
             "<title>Foo</title>",
             "<assessments>",
                 "<assessment name=\"peer-assessment\" start=\"2014-03-01T00:00:00\" must_grade=\"2\" must_be_graded_by=\"5\" />",
@@ -220,13 +220,13 @@
                     "<option points=\"5\"><name>Yes</name><explanation>Yes explanation</explanation></option>",
                 "</criterion>",
             "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ]
     },
 
     "missing_option_points": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
             "<title>Foo</title>",
             "<assessments>",
                 "<assessment name=\"peer-assessment\" start=\"2014-02-27T09:46:28\" due=\"2014-03-01T00:00:00\" must_grade=\"5\" must_be_graded_by=\"3\" />",
@@ -239,13 +239,13 @@
                     "<option><name>No</name><explanation>No explanation</explanation></option>",
                 "</criterion>",
             "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ]
     },
 
     "missing_option_name": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
             "<title>Foo</title>",
             "<assessments>",
                 "<assessment name=\"peer-assessment\" start=\"2014-02-27T09:46:28\" due=\"2014-03-01T00:00:00\" must_grade=\"5\" must_be_graded_by=\"3\" />",
@@ -258,13 +258,13 @@
                     "<option points=\"2\"><explanation>No explanation</explanation></option>",
                 "</criterion>",
             "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ]
     },
 
     "missing_option_explanation": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
             "<title>Foo</title>",
             "<assessments>",
                 "<assessment name=\"peer-assessment\" start=\"2014-02-27T09:46:28\" due=\"2014-03-01T00:00:00\" must_grade=\"5\" must_be_graded_by=\"3\" />",
@@ -277,13 +277,13 @@
                     "<option points=\"2\"><name>No</name></option>",
                 "</criterion>",
             "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ]
     },
 
     "missing_criterion_name": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
             "<title>Foo</title>",
             "<assessments>",
                 "<assessment name=\"peer-assessment\" start=\"2014-02-27T09:46:28\" due=\"2014-03-01T00:00:00\" must_grade=\"5\" must_be_graded_by=\"3\" />",
@@ -297,13 +297,13 @@
                     "<option points=\"2\"><name>Yes</name><explanation>Yes explanation</explanation></option>",
                 "</criterion>",
             "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ]
     },
 
     "missing_criterion_prompt": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
             "<title>Foo</title>",
             "<assessments>",
                 "<assessment name=\"peer-assessment\" start=\"2014-02-27T09:46:28\" due=\"2014-03-01T00:00:00\" must_grade=\"5\" must_be_graded_by=\"3\" />",
@@ -317,13 +317,13 @@
                     "<option points=\"2\"><name>Yes</name><explanation>Yes explanation</explanation></option>",
                 "</criterion>",
             "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ]
     },
 
     "optional_self_assessment": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
             "<title>Foo</title>",
             "<assessments>",
                 "<assessment name=\"self-assessment\" start=\"2014-04-01T00:00:00\" due=\"2014-06-01T00:00:00\" \"required\": \"False\" />",
@@ -337,13 +337,13 @@
                     "<option points=\"2\"><name>Yes</name><explanation>Yes explanation</explanation></option>",
                 "</criterion>",
             "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ]
     },
 
     "invalid_criterion_feedback_value": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
             "<title>Foo</title>",
             "<assessments>",
                 "<assessment name=\"peer-assessment\" start=\"2014-02-27T09:46:28\" due=\"2014-03-01T00:00:00\" must_grade=\"5\" must_be_graded_by=\"3\" />",
@@ -358,13 +358,13 @@
                     "<option points=\"2\"><name>Yes</name><explanation>Yes explanation</explanation></option>",
                 "</criterion>",
             "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ]
     },
 
     "training_example_missing_answer": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
             "<title>Foo</title>",
             "<assessments>",
                 "<assessment name=\"student-training\">",
@@ -382,13 +382,13 @@
                     "<option points=\"2\"><name>Yes</name><explanation>Yes explanation</explanation></option>",
                 "</criterion>",
             "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ]
     },
 
     "training_example_select_missing_criterion": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
             "<title>Foo</title>",
             "<assessments>",
                 "<assessment name=\"student-training\">",
@@ -407,13 +407,13 @@
                     "<option points=\"2\"><name>Yes</name><explanation>Yes explanation</explanation></option>",
                 "</criterion>",
             "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ]
     },
 
     "training_example_select_missing_option": {
         "xml": [
-            "<openassessment>",
+            "<ieia>",
             "<title>Foo</title>",
             "<assessments>",
                 "<assessment name=\"student-training\">",
@@ -432,13 +432,13 @@
                     "<option points=\"2\"><name>Yes</name><explanation>Yes explanation</explanation></option>",
                 "</criterion>",
             "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ]
     },
 
     "leaderboard_num_not_integer": {
         "xml": [
-            "<openassessment leaderboard_show=\"not_an_int\">",
+            "<ieia leaderboard_show=\"not_an_int\">",
             "<title>Foo</title>",
             "<assessments>",
                 "<assessment name=\"peer-assessment\" start=\"2014-02-27T09:46:28\" due=\"2014-03-01T00:00:00\" must_grade=\"5\" must_be_graded_by=\"3\" />",
@@ -453,7 +453,7 @@
                     "<option points=\"2\"><name>Yes</name><explanation>Yes explanation</explanation></option>",
                 "</criterion>",
             "</rubric>",
-            "</openassessment>"
+            "</ieia>"
         ]
     }
 }

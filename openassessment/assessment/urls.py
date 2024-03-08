@@ -2,7 +2,7 @@
 
 from django.urls import re_path
 
-from openassessment.assessment import views
+from ieia.assessment import views
 
 urlpatterns = [
     re_path(

@@ -8,10 +8,10 @@ import datetime
 from django.utils import timezone
 
 from opaque_keys.edx.keys import UsageKey, CourseKey
-from openassessment.runtime_imports.functions import modulestore
-from openassessment.assessment.models import PeerWorkflow
-from openassessment.workflow import api
-from openassessment.workflow import tasks
+from ieia.runtime_imports.functions import modulestore
+from ieia.assessment.models import PeerWorkflow
+from ieia.workflow import api
+from ieia.workflow import tasks
 
 logger = logging.getLogger(__name__)
 
@@ -139,7 +139,7 @@ def update_workflows_for_ora_block(item_id, workflow_update_data_for_ora=None, c
 
     Args:
     item_id (str): Identifier for the ORA Block
-        e.g. 'block-v1:edX+DemoX+Demo_Course+type@openassessment+block@1676f4b05f0642249ff724e7c07d869e'
+        e.g. 'block-v1:edX+DemoX+Demo_Course+type@ieia+block@1676f4b05f0642249ff724e7c07d869e'
 
     workflow_update_data_for_ora (dict): optional dictionary containing data required to
         update ORA workflow for submission. If not passed, data will be retrieved from DB
@@ -327,7 +327,7 @@ def get_workflow_update_data(peer_workflows):
                     'force_on_flexible_peer_openassessments': course_block.force_on_flexible_peer_openassessments}
 
             if peer_workflow.item_id not in assessment_requirements_cache:
-                # retrieve openassessment block from DB
+                # retrieve ieia block from DB
                 ora_block_key = UsageKey.from_string(peer_workflow.item_id)
                 ora_block = store.get_item(ora_block_key)
                 # add assessment requirements to temp cache
@@ -364,7 +364,7 @@ def _get_workflow_update_data_and_course_settings(peer_workflows, item_id):
     Helper to provide data required for ora scope workflows update
 
     Returns:
-        openassessment scope data (dict)
+        ieia scope data (dict)
         course settings (dict)
     """
     data = get_workflow_update_data(peer_workflows)

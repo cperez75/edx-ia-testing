@@ -3,7 +3,7 @@ import Rubric from 'lms/oa_rubric';
 Tests for an Open Assessment rubric.
 **/
 
-describe("OpenAssessment.Rubric", function() {
+describe("ieia.Rubric", function() {
 
     var rubric = null;
 

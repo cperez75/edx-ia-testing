@@ -1,10 +1,10 @@
 import Container from 'studio/oa_container';
 
 /**
- Tests for the Openassessment Container Object.
+ Tests for the ieia Container Object.
  **/
 
-describe("OpenAssessment.Container", function() {
+describe("ieia.Container", function() {
 
     var counter = 0;
     var StubContainerItem = function(element) {

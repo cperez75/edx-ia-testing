@@ -15,9 +15,9 @@ from django.utils.translation import gettext as _
 
 from submissions import api as sub_api
 
-from openassessment.assessment.errors import StudentTrainingInternalError, StudentTrainingRequestError
-from openassessment.assessment.models import InvalidRubricSelection, StudentTrainingWorkflow
-from openassessment.assessment.serializers import (InvalidRubric, InvalidTrainingExample, deserialize_training_examples,
+from ieia.assessment.errors import StudentTrainingInternalError, StudentTrainingRequestError
+from ieia.assessment.models import InvalidRubricSelection, StudentTrainingWorkflow
+from ieia.assessment.serializers import (InvalidRubric, InvalidTrainingExample, deserialize_training_examples,
                                                    serialize_training_example, validate_training_example_format)
 
 logger = logging.getLogger(__name__)  # pylint: disable=invalid-name

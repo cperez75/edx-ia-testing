@@ -7,7 +7,7 @@ import logging
 from django.db import DatabaseError
 
 from submissions import api as sub_api
-from openassessment.assessment.errors import PeerAssessmentError, PeerAssessmentInternalError
+from ieia.assessment.errors import PeerAssessmentError, PeerAssessmentInternalError
 
 from .errors import (AssessmentWorkflowError, AssessmentWorkflowInternalError, AssessmentWorkflowNotFoundError,
                      AssessmentWorkflowRequestError)

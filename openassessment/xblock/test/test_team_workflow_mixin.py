@@ -7,14 +7,14 @@ from copy import copy
 from unittest import TestCase
 from unittest.mock import patch, Mock
 from submissions.errors import TeamSubmissionNotFoundError
-from openassessment.xblock.team_workflow_mixin import TeamWorkflowMixin
+from ieia.xblock.team_workflow_mixin import TeamWorkflowMixin
 
 
 STUDENT_ITEM_DICT = {
     "student_id": 'student_id_1',
     "item_id": 'item1',
     "course_id": 'course1',
-    "item_type": 'openassessment'
+    "item_type": 'ieia'
 }
 
 SUBMISSION_UUID = 'submission 1'
@@ -22,7 +22,7 @@ TEAM_SUB_ID_1 = 'team_submission 1'
 TEAM_SUB_ID_2 = 'team_submission 2'
 USER_ID = 'fake_UsEr'
 USERNAME = 'usEr naMe'
-MODULE = 'openassessment.xblock.team_workflow_mixin'
+MODULE = 'ieia.xblock.team_workflow_mixin'
 TEAM_WORKFLOW = {
     'submission_uuid': SUBMISSION_UUID
 }
@@ -67,24 +67,24 @@ class TestTeamWorkflowMixin(TestCase):
         super().setUp()
         self.test_block = TestBlock()
 
-    @patch('openassessment.xblock.team_workflow_mixin.team_workflow_api')
+    @patch('ieia.xblock.team_workflow_mixin.team_workflow_api')
     def test_get_team_workflow_info(self, api_mock):
         submission_uuid = "sub_uuid"
         self.test_block.get_team_workflow_info(submission_uuid)
         api_mock.get_workflow_for_submission.assert_called_with(submission_uuid)
 
-    @patch('openassessment.xblock.team_workflow_mixin.team_workflow_api')
+    @patch('ieia.xblock.team_workflow_mixin.team_workflow_api')
     def test_create_team_workflow(self, api_mock):
         submission_uuid = "sub_uuid"
         self.test_block.create_team_workflow(submission_uuid)
         api_mock.create_workflow.assert_called_with(submission_uuid)
 
-    @patch('openassessment.xblock.team_workflow_mixin.team_workflow_api')
+    @patch('ieia.xblock.team_workflow_mixin.team_workflow_api')
     def test_get_team_workflow_status_counts(self, api_mock):
         self.test_block.get_team_workflow_status_counts()
         api_mock.get_status_counts.assert_called()
 
-    @patch('openassessment.xblock.team_workflow_mixin.team_sub_api.get_team_submission_for_student')
+    @patch('ieia.xblock.team_workflow_mixin.team_sub_api.get_team_submission_for_student')
     def test_get_team_submission_uuid(self, mock_get_team_sub_for_student):
         team_submission_uuid = 'this-is-the-uuid'
         mock_get_team_sub_for_student.return_value = {'team_submission_uuid': team_submission_uuid}
@@ -92,7 +92,7 @@ class TestTeamWorkflowMixin(TestCase):
         self.assertEqual(self.test_block.get_team_submission_uuid(), team_submission_uuid)
         mock_get_team_sub_for_student.assert_called_with(STUDENT_ITEM_DICT)
 
-    @patch('openassessment.xblock.team_workflow_mixin.team_sub_api.get_team_submission_for_student')
+    @patch('ieia.xblock.team_workflow_mixin.team_sub_api.get_team_submission_for_student')
     def test_get_team_submission_uuid_no_team(self, mock_get_team_sub_for_student):
         mock_get_team_sub_for_student.side_effect = TeamSubmissionNotFoundError()
         self.assertIsNone(self.test_block.get_team_submission_uuid())

@@ -1,4 +1,4 @@
-<openassessment prompts_type="html">
+<ieia prompts_type="html">
     <title>Open Assessment Test</title>
     <rubric>
         <prompt><![CDATA[<code><strong>Question 123</strong></code>]]></prompt>
@@ -83,4 +83,4 @@
         <assessment name="peer-assessment" must_grade="5" must_be_graded_by="3" />
         <assessment name="self-assessment" />
     </assessments>
-</openassessment>
+</ieia>

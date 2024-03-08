@@ -1,4 +1,4 @@
-<openassessment>
+<ieia>
     <title>Open Assessment Test</title>
     <prompts>
         <prompt>
@@ -45,4 +45,4 @@
     <assessments>
         <assessment name="self-assessment" due="2000-01-01"/>
     </assessments>
-</openassessment>
+</ieia>

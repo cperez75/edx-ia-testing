@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 from submissions.api import SubmissionRequestError, get_submissions
-from openassessment.assessment.api.peer import get_assessments
+from ieia.assessment.api.peer import get_assessments
 
 log = logging.getLogger(__name__)
 

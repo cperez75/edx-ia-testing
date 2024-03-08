@@ -8,13 +8,13 @@ import logging
 from django.db import DatabaseError, transaction
 
 from submissions.api import SubmissionNotFoundError, get_submission_and_student
-from openassessment.assessment.errors import SelfAssessmentInternalError, SelfAssessmentRequestError
-from openassessment.assessment.models import Assessment, AssessmentPart, InvalidRubricSelection
-from openassessment.assessment.serializers import (InvalidRubric, full_assessment_dict, rubric_from_dict,
+from ieia.assessment.errors import SelfAssessmentInternalError, SelfAssessmentRequestError
+from ieia.assessment.models import Assessment, AssessmentPart, InvalidRubricSelection
+from ieia.assessment.serializers import (InvalidRubric, full_assessment_dict, rubric_from_dict,
                                                    serialize_assessments)
-from openassessment.assessment.score_type_constants import SELF_TYPE
+from ieia.assessment.score_type_constants import SELF_TYPE
 
-logger = logging.getLogger("openassessment.assessment.api.self")  # pylint: disable=invalid-name
+logger = logging.getLogger("ieia.assessment.api.self")  # pylint: disable=invalid-name
 
 
 def submitter_is_finished(submission_uuid, self_requirements):  # pylint: disable=unused-argument

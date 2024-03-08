@@ -1,5 +1,5 @@
 """
-Student training step in the OpenAssessment XBlock.
+Student training step in the ieia XBlock.
 """
 import logging
 

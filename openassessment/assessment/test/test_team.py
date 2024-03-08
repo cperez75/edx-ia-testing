@@ -10,11 +10,11 @@ from django.utils.timezone import now
 
 from submissions import team_api as team_submissions_api
 
-from openassessment.assessment.api import teams as teams_api
-from openassessment.assessment.models.staff import TeamStaffWorkflow
-from openassessment.assessment.test.constants import OPTIONS_SELECTED_DICT, RUBRIC
-from openassessment.tests.factories import TeamStaffWorkflowFactory, UserFactory
-from openassessment.test_utils import CacheResetTest
+from ieia.assessment.api import teams as teams_api
+from ieia.assessment.models.staff import TeamStaffWorkflow
+from ieia.assessment.test.constants import OPTIONS_SELECTED_DICT, RUBRIC
+from ieia.tests.factories import TeamStaffWorkflowFactory, UserFactory
+from ieia.test_utils import CacheResetTest
 
 
 STAFF_TYPE = "ST"

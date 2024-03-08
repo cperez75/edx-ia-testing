@@ -9,13 +9,13 @@ import json
 from unittest.mock import Mock, patch
 
 from submissions import team_api as team_sub_api
-from openassessment.assessment.api import (
+from ieia.assessment.api import (
     staff as staff_api,
     teams as teams_api
 )
-from openassessment.tests.factories import UserFactory
-from openassessment.xblock.test.test_team import MockTeamsService, MOCK_TEAM_ID
-from openassessment.workflow import team_api as team_workflow_api
+from ieia.tests.factories import UserFactory
+from ieia.xblock.test.test_team import MockTeamsService, MOCK_TEAM_ID
+from ieia.workflow import team_api as team_workflow_api
 
 from .base import (
     PEER_ASSESSMENTS,
@@ -159,7 +159,7 @@ class TestStaffAssessmentRender(StaffAssessmentTestBase):
 class TestStaffAssessment(StaffAssessmentTestBase):
     """ Test Staff Assessment Workflow. """
 
-    @patch('openassessment.xblock.ui_mixins.legacy.views.staff.staff_api.create_assessment')
+    @patch('ieia.xblock.ui_mixins.legacy.views.staff.staff_api.create_assessment')
     @scenario('data/self_assessment_scenario.xml', user_id='Bob')
     def test_staff_assess_handler_missing_id(self, xblock, mock_create_assessment):
         self.set_staff_access(xblock)
@@ -262,7 +262,7 @@ class TestStaffAssessment(StaffAssessmentTestBase):
         assessment = copy.deepcopy(STAFF_GOOD_ASSESSMENT)
         assessment['submission_uuid'] = submission['uuid']
 
-        with patch('openassessment.xblock.ui_mixins.legacy.views.staff.staff_api') as mock_api:
+        with patch('ieia.xblock.ui_mixins.legacy.views.staff.staff_api') as mock_api:
             #  Simulate an error
             mock_api.create_assessment.side_effect = staff_api.StaffAssessmentRequestError
             resp = self.request(xblock, 'staff_assess', json.dumps(STAFF_GOOD_ASSESSMENT), response_format='json')
@@ -301,7 +301,7 @@ class TestStaffTeamAssessment(StaffAssessmentTestBase):
             'parts2_option_name': 'Yogi Berra'
         }
 
-    @patch('openassessment.xblock.apis.assessments.staff_assessment_api.teams_api.create_assessment')
+    @patch('ieia.xblock.apis.assessments.staff_assessment_api.teams_api.create_assessment')
     @scenario('data/team_submission.xml', user_id='Bob')
     def test_staff_assess_handler_missing_id(self, xblock, mock_create_team_assessment):
         self.set_staff_access(xblock)
@@ -356,7 +356,7 @@ class TestStaffTeamAssessment(StaffAssessmentTestBase):
         submission = self._setup_xblock_and_create_team_submission(xblock)
         submission["uuid"] = str(submission["submission_uuids"][0])
 
-        with patch('openassessment.xblock.apis.assessments.staff_assessment_api.teams_api') as mock_api:
+        with patch('ieia.xblock.apis.assessments.staff_assessment_api.teams_api') as mock_api:
             # Simulate an error
             mock_api.create_assessment.side_effect = teams_api.StaffAssessmentRequestError
             resp = self.request(xblock, 'staff_assess', json.dumps(TEAM_GOOD_ASSESSMENT), response_format='json')

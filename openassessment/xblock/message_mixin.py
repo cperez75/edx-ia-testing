@@ -1,5 +1,5 @@
 """
-Message step in the OpenAssessment XBlock.
+Message step in the ieia XBlock.
 """
 
 import datetime as dt

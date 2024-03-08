@@ -29,7 +29,7 @@ export class FileUploader {
       }).done(() => {
         // Log an analytics event
         Logger.log(
-          'openassessment.upload_file',
+          'ieia.upload_file',
           {
             fileName: file.name,
             fileSize: file.size,
@@ -41,7 +41,7 @@ export class FileUploader {
         defer.resolve();
       }).fail((data, textStatus) => {
         Logger.log(
-          'openassessment.upload_file_error',
+          'ieia.upload_file_error',
           {
             statusText: data.statusText,
           },

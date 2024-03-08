@@ -13,19 +13,19 @@ from xblock.exceptions import JsonHandlerError
 from submissions.api import get_student_ids_by_submission_uuid, get_submission
 from submissions.errors import SubmissionInternalError, SubmissionNotFoundError, SubmissionRequestError, SubmissionError
 from submissions.team_api import get_team_ids_by_team_submission_uuid, get_team_submission
-from openassessment.assessment.errors.staff import StaffAssessmentError
-from openassessment.assessment.models.base import Assessment, AssessmentPart
-from openassessment.assessment.models.staff import StaffWorkflow, TeamStaffWorkflow
-from openassessment.data import (
+from ieia.assessment.errors.staff import StaffAssessmentError
+from ieia.assessment.models.base import Assessment, AssessmentPart
+from ieia.assessment.models.staff import StaffWorkflow, TeamStaffWorkflow
+from ieia.data import (
     OraSubmissionAnswerFactory,
     VersionNotFoundException,
     map_anonymized_ids_to_user_data,
     generate_assessment_from_data,
     generate_assessment_to_data
 )
-from openassessment.staffgrader.errors.submission_lock import SubmissionLockContestedError
-from openassessment.staffgrader.models.submission_lock import SubmissionGradingLock
-from openassessment.staffgrader.serializers import (
+from ieia.staffgrader.errors.submission_lock import SubmissionLockContestedError
+from ieia.staffgrader.models.submission_lock import SubmissionGradingLock
+from ieia.staffgrader.serializers import (
     AssessmentSerializer,
     MissingContextException,
     SubmissionDetailFileSerilaizer,
@@ -33,8 +33,8 @@ from openassessment.staffgrader.serializers import (
     SubmissionLockSerializer,
     TeamSubmissionListSerializer,
 )
-from openassessment.xblock.staff_area_mixin import require_course_staff
-from openassessment.xblock.apis.assessments.staff_assessment_api import do_staff_assessment, do_team_staff_assessment
+from ieia.xblock.staff_area_mixin import require_course_staff
+from ieia.xblock.apis.assessments.staff_assessment_api import do_staff_assessment, do_team_staff_assessment
 
 
 log = logging.getLogger(__name__)

@@ -1,5 +1,5 @@
 /**
- * Encapsulate interactions with OpenAssessment XBlock handlers.
+ * Encapsulate interactions with ieia XBlock handlers.
  */
 
 const jsonContentType = 'application/json; charset=utf-8';

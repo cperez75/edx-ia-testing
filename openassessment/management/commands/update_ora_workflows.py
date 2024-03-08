@@ -3,7 +3,7 @@ Batch update ORA workflows
 """
 import logging
 from django.core.management.base import BaseCommand, CommandError
-from openassessment.workflow import tasks
+from ieia.workflow import tasks
 
 log = logging.getLogger(__name__)
 

@@ -6,7 +6,7 @@ STUDENT_ITEM = {
     'student_id': '𝓽𝓮𝓼𝓽 𝓼𝓽𝓾𝓭𝓮𝓷𝓽',
     'item_id': '𝖙𝖊𝖘𝖙 𝖎𝖙𝖊𝖒',
     'course_id': 'ՇєรՇ ς๏ยгรє',
-    'item_type': 'openassessment'
+    'item_type': 'ieia'
 }
 
 ANSWER = {'text': 'ẗëṡẗ äṅṡẅëṛ'}

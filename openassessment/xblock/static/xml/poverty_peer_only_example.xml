@@ -1,4 +1,4 @@
-<openassessment submission_due="2030-03-11T18:20">
+<ieia submission_due="2030-03-11T18:20">
     <title>
         Global Poverty
     </title>
@@ -110,4 +110,4 @@
                     must_grade="1"
                     must_be_graded_by="1" />
     </assessments>
-</openassessment>
+</ieia>

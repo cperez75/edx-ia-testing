@@ -2,7 +2,7 @@
 Serializers for the Submission List endpoint
 """
 from rest_framework import serializers
-from openassessment.assessment.models.staff import StaffWorkflow
+from ieia.assessment.models.staff import StaffWorkflow
 
 
 class MissingContextException(Exception):

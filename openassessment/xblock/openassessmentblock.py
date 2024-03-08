@@ -20,52 +20,52 @@ from xblock.core import XBlock
 from xblock.exceptions import NoSuchServiceError
 from xblock.fields import Boolean, Integer, List, Scope, String
 
-from openassessment.staffgrader.staff_grader_mixin import StaffGraderMixin
-from openassessment.workflow.errors import AssessmentWorkflowError
-from openassessment.xblock.apis.grades_api import GradesAPI
-from openassessment.xblock.apis.submissions.submissions_api import SubmissionAPI
-from openassessment.xblock.course_items_listing_mixin import CourseItemsListingMixin
-from openassessment.xblock.utils.data_conversion import (
+from ieia.staffgrader.staff_grader_mixin import StaffGraderMixin
+from ieia.workflow.errors import AssessmentWorkflowError
+from ieia.xblock.apis.grades_api import GradesAPI
+from ieia.xblock.apis.submissions.submissions_api import SubmissionAPI
+from ieia.xblock.course_items_listing_mixin import CourseItemsListingMixin
+from ieia.xblock.utils.data_conversion import (
     create_prompts_list,
     create_rubric_dict,
     update_assessments_format,
 )
-from openassessment.xblock.utils.defaults import *  # pylint: disable=wildcard-import, unused-wildcard-import
-from openassessment.xblock.files_mixin import FilesMixin
-from openassessment.xblock.grade_mixin import GradeMixin
-from openassessment.xblock.leaderboard_mixin import LeaderboardMixin
-from openassessment.xblock.lms_mixin import LmsCompatibilityMixin
-from openassessment.xblock.message_mixin import MessageMixin
-from openassessment.xblock.mobile import togglable_mobile_support
-from openassessment.xblock.utils.resolve_dates import (
+from ieia.xblock.utils.defaults import *  # pylint: disable=wildcard-import, unused-wildcard-import
+from ieia.xblock.files_mixin import FilesMixin
+from ieia.xblock.grade_mixin import GradeMixin
+from ieia.xblock.leaderboard_mixin import LeaderboardMixin
+from ieia.xblock.lms_mixin import LmsCompatibilityMixin
+from ieia.xblock.message_mixin import MessageMixin
+from ieia.xblock.mobile import togglable_mobile_support
+from ieia.xblock.utils.resolve_dates import (
     DateValidationError,
     DISTANT_FUTURE,
     DISTANT_PAST,
     parse_date_value,
     resolve_dates,
 )
-from openassessment.xblock.rubric_reuse_mixin import RubricReuseMixin
-from openassessment.xblock.staff_area_mixin import StaffAreaMixin
-from openassessment.xblock.studio_mixin import StudioMixin
-from openassessment.xblock.team_mixin import TeamMixin
-from openassessment.xblock.ui_mixins.legacy.handlers_mixin import LegacyHandlersMixin
-from openassessment.xblock.ui_mixins.legacy.views_mixin import LegacyViewsMixin
-from openassessment.xblock.ui_mixins.mfe.mixin import MfeMixin
-from openassessment.xblock.utils.validation import validator
-from openassessment.xblock.config_mixin import ConfigMixin
-from openassessment.xblock.workflow_mixin import WorkflowMixin
-from openassessment.xblock.team_workflow_mixin import TeamWorkflowMixin
-from openassessment.xblock.openassesment_template_mixin import OpenAssessmentTemplatesMixin
-from openassessment.xblock.utils.xml import parse_from_xml, serialize_content_to_xml
+from ieia.xblock.rubric_reuse_mixin import RubricReuseMixin
+from ieia.xblock.staff_area_mixin import StaffAreaMixin
+from ieia.xblock.studio_mixin import StudioMixin
+from ieia.xblock.team_mixin import TeamMixin
+from ieia.xblock.ui_mixins.legacy.handlers_mixin import LegacyHandlersMixin
+from ieia.xblock.ui_mixins.legacy.views_mixin import LegacyViewsMixin
+from ieia.xblock.ui_mixins.mfe.mixin import MfeMixin
+from ieia.xblock.utils.validation import validator
+from ieia.xblock.config_mixin import ConfigMixin
+from ieia.xblock.workflow_mixin import WorkflowMixin
+from ieia.xblock.team_workflow_mixin import TeamWorkflowMixin
+from ieia.xblock.openassesment_template_mixin import OpenAssessmentTemplatesMixin
+from ieia.xblock.utils.xml import parse_from_xml, serialize_content_to_xml
 
 
-from openassessment.xblock.apis.ora_config_api import ORAConfigAPI
-from openassessment.xblock.apis.workflow_api import WorkflowAPI
-from openassessment.xblock.apis.assessments.peer_assessment_api import PeerAssessmentAPI
-from openassessment.xblock.apis.assessments.self_assessment_api import SelfAssessmentAPI
-from openassessment.xblock.apis.assessments.staff_assessment_api import StaffAssessmentAPI
-from openassessment.xblock.apis.assessments.student_training_api import StudentTrainingAPI
-from openassessment.xblock.apis.ora_data_accessor import ORADataAccessor
+from ieia.xblock.apis.ora_config_api import ORAConfigAPI
+from ieia.xblock.apis.workflow_api import WorkflowAPI
+from ieia.xblock.apis.assessments.peer_assessment_api import PeerAssessmentAPI
+from ieia.xblock.apis.assessments.self_assessment_api import SelfAssessmentAPI
+from ieia.xblock.apis.assessments.staff_assessment_api import StaffAssessmentAPI
+from ieia.xblock.apis.assessments.student_training_api import StudentTrainingAPI
+from ieia.xblock.apis.ora_data_accessor import ORADataAccessor
 
 logger = logging.getLogger(__name__)  # pylint: disable=invalid-name
 
@@ -525,7 +525,7 @@ class OpenAssessmentBlock(
             "student_id": student_id,
             "item_id": item_id,
             "course_id": course_id,
-            "item_type": 'openassessment'
+            "item_type": 'ieia'
         }
         return student_item_dict
 

@@ -2380,7 +2380,7 @@ msgid "Validation error: {error}"
 msgstr "Validasi error: {error}"
 
 #: xblock/studio_mixin.py:323
-msgid "Successfully updated OpenAssessment XBlock"
+msgid "Successfully updated ieia XBlock"
 msgstr "Berhasil memperbarui OpenAssesment XBlock"
 
 #: xblock/utils/data_conversion.py:315

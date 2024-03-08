@@ -7,9 +7,9 @@ import logging
 import os
 from submissions.api import Submission, SubmissionError, SubmissionRequestError
 
-from openassessment.fileupload.exceptions import FileUploadError
-from openassessment.workflow.errors import AssessmentWorkflowError
-from openassessment.xblock.apis.submissions.errors import (
+from ieia.fileupload.exceptions import FileUploadError
+from ieia.workflow.errors import AssessmentWorkflowError
+from ieia.xblock.apis.submissions.errors import (
     DeleteNotAllowed,
     EmptySubmissionError,
     NoTeamToCreateSubmissionForError,
@@ -23,8 +23,8 @@ from openassessment.xblock.apis.submissions.errors import (
     UnsupportedFileTypeException
 )
 
-from openassessment.xblock.utils.validation import validate_submission
-from openassessment.xblock.utils.data_conversion import (
+from ieia.xblock.utils.validation import validate_submission
+from ieia.xblock.utils.data_conversion import (
     format_files_for_submission,
     prepare_submission_for_serialization,
 )

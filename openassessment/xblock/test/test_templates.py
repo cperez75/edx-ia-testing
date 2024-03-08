@@ -1,12 +1,12 @@
-""" Tests for openassessment templates """
+""" Tests for ieia templates """
 
 from unittest import TestCase
-from openassessment.xblock.openassesment_template_mixin import OpenAssessmentTemplatesMixin
+from ieia.xblock.openassesment_template_mixin import OpenAssessmentTemplatesMixin
 
 
 class TemplatesMixin(TestCase):
     """
-    Tests for openassessment templates
+    Tests for ieia templates
     """
 
     def setUp(self):

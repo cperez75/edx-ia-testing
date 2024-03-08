@@ -4,7 +4,7 @@ import BaseView from 'lms/oa_base';
 Tests for OA student-facing views.
 **/
 
-describe("OpenAssessment.BaseView", function() {
+describe("ieia.BaseView", function() {
 
     // Stub server that returns dummy data
     var StubServer = function() {
@@ -62,7 +62,7 @@ describe("OpenAssessment.BaseView", function() {
         window.rewriteStaticLinks = jasmine.createSpy('rewriteStaticLinks');
 
         // Create the object under test
-        var el = $(".openassessment").get(0);
+        var el = $(".ieia").get(0);
         var data = {
             TEXT_RESPONSE_EDITOR: 'text',
             AVAILABLE_EDITORS: {

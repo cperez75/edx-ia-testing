@@ -1,4 +1,4 @@
-<openassessment>
+<ieia>
     <title>Open Assessment Test</title>
     <prompts>
         <prompt>
@@ -43,4 +43,4 @@
         <assessment name="self-assessment" />
         <assessment name="staff-assessment" required="true"/>
     </assessments>
-</openassessment>
+</ieia>

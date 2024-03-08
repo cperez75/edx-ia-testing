@@ -4,9 +4,9 @@ Tests for assessment models.
 
 import copy
 
-from openassessment.assessment.models import Criterion, CriterionOption, InvalidRubricSelection, Rubric
-from openassessment.assessment.test.constants import RUBRIC
-from openassessment.test_utils import CacheResetTest
+from ieia.assessment.models import Criterion, CriterionOption, InvalidRubricSelection, Rubric
+from ieia.assessment.test.constants import RUBRIC
+from ieia.test_utils import CacheResetTest
 
 
 class RubricIndexTest(CacheResetTest):

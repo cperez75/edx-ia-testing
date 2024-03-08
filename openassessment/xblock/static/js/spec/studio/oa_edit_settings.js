@@ -3,7 +3,7 @@ import EditSettingsView from 'studio/oa_edit_settings';
 /**
 Tests for the edit settings view.
 **/
-describe("OpenAssessment.EditSettingsView", function() {
+describe("ieia.EditSettingsView", function() {
 
     var StubView = function(name, descriptionText) {
         this.name = name;

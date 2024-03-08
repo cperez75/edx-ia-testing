@@ -4,20 +4,20 @@ from django.test import TestCase
 from mock import patch
 import pytest
 from django.core.management.base import CommandError
-from openassessment.management.commands import update_ora_workflows
+from ieia.management.commands import update_ora_workflows
 
 
 class UpdateOraWorkflowsTest(TestCase):
 
     @patch(
-        'openassessment.management.commands.update_ora_workflows.tasks.'
+        'ieia.management.commands.update_ora_workflows.tasks.'
         'update_workflows_for_all_blocked_submissions_task.apply_async')
     def test_update_ora_workflows_for_all_blocked_submissions(self, mock_update_workflows):
         command = update_ora_workflows.Command()
         command.handle()
         mock_update_workflows.assert_called()
 
-    @patch('openassessment.management.commands.update_ora_workflows.tasks.'
+    @patch('ieia.management.commands.update_ora_workflows.tasks.'
            'update_workflows_for_course_task.apply_async')
     def test_update_ora_workflows_for_course(self, mock_update_workflows):
         command = update_ora_workflows.Command()
@@ -25,7 +25,7 @@ class UpdateOraWorkflowsTest(TestCase):
         mock_update_workflows.assert_called_with(["course_id_1"])
 
     @patch(
-        'openassessment.management.commands.update_ora_workflows.tasks.'
+        'ieia.management.commands.update_ora_workflows.tasks.'
         'update_workflows_for_ora_block_task.apply_async')
     def test_update_ora_workflows_for_ora_block(self, mock_update_workflows):
         command = update_ora_workflows.Command()

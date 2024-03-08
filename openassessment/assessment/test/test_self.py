@@ -11,9 +11,9 @@ import pytz
 from django.db import DatabaseError
 
 from submissions.api import create_submission
-from openassessment.assessment.api.self import create_assessment, get_assessment, submitter_is_finished
-from openassessment.assessment.errors import SelfAssessmentInternalError, SelfAssessmentRequestError
-from openassessment.test_utils import CacheResetTest
+from ieia.assessment.api.self import create_assessment, get_assessment, submitter_is_finished
+from ieia.assessment.errors import SelfAssessmentInternalError, SelfAssessmentRequestError
+from ieia.test_utils import CacheResetTest
 
 
 class TestSelfApi(CacheResetTest):
@@ -297,7 +297,7 @@ class TestSelfApi(CacheResetTest):
                 part["feedback"], 'I thought it was about as accurate as Scrubs is to the medical profession.'
             )
 
-    @patch('openassessment.assessment.api.self._complete_assessment')
+    @patch('ieia.assessment.api.self._complete_assessment')
     def test_create_assessment_database_error(self, mock_complete_assessment):
         mock_complete_assessment.side_effect = DatabaseError
 

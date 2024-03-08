@@ -1,4 +1,4 @@
-<openassessment>
+<ieia>
     <title>Open Assessment Test</title>
     <prompt>
         Given the state of the world today, what do you think should be done to
@@ -18,4 +18,4 @@
     <assessments>
         <assessment name="peer-assessment" />
     </assessments>
-</openassessment>
+</ieia>

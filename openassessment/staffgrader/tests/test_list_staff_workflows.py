@@ -11,9 +11,9 @@ from freezegun import freeze_time
 from mock import Mock, patch
 from submissions import api as sub_api
 
-from openassessment.assessment.models.base import Assessment
-from openassessment.staffgrader.models import SubmissionGradingLock
-from openassessment.tests.factories import (
+from ieia.assessment.models.base import Assessment
+from ieia.staffgrader.models import SubmissionGradingLock
+from ieia.tests.factories import (
     AssessmentFactory,
     AssessmentPartFactory,
     CriterionOptionFactory,
@@ -21,8 +21,8 @@ from openassessment.tests.factories import (
     StaffWorkflowFactory,
     TeamStaffWorkflowFactory,
 )
-import openassessment.workflow.api as workflow_api
-from openassessment.xblock.test.base import XBlockHandlerTestCase, scenario
+import ieia.workflow.api as workflow_api
+from ieia.xblock.test.base import XBlockHandlerTestCase, scenario
 
 
 EXPECTED_ANNOTATED_WORKFLOW_FIELDS = [
@@ -39,7 +39,7 @@ STUDENT_ITEM = {
     "student_id": "",
     "course_id": "course-v1:testCourse+t5+2021T2",
     "item_id": "TestStaffWorkflowListView",
-    "item_type": "openassessment",
+    "item_type": "ieia",
 }
 ANSWER = {
     "parts": ['test_answer']
@@ -151,7 +151,7 @@ class TestStaffWorkflowListViewBase(XBlockHandlerTestCase):
         Context manager that patches get_student_ids_by_submission_uuid and returns self.student_ids_by_submission_id
         """
         with patch(
-            'openassessment.staffgrader.staff_grader_mixin.get_student_ids_by_submission_uuid',
+            'ieia.staffgrader.staff_grader_mixin.get_student_ids_by_submission_uuid',
             return_value=self.student_ids_by_submission_id
         ) as patched_map:
             yield patched_map
@@ -162,7 +162,7 @@ class TestStaffWorkflowListViewBase(XBlockHandlerTestCase):
         Context manager that patches map_anonymized_ids_to_usernames and returns self.student_id_to_username_map
         """
         with patch(
-            'openassessment.staffgrader.staff_grader_mixin.map_anonymized_ids_to_usernames',
+            'ieia.staffgrader.staff_grader_mixin.map_anonymized_ids_to_usernames',
             return_value=self.student_id_to_username_map
         ) as patched_map:
             yield patched_map
@@ -175,7 +175,7 @@ class TestStaffWorkflowListViewBase(XBlockHandlerTestCase):
         username, email, and fullname.
         """
         with patch(
-            'openassessment.staffgrader.staff_grader_mixin.map_anonymized_ids_to_user_data',
+            'ieia.staffgrader.staff_grader_mixin.map_anonymized_ids_to_user_data',
             return_value=self.student_id_to_user_data_map
         ) as patched_map:
             yield patched_map
@@ -442,7 +442,7 @@ class StaffWorkflowListViewTeamTests(TestStaffWorkflowListViewBase):
             for test_user in cls.course_staff
         }
 
-    @patch('openassessment.staffgrader.staff_grader_mixin.get_team_ids_by_team_submission_uuid')
+    @patch('ieia.staffgrader.staff_grader_mixin.get_team_ids_by_team_submission_uuid')
     @scenario('data/team_submission.xml', user_id=STAFF_ID)
     def test_teams(self, xblock, mock_get_team_ids_by_submission):
         self.set_staff_user(xblock)

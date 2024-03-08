@@ -1,4 +1,4 @@
-<openassessment leaderboard_show="3" file_upload_type="image">
+<ieia leaderboard_show="3" file_upload_type="image">
     <title>Open Assessment Test</title>
     <prompts>
         <prompt>
@@ -46,4 +46,4 @@
         <assessment name="peer-assessment" must_grade="1" must_be_graded_by="1" />
         <assessment name="self-assessment" />
     </assessments>
-</openassessment>
+</ieia>

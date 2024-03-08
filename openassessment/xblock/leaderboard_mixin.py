@@ -1,5 +1,5 @@
 """
-Leaderboard step in the OpenAssessment XBlock.
+Leaderboard step in the ieia XBlock.
 """
 
 
@@ -9,11 +9,11 @@ from xblock.core import XBlock
 
 from django.utils.translation import gettext as _
 
-from openassessment.assessment.errors import PeerAssessmentError, SelfAssessmentError
-from openassessment.data import OraSubmissionAnswerFactory
-from openassessment.fileupload import api as file_upload_api
-from openassessment.fileupload.exceptions import FileUploadError
-from openassessment.xblock.utils.data_conversion import create_submission_dict
+from ieia.assessment.errors import PeerAssessmentError, SelfAssessmentError
+from ieia.data import OraSubmissionAnswerFactory
+from ieia.fileupload import api as file_upload_api
+from ieia.fileupload.exceptions import FileUploadError
+from ieia.xblock.utils.data_conversion import create_submission_dict
 
 logger = logging.getLogger(__name__)  # pylint: disable=invalid-name
 

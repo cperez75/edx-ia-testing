@@ -3,7 +3,7 @@
 import factory
 from factory.django import DjangoModelFactory
 
-from openassessment.workflow.models import TeamAssessmentWorkflow, AssessmentWorkflowStep
+from ieia.workflow.models import TeamAssessmentWorkflow, AssessmentWorkflowStep
 
 
 class TeamAssessmentWorkflowFactory(DjangoModelFactory):

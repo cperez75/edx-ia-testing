@@ -14,7 +14,7 @@ from submissions.errors import (
     TeamSubmissionInternalError,
     TeamSubmissionNotFoundError
 )
-from openassessment.staffgrader.staff_grader_mixin import require_submission_uuid
+from ieia.staffgrader.staff_grader_mixin import require_submission_uuid
 
 
 class RequireSubmissionUUIDTest(TestCase):
@@ -47,7 +47,7 @@ class RequireSubmissionUUIDTest(TestCase):
         self.assertEqual(result, self.mock_function.return_value)
         self.mock_function.assert_called_once_with(self.mock_self, submission_uuid, data, suffix=self.mock_suffix)
 
-    @patch('openassessment.staffgrader.staff_grader_mixin.get_submission')
+    @patch('ieia.staffgrader.staff_grader_mixin.get_submission')
     def test_validate_submission(self, mock_get_submission):  # pylint: disable=unused-argument
         mock_get_submission.return_value = {}
         submission_uuid = self.valid_data['submission_uuid']
@@ -61,7 +61,7 @@ class RequireSubmissionUUIDTest(TestCase):
             suffix=self.mock_suffix,
         )
 
-    @patch('openassessment.staffgrader.staff_grader_mixin.get_team_submission')
+    @patch('ieia.staffgrader.staff_grader_mixin.get_team_submission')
     def test_validate_team_submission(self, mock_get_team_submission):  # pylint: disable=unused-argument
         self.mock_self.is_team_assignment = lambda: True
         mock_get_team_submission.return_value = {}
@@ -76,7 +76,7 @@ class RequireSubmissionUUIDTest(TestCase):
             suffix=self.mock_suffix,
         )
 
-    @patch('openassessment.staffgrader.staff_grader_mixin.get_submission')
+    @patch('ieia.staffgrader.staff_grader_mixin.get_submission')
     def test_validate_submission_not_found(self, mock_get_submission):
         mock_get_submission.side_effect = SubmissionNotFoundError
 
@@ -87,7 +87,7 @@ class RequireSubmissionUUIDTest(TestCase):
         self.assertEqual(error_context.exception.status_code, 404)
         self.assertEqual(error_context.exception.message, 'Submission not found')
 
-    @patch('openassessment.staffgrader.staff_grader_mixin.get_team_submission')
+    @patch('ieia.staffgrader.staff_grader_mixin.get_team_submission')
     def test_validate_team_submission_not_found(self, mock_get_team_submission):
         self.mock_self.is_team_assignment = lambda: True
         mock_get_team_submission.side_effect = TeamSubmissionNotFoundError
@@ -99,7 +99,7 @@ class RequireSubmissionUUIDTest(TestCase):
         self.assertEqual(error_context.exception.status_code, 404)
         self.assertEqual(error_context.exception.message, 'Submission not found')
 
-    @patch('openassessment.staffgrader.staff_grader_mixin.get_submission')
+    @patch('ieia.staffgrader.staff_grader_mixin.get_submission')
     def test_validate_bad_submission_uuid(self, mock_get_submission):
         mock_get_submission.side_effect = SubmissionRequestError
 
@@ -110,7 +110,7 @@ class RequireSubmissionUUIDTest(TestCase):
         self.assertEqual(error_context.exception.status_code, 400)
         self.assertEqual(error_context.exception.message, 'Bad submission_uuid provided')
 
-    @patch('openassessment.staffgrader.staff_grader_mixin.get_team_submission')
+    @patch('ieia.staffgrader.staff_grader_mixin.get_team_submission')
     def test_validate_bad_team_submission_uuid(self, mock_get_team_submission):
         mock_get_team_submission.side_effect = TeamSubmissionInternalError
 
@@ -123,7 +123,7 @@ class RequireSubmissionUUIDTest(TestCase):
         self.assertEqual(error_context.exception.status_code, 500)
         self.assertEqual(error_context.exception.message, 'Internal error getting submission info')
 
-    @patch('openassessment.staffgrader.staff_grader_mixin.get_submission')
+    @patch('ieia.staffgrader.staff_grader_mixin.get_submission')
     def test_validate_submission_error(self, mock_get_submission):
         mock_get_submission.side_effect = SubmissionInternalError
 

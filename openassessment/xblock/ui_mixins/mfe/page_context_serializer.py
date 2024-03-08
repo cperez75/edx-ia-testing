@@ -13,13 +13,13 @@ from rest_framework.serializers import (
     Serializer,
     SerializerMethodField,
 )
-from openassessment.xblock.ui_mixins.mfe.assessment_serializers import (
+from ieia.xblock.ui_mixins.mfe.assessment_serializers import (
     AssessmentGradeSerializer,
     AssessmentResponseSerializer,
 )
-from openassessment.xblock.ui_mixins.mfe.constants import handler_suffixes
-from openassessment.xblock.ui_mixins.mfe.submission_serializers import DraftResponseSerializer, SubmissionSerializer
-from openassessment.xblock.ui_mixins.mfe.serializer_utils import STEP_NAME_MAPPINGS, CharListField
+from ieia.xblock.ui_mixins.mfe.constants import handler_suffixes
+from ieia.xblock.ui_mixins.mfe.submission_serializers import DraftResponseSerializer, SubmissionSerializer
+from ieia.xblock.ui_mixins.mfe.serializer_utils import STEP_NAME_MAPPINGS, CharListField
 
 
 class UnknownActiveStepException(Exception):

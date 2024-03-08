@@ -122,11 +122,11 @@ INSTALLED_APPS = (
 
     # ora2 apps
     'submissions',
-    'openassessment',
-    'openassessment.fileupload',
-    'openassessment.workflow',
-    'openassessment.assessment',
-    'openassessment.staffgrader',
+    'ieia',
+    'ieia.fileupload',
+    'ieia.workflow',
+    'ieia.assessment',
+    'ieia.staffgrader',
 )
 
 # TODO: add config for XBLOCK_WORKBENCH { SCENARIO_CLASSES }
@@ -143,7 +143,7 @@ CACHES = {
 
 BASE_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
-LOCALE_PATHS = [os.path.join(BASE_DIR, "openassessment", "conf", "locale")]
+LOCALE_PATHS = [os.path.join(BASE_DIR, "ieia", "conf", "locale")]
 
 FEATURES = {
     # Set to True to enable team-based ORA submissions.

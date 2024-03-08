@@ -11,8 +11,8 @@ import logging
 from django.db import IntegrityError
 from django.utils.functional import cached_property
 
-from openassessment.assessment.models.base import SharedFileUpload
-from openassessment.fileupload.exceptions import FileUploadError
+from ieia.assessment.models.base import SharedFileUpload
+from ieia.fileupload.exceptions import FileUploadError
 
 from . import backends
 

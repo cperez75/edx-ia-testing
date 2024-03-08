@@ -2,10 +2,10 @@ import BaseView from 'lms/oa_base';
 import StudentTrainingView from 'lms/oa_training';
 
 /**
-Tests for OpenAssessment Student Training view.
+Tests for ieia Student Training view.
 **/
 
-describe("OpenAssessment.StudentTrainingView", function() {
+describe("ieia.StudentTrainingView", function() {
 
     // Stub server
     var StubServer = function() {

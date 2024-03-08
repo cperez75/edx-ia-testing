@@ -1,4 +1,4 @@
-<openassessment text_response="required" file_upload_response="optional" file_upload_type="pdf-and-image">
+<ieia text_response="required" file_upload_response="optional" file_upload_type="pdf-and-image">
     <title>Open Assessment Test</title>
     <prompts>
         <prompt>
@@ -94,4 +94,4 @@
           must_be_graded_by="3" />
         <assessment name="self-assessment" />
     </assessments>
-</openassessment>
+</ieia>

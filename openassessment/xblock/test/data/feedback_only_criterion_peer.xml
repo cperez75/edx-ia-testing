@@ -1,4 +1,4 @@
-<openassessment>
+<ieia>
     <title>Feedback only criterion</title>
     <prompts>
         <prompt>
@@ -29,4 +29,4 @@
     <assessments>
         <assessment name="peer-assessment" must_grade="1" must_be_graded_by="1" />
     </assessments>
-</openassessment>
+</ieia>

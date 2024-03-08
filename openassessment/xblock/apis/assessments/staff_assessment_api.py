@@ -3,11 +3,11 @@ External API for ORA Staff Assessment data
 """
 import logging
 from submissions import team_api as team_sub_api
-from openassessment.assessment.api import staff as staff_api, teams as teams_api
-from openassessment.assessment.errors.staff import StaffAssessmentError
-from openassessment.workflow import api as workflow_api, team_api as team_workflow_api
-from openassessment.xblock.apis.step_data_api import StepDataAPI
-from openassessment.xblock.utils.data_conversion import (
+from ieia.assessment.api import staff as staff_api, teams as teams_api
+from ieia.assessment.errors.staff import StaffAssessmentError
+from ieia.workflow import api as workflow_api, team_api as team_workflow_api
+from ieia.xblock.apis.step_data_api import StepDataAPI
+from ieia.xblock.utils.data_conversion import (
     clean_criterion_feedback,
     create_rubric_dict,
 )

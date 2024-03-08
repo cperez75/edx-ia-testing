@@ -7,8 +7,8 @@ from datetime import datetime, timedelta, timezone
 from django.test import TestCase
 from freezegun import freeze_time
 
-from openassessment.staffgrader.errors.submission_lock import SubmissionLockContestedError
-from openassessment.staffgrader.models.submission_lock import SubmissionGradingLock
+from ieia.staffgrader.errors.submission_lock import SubmissionLockContestedError
+from ieia.staffgrader.models.submission_lock import SubmissionGradingLock
 
 
 @freeze_time("1969-07-21 02:56:00", tz_offset=0)

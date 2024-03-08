@@ -14,13 +14,13 @@ from .base import BaseBackend
 
 class Backend(BaseBackend):
     """
-    Manage openassessment student files uploaded using the default django storage settings.
+    Manage ieia student files uploaded using the default django storage settings.
     """
     def get_upload_url(self, key, content_type):
         """
         Return the URL pointing to the ORA2 django storage upload endpoint.
         """
-        return reverse("openassessment-django-storage", kwargs={'key': key})
+        return reverse("ieia-django-storage", kwargs={'key': key})
 
     def get_download_url(self, key):
         """

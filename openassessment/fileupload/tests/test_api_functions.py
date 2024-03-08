@@ -7,8 +7,8 @@ import json
 from unittest import mock
 import pytest
 
-from openassessment.assessment.models.base import SharedFileUpload
-from openassessment.fileupload import api
+from ieia.assessment.models.base import SharedFileUpload
+from ieia.fileupload import api
 
 
 DEFAULT_COURSE_ID = 'a-fun-course'
@@ -138,7 +138,7 @@ def test_cannot_delete_file_if_user_ids_do_not_match(shared_file_upload_fixture)
 
 
 @pytest.mark.django_db
-@mock.patch('openassessment.fileupload.api.remove_file', autospec=True)
+@mock.patch('ieia.fileupload.api.remove_file', autospec=True)
 def test_delete_shared_files_for_team(mock_remove_file, shared_file_upload_fixture, mock_block):
     # Given some shared files for a team, among other similar files
     files_to_delete = [{'file_key': 'key-1'}, {'file_key': 'key-2'}, {'file_key': 'key-3'}]
@@ -215,8 +215,8 @@ def test_file_descriptors_no_team(mock_block):
 
 
 @pytest.mark.django_db
-@mock.patch('openassessment.fileupload.api.remove_file', autospec=True)
-@mock.patch('openassessment.fileupload.api.get_download_url', autospec=True)
+@mock.patch('ieia.fileupload.api.remove_file', autospec=True)
+@mock.patch('ieia.fileupload.api.get_download_url', autospec=True)
 def test_file_descriptors_after_sharing_with_old_team(
         mock_get_download_url, mock_remove_file, shared_file_upload_fixture, mock_block
 ):
@@ -278,7 +278,7 @@ def test_file_descriptors_after_sharing_with_old_team(
 
 
 @pytest.mark.django_db
-@mock.patch('openassessment.fileupload.api.get_download_url', autospec=True)
+@mock.patch('ieia.fileupload.api.get_download_url', autospec=True)
 def test_team_files_metadata(mock_get_download_url, shared_file_upload_fixture, mock_block):
     mock_get_download_url.return_value = "some-download-url"
     block = mock_block(

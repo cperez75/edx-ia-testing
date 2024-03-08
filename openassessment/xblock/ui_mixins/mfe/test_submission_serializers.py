@@ -2,12 +2,12 @@
 from unittest import TestCase
 import ddt
 
-from openassessment.fileupload.api import FileDescriptor, TeamFileDescriptor
-from openassessment.xblock.ui_mixins.mfe.submission_serializers import (
+from ieia.fileupload.api import FileDescriptor, TeamFileDescriptor
+from ieia.xblock.ui_mixins.mfe.submission_serializers import (
     DraftResponseSerializer,
     SubmissionSerializer
 )
-from openassessment.data import OraSubmissionAnswer, SubmissionFileUpload
+from ieia.data import OraSubmissionAnswer, SubmissionFileUpload
 
 
 # pylint: disable=abstract-method,super-init-not-called,arguments-differ

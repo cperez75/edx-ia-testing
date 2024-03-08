@@ -2,10 +2,10 @@ import BaseView from 'lms/oa_base';
 import PeerView from 'lms/oa_peer';
 
 /**
- Tests for OpenAssessment Peer view.
+ Tests for ieia Peer view.
  **/
 
-describe("OpenAssessment.PeerView", function() {
+describe("ieia.PeerView", function() {
 
     // Stub server
     var StubServer = function() {

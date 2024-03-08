@@ -2,10 +2,10 @@ import BaseView from 'lms/oa_base';
 import GradeView from 'lms/oa_grade';
 
 /**
-Tests for OpenAssessment grade view.
+Tests for ieia grade view.
 **/
 
-describe("OpenAssessment.GradeView", function() {
+describe("ieia.GradeView", function() {
 
     // Stub server
     var StubServer = function() {

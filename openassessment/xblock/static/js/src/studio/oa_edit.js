@@ -20,11 +20,11 @@ import { StudentTrainingListener } from './oa_edit_listeners';
  Args:
  runtime (Runtime): an XBlock runtime instance.
  element (DOM element): The DOM element representing this XBlock.
- server (OpenAssessment.Server): The interface to the XBlock server.
+ server (ieia.Server): The interface to the XBlock server.
  data (Object literal): The data object passed from XBlock backend.
 
  Returns:
- OpenAssessment.StudioView
+ ieia.StudioView
  * */
 
 export class StudioView {
@@ -130,7 +130,7 @@ export class StudioView {
   /**
      Initializes the tabs that seperate the sections of the editor.
 
-     Because this function relies on the OpenAssessment Name space, the tab that it first
+     Because this function relies on the ieia Name space, the tab that it first
      active will be the one that the USER was presented with, regardless of which editor they
      were using.  I.E.  If I leave Editor A in the settings state, and enter editor B, editor B
      will automatically open with the settings state.

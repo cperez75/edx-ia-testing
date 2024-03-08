@@ -13,8 +13,8 @@ import tempfile
 
 from django.core.management.base import BaseCommand, CommandError
 
-from openassessment.data import CsvWriter
-from openassessment.fileupload.backends.s3 import _connect_to_s3
+from ieia.data import CsvWriter
+from ieia.fileupload.backends.s3 import _connect_to_s3
 
 
 class Command(BaseCommand):

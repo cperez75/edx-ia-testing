@@ -1,4 +1,4 @@
-<openassessment>
+<ieia>
     <title>
         Promptless rubric
     </title>
@@ -28,4 +28,4 @@
                     must_be_graded_by="1" />
         <assessment name="self-assessment" />
     </assessments>
-</openassessment>
+</ieia>

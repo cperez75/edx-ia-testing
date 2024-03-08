@@ -6,15 +6,15 @@ XBlock handlers which surface info about an ORA, instead of being tied to views.
 from xblock.core import XBlock
 from xblock.exceptions import JsonHandlerError
 
-from openassessment.fileupload.exceptions import FileUploadError
-from openassessment.assessment.errors import AssessmentError
-from openassessment.workflow.errors import AssessmentWorkflowError
-from openassessment.xblock.apis.assessments.errors import InvalidStateToAssess
-from openassessment.xblock.apis.assessments.peer_assessment_api import peer_assess
-from openassessment.xblock.apis.assessments.self_assessment_api import self_assess
-from openassessment.xblock.apis.assessments.student_training_api import training_assess
-from openassessment.xblock.apis.submissions import submissions_actions
-from openassessment.xblock.apis.submissions.errors import (
+from ieia.fileupload.exceptions import FileUploadError
+from ieia.assessment.errors import AssessmentError
+from ieia.workflow.errors import AssessmentWorkflowError
+from ieia.xblock.apis.assessments.errors import InvalidStateToAssess
+from ieia.xblock.apis.assessments.peer_assessment_api import peer_assess
+from ieia.xblock.apis.assessments.self_assessment_api import self_assess
+from ieia.xblock.apis.assessments.student_training_api import training_assess
+from ieia.xblock.apis.submissions import submissions_actions
+from ieia.xblock.apis.submissions.errors import (
     AnswerTooLongException,
     DeleteNotAllowed,
     DraftSaveException,
@@ -26,14 +26,14 @@ from openassessment.xblock.apis.submissions.errors import (
     SubmitInternalError,
     UnsupportedFileTypeException
 )
-from openassessment.xblock.ui_mixins.mfe.assessment_serializers import (
+from ieia.xblock.ui_mixins.mfe.assessment_serializers import (
     AssessmentSubmitRequestSerializer,
     MfeAssessmentDataSerializer,
 )
-from openassessment.xblock.ui_mixins.mfe.constants import error_codes, handler_suffixes
-from openassessment.xblock.ui_mixins.mfe.ora_config_serializer import OraBlockInfoSerializer
-from openassessment.xblock.ui_mixins.mfe.page_context_serializer import PageDataSerializer
-from openassessment.xblock.ui_mixins.mfe.submission_serializers import (
+from ieia.xblock.ui_mixins.mfe.constants import error_codes, handler_suffixes
+from ieia.xblock.ui_mixins.mfe.ora_config_serializer import OraBlockInfoSerializer
+from ieia.xblock.ui_mixins.mfe.page_context_serializer import PageDataSerializer
+from ieia.xblock.ui_mixins.mfe.submission_serializers import (
     AddFileRequestSerializer,
     FileUploadCallbackRequestSerializer
 )

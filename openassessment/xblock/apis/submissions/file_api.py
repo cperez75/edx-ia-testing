@@ -3,8 +3,8 @@ API to encapsulate file CRUD behavior in submissions
 """
 import logging
 
-from openassessment.fileupload import api as file_upload_api
-from openassessment.fileupload.exceptions import FileUploadError
+from ieia.fileupload import api as file_upload_api
+from ieia.fileupload.exceptions import FileUploadError
 
 logger = logging.getLogger(__name__)  # pylint: disable=invalid-name
 

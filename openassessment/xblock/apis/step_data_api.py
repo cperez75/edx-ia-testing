@@ -1,6 +1,6 @@
 """ Base class for step data collations """
-from openassessment.xblock.apis.workflow_api import WorkflowStep
-from openassessment.xblock.utils.resolve_dates import DISTANT_FUTURE
+from ieia.xblock.apis.workflow_api import WorkflowStep
+from ieia.xblock.utils.resolve_dates import DISTANT_FUTURE
 
 
 class StepDataAPI:

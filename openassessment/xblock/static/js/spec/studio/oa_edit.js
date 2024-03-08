@@ -5,7 +5,7 @@ import { StudioView } from 'studio/oa_edit';
 Tests for OA XBlock editing.
 **/
 
-describe("OpenAssessment.StudioView", function() {
+describe("ieia.StudioView", function() {
 
     var runtime = {
         notify: function(type, data) {}
@@ -143,7 +143,7 @@ describe("OpenAssessment.StudioView", function() {
         spyOn(runtime, 'notify');
 
         // Create the object under test
-        var el = $('#openassessment-editor').get(0);
+        var el = $('#ieia-editor').get(0);
         view = new StudioView(runtime, el, server, data);
     });
 

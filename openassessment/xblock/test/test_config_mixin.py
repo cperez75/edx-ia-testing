@@ -8,7 +8,7 @@ from unittest import mock
 import ddt
 from django.test import TestCase
 
-from openassessment.xblock.config_mixin import (
+from ieia.xblock.config_mixin import (
     ConfigMixin,
     ALL_FILES_URLS,
     FEATURE_TOGGLES_BY_FLAG_NAME,
@@ -179,10 +179,10 @@ class ConfigMixinTest(TestCase):
         my_block = MockBlock()
         settings_feature_key = FEATURE_TOGGLES_BY_FLAG_NAME[flag_name]
 
-        with mock.patch('openassessment.xblock.config_mixin.WaffleSwitch', autospec=True) as MockWaffleSwitch:
+        with mock.patch('ieia.xblock.config_mixin.WaffleSwitch', autospec=True) as MockWaffleSwitch:
             MockWaffleSwitch.return_value.is_enabled.return_value = waffle_switch_input
             with mock.patch(
-                'openassessment.xblock.config_mixin.import_course_waffle_flag', autospec=True
+                'ieia.xblock.config_mixin.import_course_waffle_flag', autospec=True
             ) as mock_course_waffle_flag:
                 MockCourseWaffleFlag = mock_course_waffle_flag.return_value
                 MockCourseWaffleFlag.return_value.is_enabled.return_value = waffle_flag_input
@@ -192,7 +192,7 @@ class ConfigMixinTest(TestCase):
                 mock_flag_instance.is_enabled.assert_called_once_with(my_block.location.course_key)
 
         with mock.patch(
-            'openassessment.xblock.config_mixin.import_waffle_flag', autospec=True
+            'ieia.xblock.config_mixin.import_waffle_flag', autospec=True
         ) as mock_waffle_flag:
             MockWaffleFlag = mock_waffle_flag.return_value
             MockWaffleFlag.return_value.is_enabled.return_value = waffle_flag_input

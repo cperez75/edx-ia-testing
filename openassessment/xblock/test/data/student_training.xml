@@ -1,4 +1,4 @@
-<openassessment>
+<ieia>
     <title>Student training test</title>
     <prompts>
         <prompt>
@@ -54,4 +54,4 @@
         </assessment>
         <assessment name="peer-assessment" must_grade="5" must_be_graded_by="3" />
     </assessments>
-</openassessment>
+</ieia>

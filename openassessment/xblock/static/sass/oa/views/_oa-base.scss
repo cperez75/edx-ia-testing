@@ -1,15 +1,15 @@
-// openassessment: views - base
+// ieia: views - base
 // ====================
 
 // NOTES:
-// * The basic view and all of its states of the openassessment xblock
+// * The basic view and all of its states of the ieia xblock
 
-.wrapper--openassessment {
+.wrapper--ieia {
   position: relative;
 }
 
 // default to hide and show when it is needed
-.openassessment-initial-wrapper {
+.ieia-initial-wrapper {
   display: none;
 
   &.is--showing {
@@ -36,7 +36,7 @@
   }
 }
 
-.openassessment {
+.ieia {
   @include direction();
 
   // --------------------

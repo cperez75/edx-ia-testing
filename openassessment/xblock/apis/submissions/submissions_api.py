@@ -6,16 +6,16 @@ import logging
 
 from submissions.api import get_submission
 from submissions.team_api import get_team_submission
-from openassessment.data import OraSubmissionAnswerFactory
+from ieia.data import OraSubmissionAnswerFactory
 
 
-from openassessment.xblock.utils.data_conversion import (
+from ieia.xblock.utils.data_conversion import (
     create_submission_dict,
     update_saved_response_format,
 )
-from openassessment.xblock.utils.resolve_dates import DISTANT_FUTURE
-from openassessment.xblock.apis.step_data_api import StepDataAPI
-from openassessment.xblock.apis.submissions.file_api import FileAPI
+from ieia.xblock.utils.resolve_dates import DISTANT_FUTURE
+from ieia.xblock.apis.step_data_api import StepDataAPI
+from ieia.xblock.apis.submissions.file_api import FileAPI
 
 logger = logging.getLogger(__name__)  # pylint: disable=invalid-name
 
@@ -159,7 +159,7 @@ class SubmissionAPI(StepDataAPI):
 
         Raises:
             submissions.errors.SubmissionError: If there was an error loading the submission
-            openassessment.data.VersionNotFoundException: If the submission did not match any known
+            ieia.data.VersionNotFoundException: If the submission did not match any known
                                                           ORA answer version
         """
         submission = get_submission(submission_uuid)

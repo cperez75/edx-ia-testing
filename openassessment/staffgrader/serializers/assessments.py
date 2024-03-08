@@ -3,7 +3,7 @@ Serializers for assessment details for the ESG app
 """
 
 from rest_framework import serializers
-from openassessment.assessment.models.base import Assessment, AssessmentPart
+from ieia.assessment.models.base import Assessment, AssessmentPart
 
 
 # pylint: disable=abstract-method

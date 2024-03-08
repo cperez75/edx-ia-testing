@@ -3,7 +3,7 @@ import EditRubricView from 'studio/oa_edit_rubric';
 /**
 Tests for the rubric editing view.
 **/
-describe("OpenAssessment.EditRubricView", function() {
+describe("ieia.EditRubricView", function() {
 
     // Use a stub notifier implementation that simply stores
     // the notifications it receives.

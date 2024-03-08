@@ -5,8 +5,8 @@ import json
 
 from opaque_keys.edx.keys import UsageKey
 
-from openassessment.xblock.test.base import XBlockHandlerTestCase
-from openassessment.xblock.rubric_reuse_mixin import (
+from ieia.xblock.test.base import XBlockHandlerTestCase
+from ieia.xblock.rubric_reuse_mixin import (
     RubricReuseMixin, TargetBlockNotORAException, TargetORABlockNotFoundException
 )
 
@@ -16,7 +16,7 @@ class MockBlock(RubricReuseMixin):
     def __init__(self):
         self.runtime = None
         self.location = mock.Mock()
-        self.category = 'openassessment'
+        self.category = 'ieia'
         self.parent = mock.Mock()
         self._ = lambda x: x
 
@@ -27,10 +27,10 @@ class MockBlock(RubricReuseMixin):
 class RubricReuseMixinUnitTests(XBlockHandlerTestCase):
     """ Unit tests for RubricReuseMixin """
 
-    BLOCK_LOCATION = "block-v1:edx+Rubrics101+T1+type@openassessment+block@fb668396b505470e914bad8b3178e9e7"
-    OTHER_BLOCK_LOCATION = "block-v1:edx+Rubrics101+T1+type@openassessment+block@90b4edff50bc47d9ba037a3180c44e97"
+    BLOCK_LOCATION = "block-v1:edx+Rubrics101+T1+type@ieia+block@fb668396b505470e914bad8b3178e9e7"
+    OTHER_BLOCK_LOCATION = "block-v1:edx+Rubrics101+T1+type@ieia+block@90b4edff50bc47d9ba037a3180c44e97"
     OTHER_COURSE_BLOCK_LOCATION = (
-        "block-v1:edx+Astronomy201+T4+type@openassessment+block@9d1af6220a4d4ecbafb22a3506effcce"
+        "block-v1:edx+Astronomy201+T4+type@ieia+block@9d1af6220a4d4ecbafb22a3506effcce"
     )
 
     @classmethod
@@ -47,7 +47,7 @@ class RubricReuseMixinUnitTests(XBlockHandlerTestCase):
 
     def _make_mock_ora_block(self, orphan=False, location=None):
         """ Helper function to create a mock ORA XBlock """
-        mock_block = mock.Mock(category='openassessment')
+        mock_block = mock.Mock(category='ieia')
         if orphan:
             mock_block.parent = None
         if location is not None:
@@ -197,7 +197,7 @@ class RubricReuseMixinUnitTests(XBlockHandlerTestCase):
         result = self.block._get_course_ora_blocks()  # pylint: disable=protected-access
         self.block.runtime.modulestore.get_items.assert_called_once_with(
             self.block.location.course_key,
-            qualifiers={'category': 'openassessment'},
+            qualifiers={'category': 'ieia'},
         )
         self.assertEqual(result, self.block.runtime.modulestore.get_items.return_value)
 

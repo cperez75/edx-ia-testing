@@ -1,13 +1,13 @@
 """API Data wrapper for exposed APIs within ORA XBlock"""
-from openassessment.xblock.apis.grades_api import GradesAPI
-from openassessment.xblock.apis.ora_config_api import ORAConfigAPI
-from openassessment.xblock.apis.submissions.submissions_api import SubmissionAPI
-from openassessment.xblock.apis.assessments.peer_assessment_api import PeerAssessmentAPI
-from openassessment.xblock.apis.assessments.self_assessment_api import SelfAssessmentAPI
-from openassessment.xblock.apis.assessments.staff_assessment_api import (
+from ieia.xblock.apis.grades_api import GradesAPI
+from ieia.xblock.apis.ora_config_api import ORAConfigAPI
+from ieia.xblock.apis.submissions.submissions_api import SubmissionAPI
+from ieia.xblock.apis.assessments.peer_assessment_api import PeerAssessmentAPI
+from ieia.xblock.apis.assessments.self_assessment_api import SelfAssessmentAPI
+from ieia.xblock.apis.assessments.staff_assessment_api import (
     StaffAssessmentAPI,
 )
-from openassessment.xblock.apis.assessments.student_training_api import (
+from ieia.xblock.apis.assessments.student_training_api import (
     StudentTrainingAPI,
 )
 

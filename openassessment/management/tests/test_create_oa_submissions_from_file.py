@@ -10,11 +10,11 @@ from django.core.management.base import CommandError
 from django.test import TestCase
 from submissions import api as sub_api
 
-from openassessment.assessment.api import staff as staff_api
-from openassessment.staffgrader.models.submission_lock import SubmissionGradingLock
-from openassessment.workflow import api as workflow_api
-from openassessment.management.commands.create_oa_submissions_from_file import Command, SUPERUSER_USERNAME
-from openassessment.tests.factories import UserFactory
+from ieia.assessment.api import staff as staff_api
+from ieia.staffgrader.models.submission_lock import SubmissionGradingLock
+from ieia.workflow import api as workflow_api
+from ieia.management.commands.create_oa_submissions_from_file import Command, SUPERUSER_USERNAME
+from ieia.tests.factories import UserFactory
 
 USERNAME_1 = 'user1'
 USERNAME_2 = 'user2'
@@ -52,7 +52,7 @@ MOCK_BLOCK_KWARGS = {
     'display_name': DISPLAY_NAME_1,
     'prompts': ['This is the prompt'],
     'rubric_criteria_with_labels': [CRITERION_GRAMMAR],
-    'location': 'block-v1@testX+thistest+atest@openassessment-lkasjdflakdslsjfldfjlfajksf'
+    'location': 'block-v1@testX+thistest+atest@ieia-lkasjdflakdslsjfldfjlfajksf'
 }
 
 SUBMISSION_CONFIG_1 = {
@@ -96,7 +96,7 @@ def student_item(username, location):
         'student_id': anonymous_user_id(username),
         'course_id': COURSE_ID,
         'item_id': location,
-        'item_type': 'openassessment'
+        'item_type': 'ieia'
     }
 
 
@@ -211,7 +211,7 @@ class CreateSubmissionsFromFileTest(TestCase):
 
         expected_error = 'Unable to load anonymous id for user(s) user_not_found'
         with patch(
-            'openassessment.management.commands.create_oa_submissions_from_file.anonymous_id_for_user',
+            'ieia.management.commands.create_oa_submissions_from_file.anonymous_id_for_user',
             return_value=mock_anonymous_id_for_user
         ):
             with self.assertRaisesMessage(CommandError, expected_error):
@@ -219,7 +219,7 @@ class CreateSubmissionsFromFileTest(TestCase):
 
     def test_init_ora_test_data(self):
         """ Test for behavior of the init step """
-        mock_path = 'openassessment.management.commands.create_oa_submissions_from_file.call_command'
+        mock_path = 'ieia.management.commands.create_oa_submissions_from_file.call_command'
         with patch(mock_path) as mock_call_command:
             self.cmd.init_ora_test_data(COURSE_ID, CONFIG_1)
 
@@ -291,17 +291,17 @@ class CreateSubmissionsFromFileCallCommandTest(TestCase):
             return_value=CONFIG_1
         )
         anonymous_id_for_user_patcher = patch(
-            'openassessment.management.commands.create_oa_submissions_from_file.anonymous_id_for_user',
+            'ieia.management.commands.create_oa_submissions_from_file.anonymous_id_for_user',
             side_effect=mock_anonymous_id_for_user
         )
         self.mock_store = Mock()
         self.mock_store.get_items.return_value = [self.mock_block]
         modulestore_patcher = patch(
-            'openassessment.management.commands.create_oa_submissions_from_file.modulestore',
+            'ieia.management.commands.create_oa_submissions_from_file.modulestore',
             return_value=self.mock_store
         )
         call_command_patcher = patch(
-            'openassessment.management.commands.create_oa_submissions_from_file.call_command'
+            'ieia.management.commands.create_oa_submissions_from_file.call_command'
         )
         self.patchers = [
             read_config_patcher,

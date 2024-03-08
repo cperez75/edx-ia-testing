@@ -4,8 +4,8 @@ import DateTimeFactory from './oa_datefactory';
  * The GradeView class.
  *
  * @param {element} element - The DOM element representing the XBlock
- * @param {OpenAssessment.Server} server - The interface to the XBlock server
- * @param {OpenAssessment.BaseView} baseView - The container view.
+ * @param {ieia.Server} server - The interface to the XBlock server
+ * @param {ieia.BaseView} baseView - The container view.
  * @constructor
  */
 export class GradeView {

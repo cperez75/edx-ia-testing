@@ -1,5 +1,5 @@
 """
-Aggregate data for openassessment.
+Aggregate data for ieia.
 """
 
 from collections import OrderedDict, defaultdict, namedtuple
@@ -23,14 +23,14 @@ import requests
 from submissions.models import Submission
 from submissions import api as sub_api
 from submissions.errors import SubmissionNotFoundError
-from openassessment.assessment.score_type_constants import score_type_to_string
-from openassessment.fileupload.exceptions import FileUploadInternalError
-from openassessment.runtime_imports.classes import import_block_structure_transformers, import_external_id
-from openassessment.runtime_imports.functions import get_course_blocks, modulestore
-from openassessment.assessment.api import peer as peer_api
-from openassessment.assessment.models import Assessment, AssessmentFeedback, AssessmentPart
-from openassessment.fileupload.api import get_download_url
-from openassessment.workflow.models import AssessmentWorkflow, TeamAssessmentWorkflow
+from ieia.assessment.score_type_constants import score_type_to_string
+from ieia.fileupload.exceptions import FileUploadInternalError
+from ieia.runtime_imports.classes import import_block_structure_transformers, import_external_id
+from ieia.runtime_imports.functions import get_course_blocks, modulestore
+from ieia.assessment.api import peer as peer_api
+from ieia.assessment.models import Assessment, AssessmentFeedback, AssessmentPart
+from ieia.fileupload.api import get_download_url
+from ieia.workflow.models import AssessmentWorkflow, TeamAssessmentWorkflow
 
 
 logger = logging.getLogger(__name__)
@@ -149,7 +149,7 @@ def map_anonymized_ids_to_user_data(anonymized_ids: Set[str]) -> dict:
 
 class CsvWriter:
     """
-    Dump openassessment data to CSV files.
+    Dump ieia data to CSV files.
     """
 
     MODELS = [
@@ -494,7 +494,7 @@ class OraAggregateData:
     def _map_block_usage_keys_to_display_names(cls, course_id):
         """
         Builds a mapping between block usage key string and block display
-        name for those ones, whoose category is equal to ``openassessment``.
+        name for those ones, whoose category is equal to ``ieia``.
 
         Args:
             course_id (string or CourseLocator instance) - id of course
@@ -510,7 +510,7 @@ class OraAggregateData:
 
         for block_key in blocks:
             block_type = blocks.get_xblock_field(block_key, 'category')
-            if block_type == 'openassessment':
+            if block_type == 'ieia':
                 block_display_name_map[str(block_key)] = blocks.get_xblock_field(block_key, 'display_name')
 
         return block_display_name_map
@@ -631,7 +631,7 @@ class OraAggregateData:
         file_links = ''
         base_url = getattr(settings, 'LMS_ROOT_URL', '')
 
-        from openassessment.xblock.openassessmentblock import OpenAssessmentBlock
+        from ieia.xblock.openassessmentblock import OpenAssessmentBlock
         file_downloads = OpenAssessmentBlock.get_download_urls_from_submission(submission)
         file_links = [urljoin(base_url, file_download.get('download_url')) for file_download in file_downloads]
         return "\n".join(file_links)
@@ -652,7 +652,7 @@ class OraAggregateData:
                 for this course.
 
         """
-        all_submission_information = list(sub_api.get_all_course_submission_information(course_id, 'openassessment'))
+        all_submission_information = list(sub_api.get_all_course_submission_information(course_id, 'ieia'))
         usernames_enabled = _usernames_enabled()
 
         usernames_map = (
@@ -874,9 +874,9 @@ class OraAggregateData:
             A dict in the format:
 
             {
-             'block-v1:test-org+cs101+2017_TEST+type@openassessment+block@fb668396b505470e914bad8b3178e9e7:
+             'block-v1:test-org+cs101+2017_TEST+type@ieia+block@fb668396b505470e914bad8b3178e9e7:
                  {'training': 0, 'self': 0, 'done': 2, 'peer': 1, 'staff': 0, 'total': 3},
-             'block-v1:test-org+cs101+2017_TEST+type@openassessment+block@90b4edff50bc47d9ba037a3180c44e97:
+             'block-v1:test-org+cs101+2017_TEST+type@ieia+block@90b4edff50bc47d9ba037a3180c44e97:
                  {'training': 0, 'self': 2, 'done': 0, 'peer': 0, 'staff': 2, 'total': 4},
              ...
             }
@@ -1032,7 +1032,7 @@ class OraDownloadData:
                 yield index, blocks.get_xblock_field(child, 'display_name'), child
 
         def only_ora_blocks(block):
-            return block.block_type == "openassessment"
+            return block.block_type == "ieia"
 
         for section_index, section_name, section in children(blocks.root_block_usage_key):
             for sub_section_index, sub_section_name, sub_section in children(section):
@@ -1278,7 +1278,7 @@ class OraDownloadData:
         Generator, that yields dictionaries with information about submission
         attachment or answer text.
         """
-        all_submission_information = list(sub_api.get_all_course_submission_information(course_id, 'openassessment'))
+        all_submission_information = list(sub_api.get_all_course_submission_information(course_id, 'ieia'))
         logger.info(
             "[%s] Submission information loaded from submission API (len=%d)",
             course_id,
@@ -1359,7 +1359,7 @@ class SubmissionFileUpload:
         - description: SubmissionFileUpload.DEFAULT_DESCRIPTION
         - size: 0
 
-    A SubmissionFileUpload is distinct from any of the data classes in openassessment/fileupload/api.py.
+    A SubmissionFileUpload is distinct from any of the data classes in ieia/fileupload/api.py.
     FileDescriptor is a display-level construct and FileUpload represents a file that has been uploaded
     but not submitted.
     """

@@ -14,7 +14,7 @@ from contextlib import contextmanager
 
 from django.core.management.base import BaseCommand, CommandError
 
-from openassessment.data import OraAggregateData
+from ieia.data import OraAggregateData
 
 
 class Command(BaseCommand):

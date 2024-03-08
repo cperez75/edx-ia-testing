@@ -23,7 +23,7 @@ import swiftclient
 from ..exceptions import FileUploadInternalError
 from .base import BaseBackend
 
-logger = logging.getLogger("openassessment.fileupload.api")  # pylint: disable=invalid-name
+logger = logging.getLogger("ieia.fileupload.api")  # pylint: disable=invalid-name
 
 # prefix paths with current version, in case we need to roll it at some point
 SWIFT_BACKEND_VERSION = 1
@@ -31,7 +31,7 @@ SWIFT_BACKEND_VERSION = 1
 
 class Backend(BaseBackend):
     """
-    Upload openassessment student files to swift
+    Upload ieia student files to swift
     """
 
     def get_upload_url(self, key, content_type):

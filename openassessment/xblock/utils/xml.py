@@ -1,5 +1,5 @@
 """
-Serialize and deserialize OpenAssessment XBlock content to/from XML.
+Serialize and deserialize ieia XBlock content to/from XML.
 """
 
 
@@ -12,15 +12,15 @@ import defusedxml.ElementTree as safe_etree
 import pytz
 
 from lxml import etree
-from openassessment.xblock.utils.data_conversion import update_assessments_format
-from openassessment.xblock.lms_mixin import GroupAccessDict
+from ieia.xblock.utils.data_conversion import update_assessments_format
+from ieia.xblock.lms_mixin import GroupAccessDict
 
 log = logging.getLogger(__name__)
 
 
 class UpdateFromXmlError(Exception):
     """
-    Error occurred while deserializing the OpenAssessment XBlock content from XML.
+    Error occurred while deserializing the ieia XBlock content from XML.
     """
 
 
@@ -250,7 +250,7 @@ def _parse_boolean(boolean_str):
 
 def _parse_prompts_xml(root):
     """
-    Parse <prompts> element in the OpenAssessment XBlock's content XML.
+    Parse <prompts> element in the ieia XBlock's content XML.
 
     Args:
         root (lxml.etree.Element): The root node of the tree.
@@ -296,7 +296,7 @@ def _parse_prompts_xml(root):
 
 def _parse_options_xml(options_root):
     """
-    Parse <options> element in the OpenAssessment XBlock's content XML.
+    Parse <options> element in the ieia XBlock's content XML.
 
     Args:
         options_root (lxml.etree.Element): The root of the tree.
@@ -358,7 +358,7 @@ def _parse_options_xml(options_root):
 
 def _parse_criteria_xml(criteria_root):
     """
-    Parse <criteria> element in the OpenAssessment XBlock's content XML.
+    Parse <criteria> element in the ieia XBlock's content XML.
 
     Args:
         criteria_root (lxml.etree.Element): The root node of the tree.
@@ -423,7 +423,7 @@ def _parse_criteria_xml(criteria_root):
 
 def parse_rubric_xml(rubric_root):
     """
-    Parse <rubric> element in the OpenAssessment XBlock's content XML.
+    Parse <rubric> element in the ieia XBlock's content XML.
 
     Args:
         rubric_root (lxml.etree.Element): The root of the <rubric> node in the tree.
@@ -509,7 +509,7 @@ def parse_examples_xml(examples):
 
 def parse_assessments_xml(assessments_root):
     """
-    Parse the <assessments> element in the OpenAssessment XBlock's content XML.
+    Parse the <assessments> element in the ieia XBlock's content XML.
 
     Args:
         assessments_root (lxml.etree.Element): The root of the <assessments> node in the tree.
@@ -646,7 +646,7 @@ def serialize_training_examples(examples, assessment_el):
 
 def serialize_assessments(assessments_root, oa_block):
     """
-    Serialize the assessment modules for an OpenAssessment XBlock.
+    Serialize the assessment modules for an ieia XBlock.
 
     Args:
         assessments_root (lxml.etree.Element): The <assessments> XML element.
@@ -691,7 +691,7 @@ def serialize_assessments(assessments_root, oa_block):
 
 def serialize_content_to_xml(oa_block, root):
     """
-    Serialize the OpenAssessment XBlock's content to XML.
+    Serialize the ieia XBlock's content to XML.
 
     Args:
         oa_block (OpenAssessmentBlock): The open assessment block to serialize.
@@ -701,7 +701,7 @@ def serialize_content_to_xml(oa_block, root):
         etree.Element
 
     """
-    root.tag = 'openassessment'
+    root.tag = 'ieia'
 
     # Set the submission start date
     if oa_block.submission_start is not None:
@@ -775,7 +775,7 @@ def serialize_content_to_xml(oa_block, root):
 
 def serialize_content(oa_block):
     """
-    Serialize the OpenAssessment XBlock's content to an XML string.
+    Serialize the ieia XBlock's content to an XML string.
 
     Args:
         oa_block (OpenAssessmentBlock): The open assessment block to serialize.
@@ -783,7 +783,7 @@ def serialize_content(oa_block):
     Returns:
         xml (unicode)
     """
-    root = etree.Element('openassessment')
+    root = etree.Element('ieia')
     serialize_content_to_xml(oa_block, root)
 
     # Return a UTF-8 representation of the XML
@@ -792,7 +792,7 @@ def serialize_content(oa_block):
 
 def serialize_rubric_to_xml_str(oa_block):
     """
-    Serialize the OpenAssessment XBlock's rubric into an XML string. This is
+    Serialize the ieia XBlock's rubric into an XML string. This is
     designed to serialize the XBlock's rubric specifically for authoring. Since
     the authoring view splits the prompt from the rubric, the serialized format
     for the rubric does not contain the prompt.
@@ -812,7 +812,7 @@ def serialize_rubric_to_xml_str(oa_block):
 
 def serialize_examples_to_xml_str(assessment):
     """
-    Serializes the OpenAssessment XBlock's training examples into an XML unicode
+    Serializes the ieia XBlock's training examples into an XML unicode
     string.
 
     Args:
@@ -834,7 +834,7 @@ def serialize_examples_to_xml_str(assessment):
 
 def serialize_assessments_to_xml_str(oa_block):
     """
-    Serializes the OpenAssessment XBlock's assessment modules into an XML
+    Serializes the ieia XBlock's assessment modules into an XML
     unicode string.
 
     Args:
@@ -847,7 +847,7 @@ def serialize_assessments_to_xml_str(oa_block):
 
 def parse_from_xml(root):
     """
-    Update the OpenAssessment XBlock's content from an XML definition.
+    Update the ieia XBlock's content from an XML definition.
 
     We need to be strict about the XML we accept, to avoid setting
     the XBlock to an invalid state (which will then be persisted).
@@ -863,8 +863,8 @@ def parse_from_xml(root):
     """
 
     # Check that the root has the correct tag
-    if root.tag != 'openassessment':
-        raise UpdateFromXmlError('Every open assessment problem must contain an "openassessment" element.')
+    if root.tag != 'ieia':
+        raise UpdateFromXmlError('Every open assessment problem must contain an "ieia" element.')
 
     # Retrieve the start date for the submission
     # Set it to None by default; we will update it to the latest start date later on
@@ -987,7 +987,7 @@ def parse_from_xml(root):
 
 def parse_from_xml_str(xml):
     """
-    Create a dictionary for the OpenAssessment XBlock's content from an XML
+    Create a dictionary for the ieia XBlock's content from an XML
     string definition. Parses the string using a library that avoids some known
     security vulnerabilities in etree.
 

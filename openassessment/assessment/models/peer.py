@@ -4,7 +4,7 @@ Django models specific to peer assessment.
 NOTE: We've switched to migrations, so if you make any edits to this file, you
 need to then generate a matching migration for it using:
 
-    ./manage.py schemamigration openassessment.assessment --auto
+    ./manage.py schemamigration ieia.assessment --auto
 
 """
 
@@ -16,11 +16,11 @@ import random
 from django.db import DatabaseError, models
 from django.utils.timezone import now
 
-from openassessment.assessment.errors import PeerAssessmentInternalError, PeerAssessmentWorkflowError
-from openassessment.assessment.models.base import Assessment
-from openassessment.assessment.score_type_constants import PEER_TYPE
+from ieia.assessment.errors import PeerAssessmentInternalError, PeerAssessmentWorkflowError
+from ieia.assessment.models.base import Assessment
+from ieia.assessment.score_type_constants import PEER_TYPE
 
-logger = logging.getLogger("openassessment.assessment.models")  # pylint: disable=invalid-name
+logger = logging.getLogger("ieia.assessment.models")  # pylint: disable=invalid-name
 
 
 class AssessmentFeedbackOption(models.Model):

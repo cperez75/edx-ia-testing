@@ -43,7 +43,7 @@
                 ["uuid", "student_id", "item_id", "submitted_at", "created_at", "raw_answer"],
                 [
                     "cf5190b8-d0aa-11e3-a734-14109fd8dc43",
-                    "student_1", "openassessmentblock-poverty-rubric.openassessment.d0.u0",
+                    "student_1", "openassessmentblock-poverty-rubric.ieia.d0.u0",
                     "2014-04-30 21:02:59.234000+00:00", "2014-04-30 21:02:59.241000+00:00",
                     "{\"text\": \"Lorem ipsum dolor sit amet\"}"
                 ]

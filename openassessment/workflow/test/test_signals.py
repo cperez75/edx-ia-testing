@@ -7,10 +7,10 @@ import ddt
 from django.db import DatabaseError
 
 from submissions import api as sub_api
-from openassessment.assessment.signals import assessment_complete_signal
-from openassessment.test_utils import CacheResetTest
-from openassessment.workflow import api as workflow_api
-from openassessment.workflow.models import AssessmentWorkflow
+from ieia.assessment.signals import assessment_complete_signal
+from ieia.test_utils import CacheResetTest
+from ieia.workflow import api as workflow_api
+from ieia.workflow.models import AssessmentWorkflow
 
 
 @ddt.ddt
@@ -22,7 +22,7 @@ class UpdateWorkflowSignalTest(CacheResetTest):
         "student_id": "test student",
         "item_id": "test item",
         "course_id": "test course",
-        "item_type": "openassessment",
+        "item_type": "ieia",
     }
 
     def setUp(self):
@@ -57,7 +57,7 @@ class UpdateWorkflowSignalTest(CacheResetTest):
             mock_update.assert_called_once_with(None, {})
 
     @ddt.data(DatabaseError, IOError)
-    @mock.patch('openassessment.workflow.models.AssessmentWorkflow.objects.get')
+    @mock.patch('ieia.workflow.models.AssessmentWorkflow.objects.get')
     def test_errors(self, error, mock_call):
         # Start a workflow for the submission
         workflow_api.create_workflow(self.submission_uuid, ['self'])
