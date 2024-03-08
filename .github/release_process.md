@@ -7,7 +7,7 @@ Before Merging a pull request:
 - [ ] Get a green Travis build for this PR
 - [ ] Address PR comments
 - [ ] Get approving review from code owner
-- [ ] Bump version number in [openassessment/\_\_init\_\_.py](../openassessment/__init__.py) and [package.json](../package.json) following [semantic versioning](https://semver.org/) conventions
+- [ ] Bump version number in [openassessment/\_\_init\_\_.py](../ieia/__init__.py) and [package.json](../package.json) following [semantic versioning](https://semver.org/) conventions
 
 ## Publish to PyPi
 

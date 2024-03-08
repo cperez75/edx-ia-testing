@@ -4,15 +4,15 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: 'edx-ora2'
-  description: "Open Response Assessment (ORA) XBlock for use within edx-platform"
+  name: 'edx-ieia'
+  description: "Test IE IA"
   links:
-    - url: "https://github.com/openedx/edx-ora2"
-      title: "Open Response Assessment (ORA) XBlock"
+    - url: "https://github.com/cperez75/edx-ia-testing"
+      title: "IE IA Testing"
       icon: "Web"
   annotations:
     openedx.org/arch-interest-groups: ""
 spec:
-  owner: group:2u-aurora
+  owner: opensistemas
   type: 'xblock'
   lifecycle: 'production'

@@ -115,7 +115,7 @@ Debugging JavaScript
 --------------------
 For debugging JS in Devstack, first follow the instructions for "Hot Reload JS". This enables source maps and allows for placing breakpoints in source-mapped files from the browser dev tools.
 
-  - Locate code by browsing to ``webpack:///./openassessment/xblock/static/js/src/``. 
+  - Locate code by browsing to ``webpack:///./ieia/xblock/static/js/src/``. 
     - **NOTE** The path should be within ``iframe`` for ``lms``.
     - **TIP** Use ``CTRL + P`` or ``Command + P`` to find the file through chrome dev tools.
   - breakpoints should toggle with hot-reloading.

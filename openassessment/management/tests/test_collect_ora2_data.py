@@ -33,7 +33,7 @@ class CollectOra2DataTest(CacheResetTest):
         self.test_rows = [
             [
                 "33a639de-4e61-11e4-82ab-hash_value",
-                "i4x://edX/DemoX/openassessment/hash_value",
+                "i4x://edX/DemoX/ieia/hash_value",
                 "e31b4beb3d191cd47b07e17735728d53",
                 "2014-10-07 20:33:31+00:00",
                 '{""text"": ""This is a response to a question. #dylan""}',
@@ -47,7 +47,7 @@ class CollectOra2DataTest(CacheResetTest):
             ],
             [
                 "row-two-submission-value",
-                "i4x://edX/DemoX/openassessment/hash_value",
+                "i4x://edX/DemoX/ieia/hash_value",
                 "e31b4beb3d191cd47b07e17735728d53",
                 "2014-10-07 20:33:31+00:00",
                 '{""text"": ""This is a response to a question. #dylan""}',
@@ -63,7 +63,7 @@ class CollectOra2DataTest(CacheResetTest):
 
         self.unicode_encoded_row = [
             "row-two-submission-value",
-            "i4x://edX/DemoX/openassessment/hash_value",
+            "i4x://edX/DemoX/ieia/hash_value",
             "e31b4beb3d191cd47b07e17735728d53",
             "2014-10-07 20:33:31+00:00",
             '{""text"": ""This is a response to a question. #dylan""}',

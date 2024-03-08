@@ -94,13 +94,13 @@ extract_translations: ## creates the django-partial.po & django-partial.mo files
 	cd ./openassessment && django-admin makemessages -l en -v1 -d djangojs
 
 compile_translations: ## compiles the *.po & *.mo files
-	cd ./openassessment/ && i18n_tool generate -v && cd ..
+	cd ./ieia/ && i18n_tool generate -v && cd ..
 
 generate_dummy_translations: ## generate dummy translations
 	i18n_tool dummy
 
 validate_translations: ## Test translation files
-	cd ./openassessment/ && i18n_tool validate -v
+	cd ./ieia/ && i18n_tool validate -v
 
 detect_changed_source_translations: ## check if translation files are up-to-date
 	i18n_tool changed
